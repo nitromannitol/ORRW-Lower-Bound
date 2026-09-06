@@ -1,0 +1,282 @@
+# ORRW frozen-statement manifest.
+#
+# One entry per frozen declaration.  The bytes between the FROZEN-STATEMENT
+# markers are the contract: a proof attempt may fill in the proof after the end
+# marker, never touch the statement.  `frozen_sha256` is the SHA-256 of exactly
+# those bytes.
+#
+# States: DRAFT_SORRY (statement frozen, proof is a registered `sorry`),
+#         SEALED (a proof exists and one instance has checked it),
+#         PROVED (an independent instance has audited it as well).
+# A statement being frozen is not a proof claim.
+
+version: 1
+source_pin:
+  file: paper/orrw.tex
+  sha256: 31b5a322248db0c53cd6e922a97b192181837a0feef339c0ca9be14cff9acabf
+
+nodes:
+  - id: thm-main
+    version: 1
+    kind: theorem
+    source: orrw.tex:106-113 (label thm:main, equation eq:main-range)
+    file: ORRW/Frozen/RangeLowerBound.lean
+    export: ORRW.Frozen.range_lower_bound
+    state: SEALED
+    frozen_sha256: e9eed22a4b1d0fd1a3fabd888e15606dd1ab325d02a317c6f0d685a8a71762ab
+    provider: ORRW.Frozen.range_lower_bound
+    approved: "2026-09-04"
+
+  - id: thm-whp
+    version: 1
+    kind: theorem
+    source: orrw.tex:123-131 (label thm:whp)
+    file: ORRW/Frozen/RangeTail.lean
+    export: ORRW.Frozen.range_tail
+    state: SEALED
+    frozen_sha256: 230e9100dfb1799bdb0241da20fa20e6a2748c587a010629158d38be68924bc1
+    provider: ORRW.Frozen.range_tail
+    approved: "2026-09-04"
+
+  - id: lem-max-exit
+    version: 1
+    kind: theorem
+    source: orrw.tex:464-473 (label lem:max-exit)
+    file: ORRW/Frozen/Insertion/ExitTimeBounds.lean
+    export: ORRW.Frozen.max_exit
+    state: SEALED
+    frozen_sha256: a08d37bbdb7da7a35b583831b45018363ff453a20f3e7dbed81413a44c4cde14
+    provider: ORRW.Frozen.max_exit
+    approved: "2026-09-04"
+
+  - id: lem-schur
+    version: 2
+    kind: theorem
+    source: orrw.tex:493-514 (label lem:schur; rulings L-002, F-203 v2 -- all three displays incl. eq:hbound)
+    file: ORRW/Frozen/Insertion/OnePointInsertion.lean
+    export: ORRW.Frozen.one_point_insertion
+    state: SEALED
+    frozen_sha256: c392360fdcf0ed7a31d0851c16e0eea18e8fe0cbee2f884a3f3880500efb11c0
+    provider: ORRW.Frozen.one_point_insertion
+    approved: "2026-09-04"
+
+  - id: lem-packing
+    version: 1
+    kind: theorem
+    source: orrw.tex:531-538 (label lem:packing)
+    file: ORRW/Frozen/Insertion/ResistancePacking.lean
+    export: ORRW.Frozen.resistance_packing
+    state: SEALED
+    frozen_sha256: 26b7abe91c9bfeb7ae1e1b99393e6c8fef1cfb4b1ea61af799fd90c6adba3d98
+    provider: ORRW.Frozen.resistance_packing
+    approved: "2026-09-04"
+
+  - id: lem-insertion
+    version: 1
+    kind: theorem
+    source: orrw.tex:573-581 (label lem:insertion)
+    file: ORRW/Frozen/Insertion/InsertionInequality.lean
+    export: ORRW.Frozen.insertion_inequality
+    state: SEALED
+    frozen_sha256: d2df311a75da4e760b634953f06d6262698c8067b587e5412f422b18cc5dcbaf
+    provider: ORRW.Frozen.insertion_inequality
+    approved: "2026-09-04"
+
+  - id: guard-total-weight-pos
+    version: 1
+    kind: theorem
+    source: model guard for ORRW.stepProb (ORRW/Basic.lean)
+    file: ORRW/Frozen/Guards/TotalWeightPos.lean
+    export: ORRW.Frozen.totalWeight_pos
+    state: SEALED
+    frozen_sha256: 84ef8e1becc3d668d2fc3db6ccf237f2afdd8c853439280247190433c8970e3b
+    provider: ORRW.Frozen.totalWeight_pos
+    approved: "2026-09-04"
+
+  - id: guard-prob-pmf
+    version: 1
+    kind: theorem
+    source: model guard for ORRW.prob (ORRW/Basic.lean)
+    file: ORRW/Frozen/Guards/ProbIsPMF.lean
+    export: ORRW.Frozen.sum_prob_eq_one
+    state: SEALED
+    frozen_sha256: 2ac2da6f65be1c6670da5881b962fe214cc877b512277d31b6a64273ec47345f
+    provider: ORRW.Frozen.sum_prob_eq_one
+    approved: "2026-09-04"
+
+  - id: guard-edges-le-sites
+    version: 1
+    kind: theorem
+    source: orrw.tex:838-840 (label eq:edges-sites)
+    file: ORRW/Frozen/Guards/EdgesLeSites.lean
+    export: ORRW.Frozen.card_edges_le_card_range
+    state: SEALED
+    frozen_sha256: 1d171ddb2b77ffad004e086cf40d85b18eb0b3f1d56d9d73f202a104d2692e8f
+    provider: ORRW.Frozen.card_edges_le_card_range
+    approved: "2026-09-04"
+
+  - id: guard-one-step-witness
+    version: 1
+    kind: theorem
+    source: numeric witness for the normalization of ORRW.expect
+    file: ORRW/Frozen/Guards/OneStepWitness.lean
+    export: ORRW.Frozen.expect_card_range_one_step
+    state: SEALED
+    frozen_sha256: a87315d1c1f509f4b08f2ba0f902876d530e1a5ea277c5584c8b4e31b352714c
+    provider: ORRW.Frozen.expect_card_range_one_step
+    approved: "2026-09-04"
+
+  - id: lem-martingale
+    version: 1
+    kind: theorem
+    source: orrw.tex:677-680 (label lem:martingale)
+    file: ORRW/Frozen/Potential/Supermartingale.lean
+    export: ORRW.Frozen.supermartingale_drift
+    state: SEALED
+    frozen_sha256: 0fcbbbac62a7ff50896611b7784995df8585609c0672be22b230a8b9be9383fd
+    provider: ORRW.Frozen.supermartingale_drift
+    approved: "2026-09-05"
+
+  - id: lem-walk-order
+    version: 1
+    kind: theorem
+    source: orrw.tex:726-738 (label lem:walk-order)
+    file: ORRW/Frozen/Potential/InsertionOrder.lean
+    export: ORRW.Frozen.insertion_order
+    state: SEALED
+    frozen_sha256: 7fb55dd9651f11c0f3b511f6b47a3a0def144c22a0aa74d0cec61ccf096a0680
+    provider: ORRW.Frozen.insertion_order
+    approved: "2026-09-05"
+
+  - id: prop-charge
+    version: 1
+    kind: theorem
+    source: orrw.tex:763-770 (label prop:charge)
+    file: ORRW/Frozen/Potential/AccumulatedCharge.lean
+    export: ORRW.Frozen.accumulated_charge
+    state: SEALED
+    frozen_sha256: 8e68e422f22cbdbcba3d543023e6c878093fe6a670635f6ae3b5ed9c261e768f
+    provider: ORRW.Frozen.accumulated_charge
+    approved: "2026-09-05"
+
+  - id: lem-exp
+    version: 1
+    kind: theorem
+    source: orrw.tex:872-896 (label lem:exp)
+    file: ORRW/Frozen/Tail/TimeVersusCharge.lean
+    export: ORRW.Frozen.time_versus_charge
+    state: SEALED
+    frozen_sha256: b967a0c1a259e8fc9d2e826d12eef1d28f98c5adb43480c42e00d562818c4922
+    provider: ORRW.Frozen.time_versus_charge
+    approved: "2026-09-05"
+
+  - id: prop-tail
+    version: 1
+    kind: theorem
+    source: orrw.tex:933-941 (label prop:tail)
+    file: ORRW/Frozen/Tail/SigmaTail.lean
+    export: ORRW.Frozen.sigma_tail
+    state: SEALED
+    frozen_sha256: 399916eccd37c76ea547f647748d1fb95831d01fcba5a7ca39e26a3e8f94c7f4
+    provider: ORRW.Frozen.sigma_tail
+    approved: "2026-09-05"
+
+  - id: prop-displacement
+    version: 1
+    kind: theorem
+    source: orrw.tex:1019-1033 (label prop:displacement)
+    file: ORRW/Frozen/Tail/Displacement.lean
+    export: ORRW.Frozen.displacement
+    state: SEALED
+    frozen_sha256: 5be0d355de90ca4df532d872d3315192b529ceebc79af41aeb8abfd042ab16ad
+    provider: ORRW.Frozen.displacement
+    approved: "2026-09-05"
+
+  - id: prop-beta-sharp
+    version: 1
+    kind: theorem
+    source: orrw.tex:1088-1098 (label prop:beta-sharp)
+    file: ORRW/Frozen/Tail/ExponentsOptimal.lean
+    export: ORRW.Frozen.exponents_optimal
+    state: SEALED
+    frozen_sha256: d8d7d338f336b98162d926a5a4ab90899260827e728cce4b47d784e0c2f130f7
+    provider: ORRW.Frozen.exponents_optimal
+    approved: "2026-09-05"
+
+  - id: lem-green
+    version: 1
+    kind: theorem
+    source: orrw.tex:1179-1195 (label lem:green)
+    file: ORRW/Frozen/Occupation/LazyGreen.lean
+    export: ORRW.Frozen.lazy_green_bounds
+    state: SEALED
+    frozen_sha256: 1224aa9c01f7f8276faaf1d54dd2567fa36f32c9c0a4f95828c9edd4c4f9361a
+    provider: ORRW.Frozen.lazy_green_bounds
+    approved: "2026-09-05"
+
+  - id: thm-occupation
+    version: 1
+    kind: theorem
+    source: orrw.tex:1227-1247 (label thm:return)
+    file: ORRW/Frozen/Occupation/Occupation.lean
+    export: ORRW.Frozen.occupation
+    state: SEALED
+    frozen_sha256: 76993025731ddaefeadad47d60bd00a8f669f3612e0308c20cbc7d64bac3b2bf
+    provider: ORRW.Frozen.occupation
+    approved: "2026-09-05"
+
+  - id: thm-occupation-cesaro
+    version: 2
+    kind: theorem
+    source: orrw.tex:1227-1247 (label thm:return, the eq:cesaro display; rulings R-006, F-821..F-823)
+    note: ruling R-005 is retired; it governed the uniform index of the superseded v1 argument
+    file: ORRW/Frozen/Occupation/OccupationCesaro.lean
+    export: ORRW.Frozen.occupation_cesaro
+    state: SEALED
+    frozen_sha256: fafccf5bd9adc47fe3cc85f45c8971550c49d5f985d9a2b42fb2bf1a30a4de58
+    provider: ORRW.Frozen.occupation_cesaro
+    approved: "2026-09-05"
+
+  - id: thm-occupation-measure
+    version: 1
+    kind: theorem
+    source: orrw.tex:146-152 (label thm:occupation-intro, equation eq:occupation-intro; ruling R-006)
+    file: ORRW/Frozen/Occupation/OccupationMeasure.lean
+    export: ORRW.Frozen.occupation_measure
+    state: SEALED
+    frozen_sha256: d25a0c18385124f040a7162ae9a6142f6bcde8dfca584cad69cd0f398313e0cf
+    provider: ORRW.Frozen.occupation_measure
+    approved: "2026-09-05"
+
+  - id: bridge-path-measure
+    version: 1
+    kind: theorem
+    source: not a paper statement; required for the almost-sure corollaries (see CORRESPONDENCE.md, R-001 scope)
+    file: ORRW/Frozen/AlmostSure/PathMeasureBridge.lean
+    export: ORRW.Frozen.pathMeasure_restr
+    state: SEALED
+    frozen_sha256: 2d801141e36364b1408245dc6b0b733bfac219970d5d13db51bf8a1a0519c6fc
+    provider: ORRW.Frozen.pathMeasure_restr
+    approved: '2026-09-05'
+
+  - id: ae-range
+    version: 2
+    kind: theorem
+    source: orrw.tex:134-135, the Borel-Cantelli corollary stated in prose after thm:whp (ruling A-003)
+    file: ORRW/Frozen/AlmostSure/RangeAlmostSure.lean
+    export: ORRW.Frozen.range_ae
+    state: SEALED
+    frozen_sha256: 05b123b0cea380463bb2f32dfa4d420a34e4d9c2f581adfbad5a84790b7c7b73
+    provider: ORRW.Frozen.range_ae
+    approved: '2026-09-05'
+
+  - id: ae-displacement
+    version: 2
+    kind: theorem
+    source: orrw.tex, the closing display of prop:displacement, its almost-sure clause (rulings A-003, A-004)
+    file: ORRW/Frozen/AlmostSure/DisplacementAlmostSure.lean
+    export: ORRW.Frozen.displacement_ae
+    state: SEALED
+    frozen_sha256: 881214fda81b58cf914fcbfd8a07f74867f095374a68e6b159eefc33631ea11f
+    provider: ORRW.Frozen.displacement_ae
+    approved: '2026-09-05'
