@@ -1,7 +1,7 @@
 /-
 Frozen statement of Proposition 6.1 of Bou-Rabee--Peres, *Once-reinforced random
 walk on `ℤ^d` has range exponent at least `d/(d+1)`*, Section 6, Proposition
-(Displacement and exit times), label `prop:displacement`, `orrw.tex:1019-1033`:
+(Displacement and exit times), label `prop:displacement`, `orrw.tex:863-877`:
 
   "Let `d ≥ 2`.  There are constants `c > 0` and `C < ∞`, depending only on `d`,
    such that for every `β ≥ 1`,

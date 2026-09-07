@@ -1,4 +1,4 @@
-"""Check that every theorem-like statement in the paper is formalized.
+"""Check that every theorem-like statement in the paper is represented in the manifest.
 
 The manifest says which paper statement each Lean node transcribes.  This asks
 the complementary question, which no other checker asks: is there a statement in
@@ -60,7 +60,7 @@ def main() -> int:
     uncovered = [(k, lab, ln) for k, lab, ln in statements if lab not in claimed]
 
     print(f"check_coverage: {len(statements)} statements in the paper, "
-          f"{len(statements) - len(uncovered)} formalized")
+          f"{len(statements) - len(uncovered)} represented in the manifest")
     if uncovered:
         print("\nNot claimed by any manifest node:")
         for kind, lab, ln in uncovered:
@@ -68,7 +68,7 @@ def main() -> int:
         print("\ncheck_coverage: the formalization does not cover the whole paper",
               file=sys.stderr)
         return 1
-    print("every theorem, lemma and proposition in the paper is formalized")
+    print("every theorem, lemma and proposition in the paper is represented in the manifest")
     return 0
 
 

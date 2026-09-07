@@ -1,7 +1,7 @@
 /-
 Frozen statement of the exit time bounds of Bou-Rabee--Peres, *Once-reinforced
 random walk on `ℤ^d` has range exponent at least `d/(d+1)`*, Section 2,
-Lemma (Exit time bounds), label `lem:max-exit`, `orrw.tex:464-473`:
+Lemma (Exit time bounds), label `lem:max-exit`, `orrw.tex:423-432`:
 
   "Let `d ≥ 1`. Every finite nonempty `A ⊂ ℤ^d` satisfies
      `max_{x ∈ A} u_A(x) ≤ C|A|^{2/d}`,

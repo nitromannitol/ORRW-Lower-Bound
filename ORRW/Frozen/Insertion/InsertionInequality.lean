@@ -2,7 +2,7 @@
 Frozen statement of the insertion inequality of Bou-Rabee--Peres,
 *Once-reinforced random walk on `ℤ^d` has range exponent at least `d/(d+1)`*,
 Section 2, Lemma (Sum over successive vertex additions), label `lem:insertion`,
-`orrw.tex:573-581`:
+`orrw.tex:515-523`:
 
   "Let `d ≥ 2`, let `M ≥ 1` be an integer, let `x_1, …, x_M` be distinct
    vertices of `ℤ^d`, and let `A_i := {x_1, …, x_i}` for `0 ≤ i ≤ M`.  Then

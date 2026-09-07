@@ -1,7 +1,7 @@
 /-
 Frozen statement of the one-point insertion lemma of Bou-Rabee--Peres,
 *Once-reinforced random walk on `ℤ^d` has range exponent at least `d/(d+1)`*,
-Section 2, Lemma (Adding one vertex), label `lem:schur`, `orrw.tex:493-514`:
+Section 2, Lemma (Adding one vertex), label `lem:schur`, `orrw.tex:447-468`:
 
   "Let `d ≥ 1`, let `A ⊂ ℤ^d` be finite, let `x ∉ A`, and set `A⁺ := A ∪ {x}`.
    Give every edge of `ℤ^d` unit conductance and let `Reff(x ↔ (A⁺)^c)` be the

@@ -2,7 +2,7 @@
 Frozen statement of Theorem 8.2 of Bou-Rabee--Peres, *Once-reinforced random
 walk on `ℤ^d` has range exponent at least `d/(d+1)`*, Section 8, Theorem
 (Occupation of a site), label `thm:return`, display `eq:occupation`,
-`orrw.tex:1227-1247`:
+`orrw.tex:1039-1051`:
 
   "Let `d ≥ 2`.  There is a constant `C < ∞`, depending only on `d`, such that
    for every `β ≥ 1`, every site `z`, every integer `m ≥ 0` and every integer

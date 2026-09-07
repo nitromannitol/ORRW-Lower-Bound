@@ -63,8 +63,8 @@ EXPECTED_ABSENT: dict[str, dict[str, str]] = {
     "thm-occupation-cesaro": {
         "1/3": "general: the paper's d = 2 case, in a sibling node",
         "2/3": "general: the paper's d = 2 case, in a sibling node",
-        "1/(d+1)": "split: belongs to eq:occupation, node thm-occupation",
-        "d/(d+1)": "split: belongs to eq:occupation, node thm-occupation",
+        "1/(d+1)": "rearrangement: paper bounds the sum; Lean bounds its average, see VERIFICATION.md",
+        "d/(d+1)": "weaker beta dependence: Lean simplifies the paper coefficient to C beta, see VERIFICATION.md",
     },
 }
 
@@ -94,6 +94,15 @@ def paper_exponents(seg: str) -> set[str]:
         else:
             out.append(seg[i])
     cleaned = {re.sub(r"\s|\\,|\\!|\\bigl|\\bigr", "", e) for e in out}
+    def fraction(m):
+        num, den = m.groups()
+        if not re.fullmatch(r"[A-Za-z0-9]+", num):
+            num = "(" + num + ")"
+        if not re.fullmatch(r"[A-Za-z0-9]+", den):
+            den = "(" + den + ")"
+        return num + "/" + den
+    cleaned = {re.sub(r"\\(?:d?frac|tfrac)\{([^{}]+)\}\{([^{}]+)\}", fraction, e)
+               for e in cleaned}
     return cleaned - NOISE
 
 

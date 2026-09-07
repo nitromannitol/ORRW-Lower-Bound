@@ -1,7 +1,7 @@
 /-
 Frozen statement of Lemma 3.1 of Bou-Rabee--Peres, *Once-reinforced random walk
 on `ℤ^d` has range exponent at least `d/(d+1)`*, Section 3, Lemma
-(A supermartingale), label `lem:martingale`, `orrw.tex:677-680`:
+(A supermartingale), label `lem:martingale`, `orrw.tex:596-599`:
 
   "Let `d ≥ 1` and `β ≥ 1`.  Then `(n + Φ_n - Γ_n)_{n≥0}` is a supermartingale
    for the filtration `(F_n)_{n≥0}`."

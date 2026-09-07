@@ -128,6 +128,9 @@ def paper_statements() -> dict[str, dict]:
 
 
 NOTES = {
+    "thm-main": "Equivalent after replacing the positive lower constant by C inverse; see VERIFICATION.md.",
+    "thm-whp": "Equivalent after combining the positive constants into C and C inverse.",
+    "prop-tail": "Finite-horizon event bound with separate constants, combined in the paper.",
     "lem-schur": "Effective resistance is defined by the inverse diagonal; "
                  "the electrical interpretation is not separately proved.",
     "lem-martingale": "The supermartingale property is expressed as its "
@@ -137,7 +140,7 @@ NOTES = {
     "lem-exp": "Both formulations give bounds at every finite horizon under "
                "the ORRW law. Lean also allows predictable 0/1 increments "
                "beyond those arising from a stopped clock.",
-    "prop-displacement": "Expected displacement and exit-time bounds; "
+    "prop-displacement": "Expected displacement and finite partial sums of exit-time tails (monotone convergence gives the expected exit time); "
                          "the almost-sure clause has its own entry.",
     "ae-range": "Lean proves an eventual lower bound, which implies the "
                 "printed liminf bound.",
@@ -145,8 +148,8 @@ NOTES = {
                        "bound, which implies the printed liminf bound.",
     "thm-occupation": "Occupation bounds for a time interval, including "
                       "the dimension-specific estimates.",
-    "thm-occupation-cesaro": "The time-averaged probability bound in the "
-                             "display labelled `eq:cesaro`.",
+    "thm-occupation-cesaro": "Weaker C beta bound for the time average; the revised display retains "
+                             "sharper beta dependence. See VERIFICATION.md.",
     "thm-occupation-measure": "Uniformity in the site is expressed by a "
                               "universal quantifier inside the constant's scope.",
 }

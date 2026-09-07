@@ -13,13 +13,13 @@
 version: 1
 source_pin:
   file: paper/orrw.tex
-  sha256: 31b5a322248db0c53cd6e922a97b192181837a0feef339c0ca9be14cff9acabf
+  sha256: cd913b195b6a2e4992eae367952beaba3a065ff2b0e7aaa9b794ab69e7b5781a
 
 nodes:
   - id: thm-main
     version: 1
     kind: theorem
-    source: orrw.tex:106-113 (label thm:main, equation eq:main-range)
+    source: orrw.tex:112-119 (label thm:main, equation eq:main-range)
     file: ORRW/Frozen/RangeLowerBound.lean
     export: ORRW.Frozen.range_lower_bound
     state: SEALED
@@ -30,7 +30,7 @@ nodes:
   - id: thm-whp
     version: 1
     kind: theorem
-    source: orrw.tex:123-131 (label thm:whp)
+    source: orrw.tex:128-136 (label thm:whp)
     file: ORRW/Frozen/RangeTail.lean
     export: ORRW.Frozen.range_tail
     state: SEALED
@@ -41,7 +41,7 @@ nodes:
   - id: lem-max-exit
     version: 1
     kind: theorem
-    source: orrw.tex:464-473 (label lem:max-exit)
+    source: orrw.tex:423-432 (label lem:max-exit)
     file: ORRW/Frozen/Insertion/ExitTimeBounds.lean
     export: ORRW.Frozen.max_exit
     state: SEALED
@@ -52,7 +52,7 @@ nodes:
   - id: lem-schur
     version: 2
     kind: theorem
-    source: orrw.tex:493-514 (label lem:schur; rulings L-002, F-203 v2 -- all three displays incl. eq:hbound)
+    source: orrw.tex:447-468 (label lem:schur; rulings L-002, F-203 v2 -- all three displays incl. eq:hbound)
     file: ORRW/Frozen/Insertion/OnePointInsertion.lean
     export: ORRW.Frozen.one_point_insertion
     state: SEALED
@@ -63,7 +63,7 @@ nodes:
   - id: lem-packing
     version: 1
     kind: theorem
-    source: orrw.tex:531-538 (label lem:packing)
+    source: orrw.tex:485-492 (label lem:packing)
     file: ORRW/Frozen/Insertion/ResistancePacking.lean
     export: ORRW.Frozen.resistance_packing
     state: SEALED
@@ -74,7 +74,7 @@ nodes:
   - id: lem-insertion
     version: 1
     kind: theorem
-    source: orrw.tex:573-581 (label lem:insertion)
+    source: orrw.tex:515-523 (label lem:insertion)
     file: ORRW/Frozen/Insertion/InsertionInequality.lean
     export: ORRW.Frozen.insertion_inequality
     state: SEALED
@@ -107,7 +107,7 @@ nodes:
   - id: guard-edges-le-sites
     version: 1
     kind: theorem
-    source: orrw.tex:838-840 (label eq:edges-sites)
+    source: orrw.tex:723-725 (label eq:edges-sites)
     file: ORRW/Frozen/Guards/EdgesLeSites.lean
     export: ORRW.Frozen.card_edges_le_card_range
     state: SEALED
@@ -129,7 +129,7 @@ nodes:
   - id: lem-martingale
     version: 1
     kind: theorem
-    source: orrw.tex:677-680 (label lem:martingale)
+    source: orrw.tex:596-599 (label lem:martingale)
     file: ORRW/Frozen/Potential/Supermartingale.lean
     export: ORRW.Frozen.supermartingale_drift
     state: SEALED
@@ -140,7 +140,7 @@ nodes:
   - id: lem-walk-order
     version: 1
     kind: theorem
-    source: orrw.tex:726-738 (label lem:walk-order)
+    source: orrw.tex:632-644 (label lem:walk-order)
     file: ORRW/Frozen/Potential/InsertionOrder.lean
     export: ORRW.Frozen.insertion_order
     state: SEALED
@@ -151,7 +151,7 @@ nodes:
   - id: prop-charge
     version: 1
     kind: theorem
-    source: orrw.tex:763-770 (label prop:charge)
+    source: orrw.tex:669-676 (label prop:charge)
     file: ORRW/Frozen/Potential/AccumulatedCharge.lean
     export: ORRW.Frozen.accumulated_charge
     state: SEALED
@@ -162,7 +162,7 @@ nodes:
   - id: lem-exp
     version: 1
     kind: theorem
-    source: orrw.tex:872-896 (label lem:exp)
+    source: orrw.tex:739-763 (label lem:exp)
     file: ORRW/Frozen/Tail/TimeVersusCharge.lean
     export: ORRW.Frozen.time_versus_charge
     state: SEALED
@@ -173,7 +173,7 @@ nodes:
   - id: prop-tail
     version: 1
     kind: theorem
-    source: orrw.tex:933-941 (label prop:tail)
+    source: orrw.tex:792-799 (label prop:tail)
     file: ORRW/Frozen/Tail/SigmaTail.lean
     export: ORRW.Frozen.sigma_tail
     state: SEALED
@@ -184,7 +184,7 @@ nodes:
   - id: prop-displacement
     version: 1
     kind: theorem
-    source: orrw.tex:1019-1033 (label prop:displacement)
+    source: orrw.tex:863-877 (label prop:displacement)
     file: ORRW/Frozen/Tail/Displacement.lean
     export: ORRW.Frozen.displacement
     state: SEALED
@@ -195,7 +195,7 @@ nodes:
   - id: prop-beta-sharp
     version: 1
     kind: theorem
-    source: orrw.tex:1088-1098 (label prop:beta-sharp)
+    source: orrw.tex:912-922 (label prop:beta-sharp)
     file: ORRW/Frozen/Tail/ExponentsOptimal.lean
     export: ORRW.Frozen.exponents_optimal
     state: SEALED
@@ -206,7 +206,7 @@ nodes:
   - id: lem-green
     version: 1
     kind: theorem
-    source: orrw.tex:1179-1195 (label lem:green)
+    source: orrw.tex:991-1007 (label lem:green)
     file: ORRW/Frozen/Occupation/LazyGreen.lean
     export: ORRW.Frozen.lazy_green_bounds
     state: SEALED
@@ -217,7 +217,7 @@ nodes:
   - id: thm-occupation
     version: 1
     kind: theorem
-    source: orrw.tex:1227-1247 (label thm:return)
+    source: orrw.tex:1039-1051 (label thm:return)
     file: ORRW/Frozen/Occupation/Occupation.lean
     export: ORRW.Frozen.occupation
     state: SEALED
@@ -228,7 +228,7 @@ nodes:
   - id: thm-occupation-cesaro
     version: 2
     kind: theorem
-    source: orrw.tex:1227-1247 (label thm:return, the eq:cesaro display; rulings R-006, F-821..F-823)
+    source: orrw.tex:1102-1105 (label eq:cesaro; weaker bound with coefficient C beta, see VERIFICATION.md)
     note: ruling R-005 is retired; it governed the uniform index of the superseded v1 argument
     file: ORRW/Frozen/Occupation/OccupationCesaro.lean
     export: ORRW.Frozen.occupation_cesaro
@@ -240,7 +240,7 @@ nodes:
   - id: thm-occupation-measure
     version: 1
     kind: theorem
-    source: orrw.tex:146-152 (label thm:occupation-intro, equation eq:occupation-intro; ruling R-006)
+    source: orrw.tex:145-151 (label thm:occupation-intro, equation eq:occupation-intro; ruling R-006)
     file: ORRW/Frozen/Occupation/OccupationMeasure.lean
     export: ORRW.Frozen.occupation_measure
     state: SEALED
@@ -262,7 +262,7 @@ nodes:
   - id: ae-range
     version: 2
     kind: theorem
-    source: orrw.tex:134-135, the Borel-Cantelli corollary stated in prose after thm:whp (ruling A-003)
+    source: orrw.tex:138-141, the Borel-Cantelli corollary stated in prose after thm:whp (ruling A-003)
     file: ORRW/Frozen/AlmostSure/RangeAlmostSure.lean
     export: ORRW.Frozen.range_ae
     state: SEALED

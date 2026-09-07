@@ -57,9 +57,7 @@ urlcolor=BrickRed
 \begin{document}
 
 	\begin{abstract}
-		In once-reinforced random walk, every edge starts with weight one and is assigned weight $\beta\geq1$ after its first crossing.  At each step the walker chooses an incident edge with probability proportional to its weight.
-		\citet{Davis1990} introduced the model on $\Z$.
-        It is expected that for sufficiently large reinforcement $\beta$, the range in the first $n$ steps has order $n^{d/(d+1)}$ on $\Z^d$.  For every $d\geq2$, we prove that the expected range after $n$ steps is at least $c(d)(n/\beta)^{d/(d+1)}$, with $c(d)>0$, uniformly in $\beta\geq1$ and integers $n\geq0$. We also prove a stretched-exponential lower-tail bound and the resulting almost sure asymptotic lower bound for each fixed $\beta$.
+		In once-reinforced random walk, introduced by \citet{Davis1990}, every edge starts with weight one and is assigned weight $\beta\geq1$ after its first crossing.  At each step the walker chooses an incident edge with probability proportional to its weight. For sufficiently large reinforcement $\beta$, the expected range in the first $n$ steps was predicted by \cite{OrdemannBerkolaikoHavlinBunde2000} and independently by \cite{Beffara2011} to have order $n^{\frac{d}{d+1}}$ on $\Z^d$.  We prove the corresponding lower bound in every dimension $d\geq2$ and for every reinforcement parameter $\beta$.
 	\end{abstract}
 
 	\maketitle
@@ -69,7 +67,7 @@ urlcolor=BrickRed
 		\caption{The range of once-reinforced random walk with $\beta=50$: on
 		$\Z^2$ after $3 \times10^{10}$ steps, left; on $\Z^3$ after
 		$10^9$ steps, drawn as a solid, middle; and a slice
-		through the origin, right.  The color ranges from dark blue at the sites visited first, through green and orange, to dark red at those visited last.}
+		through the origin, right.  The color ranges on a logarithmic scale from dark blue at the sites visited first, through green and orange, to dark red at those visited last.}
 		\label{fig:range}
 	\end{figure}
 
@@ -84,10 +82,18 @@ urlcolor=BrickRed
 	transience is known only when $\beta$ is close to one
 	\citep[Theorem~1]{ElboimKozma2026}.
 
-	For large $\beta$, repeated crossings are expected to slow the growth of the
-	visited set to order $n^{d/(d+1)}$. We prove the corresponding lower bound:
-	after $n$ steps, the expected number of visited sites is at least
-	$c(n/\beta)^{d/(d+1)}$, uniformly in $\beta\geq1$.
+	For sufficiently large $\beta$, depending on $d$, the expected number of
+	visited sites is predicted to have order $n^{\frac{d}{d+1}}$.
+	This prediction first appeared in
+	\citet*{OrdemannBerkolaikoHavlinBunde2000} for site reinforcement.
+	\citet{FosterGrassbergerPaczuski2009} gave numerical and heuristic
+	evidence for the same range exponent under site and edge reinforcement.
+	In dimension two, the exponent is $2/3$. This growth was also predicted for
+	rotor walk on $\Z^2$ with independent uniform initial rotors by
+	\citet*{PriezzhevDharDharKrishnamurthy1996}, and this growth was recently proved by
+	\citet[Theorem~1.1]{BouRabeePeres2026}.
+	In this paper, we prove the corresponding lower bound for once-reinforced random walk: after $n$ steps, the expected number of visited sites is at least $C^{-1}(n/\beta)^{\frac{d}{d+1}}$, uniformly in
+	$\beta\geq1$.
 
 	\subsection{Main results}\label{ssec:main-results}
 
@@ -98,256 +104,245 @@ urlcolor=BrickRed
 	$E_0=\varnothing$. Given $X_0,\ldots,X_n$, the walk steps from $X_n$ to a neighbor $y$ with
 	probability proportional to $\beta$ if $\{X_n,y\}\in E_n$ and proportional
 	to $1$ otherwise. We write $\P_\beta$ and
-	$\E_\beta$ for the law and the expectation of the walk. We call an edge \defn{traversed} once the walk has crossed it, and
+	$\E_\beta$ for the law of the walk and expectation with respect to that law. We call an edge \defn{traversed} once the walk has crossed it, and
 	\defn{untraversed} before that.
 
 	The \defn{range} at time $n$ is $R_n\coloneqq\{X_0,\ldots,X_n\}$.
 
 	\begin{theorem}[Range lower bound]\label{thm:main} Let
-		$d\geq2$. There is a constant $c>0$, depending only on $d$, such that
+		$d\geq2$. There is a constant $C\geq1$, depending only on $d$, such that
 		for every $\beta\geq1$,
 		\begin{equation}\label{eq:main-range}
-			\E_\beta|R_n|\geq c\beta^{-d/(d+1)}n^{d/(d+1)}
-			\qquad\text{for every integer }n\geq0\, .
+			\E_\beta|R_n|\geq C^{-1}\beta^{-\frac{d}{d+1}}n^{\frac{d}{d+1}}
+			\qquad\text{for every }n\geq0\, .
 		\end{equation}
 	\end{theorem}
-
-	Neither exponent in \eqref{eq:main-range} can be improved in a bound uniform
-	in $\beta$; see Proposition~\ref{prop:beta-sharp}.
+    In Proposition~\ref{prop:beta-sharp} below, we observe that the dependence
+    on $\beta$ in \eqref{eq:main-range} is sharp. 
 
 	For comparison, the expected number of sites visited by simple random walk
 	on $\Z^d$ by time $n$ is asymptotic to $\pi n/\log n$ when $d=2$, and, when $d\geq3$, to a constant multiple of $n$ \citep[Theorem~1]{DvoretzkyErdos1951}.
 
-    We also obtain a lower-tail bound and an almost sure asymptotic lower bound.
+    We also obtain a stretched-exponential lower-tail bound. 
 
 	\begin{theorem}[Stretched-exponential tail]\label{thm:whp}
-		Let $d\geq2$.  There are constants $c>0$ and $C<\infty$, depending only
-		on $d$, such that for every $\beta\geq1$ and every integer $n$ with
+		Let $d\geq2$.  There is a constant $C\geq1$, depending only
+		on $d$, such that for every $\beta\geq1$ and every $n$ with
 		$n/\beta\geq C$,
 		\[
-		\P_\beta\{|R_n|<c\beta^{-d/(d+1)}n^{d/(d+1)}\}
-		\leq\exp\bigl(-c(n/\beta)^{(d-1)/(d+1)}\bigr)\, .
+		\P_\beta\{|R_n|<C^{-1}\beta^{-\frac{d}{d+1}}n^{\frac{d}{d+1}}\}
+		\leq\exp\bigl(-C^{-1}(n/\beta)^{(d-1)/(d+1)}\bigr)\, .
 		\]
 	\end{theorem}
 
 	The right-hand side is summable in $n$ for each fixed $\beta$, so the
-	Borel--Cantelli lemma turns Theorem~\ref{thm:whp} into the almost sure bound
-	$\liminf_{n\to\infty}|R_n|n^{-d/(d+1)}\geq c\beta^{-d/(d+1)}$.
-
-	A walk with a large range must reach far from the origin.  In
-	Proposition~\ref{prop:displacement} we observe that the same argument gives
-	$\E_\beta\max_{0\leq k\leq n}\|X_k\|_\infty\geq c\beta^{-1/(d+1)}n^{1/(d+1)}$,
-	together with an upper bound on the expected time the walk needs to leave a
-	box.
+	Borel--Cantelli lemma gives the almost sure bound
+	$\liminf_{n\to\infty}|R_n|n^{-\frac{d}{d+1}}\geq C^{-1}\beta^{-\frac{d}{d+1}}$.
 
 	We also bound the expected time spent at a fixed site. Write
 	$L_n(z)\coloneqq\#\{0\leq j<n:X_j=z\}$ for the local time at $z$ before time $n$.
 
 	\begin{theorem}[Occupation measure]\label{thm:occupation-intro}
 		Let $d\geq2$.  There is a constant $C<\infty$, depending only on $d$, such
-		that for every $\beta\geq1$ and every integer $n\geq1$,
+		that for every $\beta\geq1$ and every $n\geq1$,
 		\begin{equation}\label{eq:occupation-intro}
 			\sup_{z\in\Z^d}\E_\beta L_n(z)\leq C\beta n^{1/(d+1)}\, .
 		\end{equation}
 	\end{theorem}
-
-	The bound is uniform in the site and, in the form proved in
-	Section~\ref{sec:return}, uniform in the starting time as well.  Dividing
-	\eqref{eq:occupation-intro} by $n$ bounds the time-averaged probability of
-	being at any prescribed site,
-	\[
-	\sup_{z\in\Z^d}\frac1n\sum_{j=0}^{n-1}\P_\beta\{X_j=z\}\leq C\beta n^{-d/(d+1)}\, ,
-	\]
-	with the same exponent $d/(d+1)$ as the expected range lower bound in
-	Theorem~\ref{thm:main}.  At every even time $n\geq2$, $\P_\beta\{X_n=0\}$ tends to one as
-	$\beta\to\infty$: the walk retraces its first edge for the next $n-1$ steps
-	with probability $(\beta/(\beta+2d-1))^{n-1}$.
+    Section~\ref{sec:return} extends this bound to arbitrary deterministic
+    time intervals and sharpens its dependence on $\beta$. 
+    	
+	\begin{figure}[t]
+		\centering
+		\includegraphics[width=\textwidth]{Figures/local-time-3d.png}
+		\caption{A topographical map of the local time of once-reinforced random walk with $\beta=50$,
+		left; and of the clockwise rotor walk with independent uniform initial
+		rotors, right. Both walks are on $\Z^2$. Each was run until it had visited
+		$70\,000$ sites, taking about $2 \times10^8$ steps on the left and
+		$10^6$ on the right.
+		The color ranges from dark blue at sites visited once to dark red at the
+		site visited most often, $11\,669$ times on the left and $64$ on the right.}
+		\label{fig:rotor-comparison}
+	\end{figure}
+    
+	At $d=2$, the bound \eqref{eq:occupation-intro} has order $n^{1/3}$.
+	For the clockwise rotor walk on $\Z^2$ with independent uniform initial
+	rotors, the range has order $n^{2/3}$ almost surely
+	\citep[Theorem~1.1]{BouRabeePeres2026}, so the average local time over
+	the visited sites has order $n^{1/3}$.
 
 	\subsection{Proof overview}\label{ssec:proof-overview}
 
-	The heuristic for the exponent $d/(d+1)$ is due to Sapozhnikov
-	\citep[Section~II~C]{FosterGrassbergerPaczuski2009}. Suppose that the walk has
+	The heuristic for the exponent $d/(d+1)$ assumes that the walk has
 	visited a ball of radius $r$, crossed every edge inside it, and mixed inside
-	the ball. Sites with an untraversed incident edge then account for a fraction
-	of order $1/r$ of the time spent by the walk. At each such site, the probability
+	the ball. The walk then spends a fraction of order $1/r$ of its time at sites
+	with an untraversed incident edge. At each such site, the probability
 	of crossing an untraversed edge has order $1/\beta$. Adding a site therefore
 	takes about $\beta r$ steps. Growing the radius from $r$ to $r+1$ requires
 	order $r^{d-1}$ new sites, hence order $\beta r^d$ steps. Reaching radius $r$
 	takes order $\beta r^{d+1}$ steps, which predicts
-	$r=(n/\beta)^{1/(d+1)}$ and a range of order $(n/\beta)^{d/(d+1)}$.
-	\citet[pp.~55--57]{Beffara2011} obtains the same exponent from a growth model:
-	an exterior site is added at a rate proportional to the invariant mass at
-	its neighbors in the visited set. Figure~\ref{fig:local-time} shows the time
-	spent at each site in a simulation.
+	$r=(n/\beta)^{1/(d+1)}$ and a range of order $(n/\beta)^{\frac{d}{d+1}}$.
+    See also the discussion in \citet{Beffara2011}. 
+    Figure~\ref{fig:rotor-comparison} shows the time spent at each site in a simulation.
 
-	\begin{figure}[t]
-		\centering
-		\includegraphics[width=0.5\textwidth]{Figures/local-time.png}
-		\caption{The local time of once-reinforced random walk with $\beta=50$ on
-		$\Z^2$ after $n=2.56\times10^8$ steps.  The color ranges from dark blue at sites visited exactly once, through green and orange, to  dark red at the site visited most often.}
-		\label{fig:local-time}
-	\end{figure}
 
-	Our proof does not assume a shape for the visited set or mixing inside it.
-	Let $\sigma_k$ be the first time the walk has crossed $k$ distinct edges,
-	with $\sigma_0=0$. We prove
-	$\E_\beta\sigma_k\leq K\beta k^{1+1/d}$, where $K$ depends only on $d$.
-	The exponent $d/(d+1)$ comes from solving this bound for $k$.
-
-	The walk is simple random walk whenever every edge at its current site has
-	already been crossed. Let $S_n$ be the set of all such sites at time $n$:
+	To prove the range lower bound, we bound the time needed for the walk to cross $k$
+	distinct edges. For each integer $k\geq1$, let $\sigma_k$ be the first such time,
+	with $\sigma_0=0$.
+	We prove
 	\[
-	S_n\coloneqq\{x\in\Z^d:\text{every edge incident to $x$ lies in $E_n$}\}\, .
+	\E_\beta\sigma_k\leq C\beta k^{1+1/d}\, ,
 	\]
-	Until the walk leaves $S_n$, this set stays fixed. Outside $S_n$, the
-	conditional probability of crossing an untraversed edge is at least
-	$1/(2d\beta)$. We use exit times to control the time spent inside $S_n$ and
-	this probability to control the steps outside it.
+	where $C$ depends only on $d$. Markov's inequality gives the range lower
+	bound by taking $k$ of order $(n/\beta)^{\frac{d}{d+1}}$.
+	The proof requires no assumption on the shape of the visited set or
+	on mixing inside it.
 
 	\medskip
 	\noindent\textbf{Step 1. Sum exit times over increasing sets.}
 	For a finite set $A$ and $x\in A$, let $2du_A(x)$ be the expected exit time
-	of simple random walk from $A$, started at $x$. Extend $u_A$ by zero off $A$
-	and let $u_\varnothing=0$. For $x\notin A$, let
-	\[
-	h_A(x)\coloneqq1+\sum_{y\in A,\ y\sim x}u_A(y)\, .
-	\]
-	This is the expected time to return to $x$ or leave $A\cup\{x\}$ after
-	starting at $x$. For every ordering $x_1,\ldots,x_M$ of distinct lattice
+	of simple random walk from $A$, started at $x$. Extend $u_A$ by zero off
+	$A$ and let $u_\varnothing=0$. For $x\notin A$, let $h_A(x)$ be the
+	expected time for simple random walk started at $x$ to first return to $x$ or
+	leave $A\cup\{x\}$. For every ordering $x_1,\ldots,x_M$ of distinct lattice
 	vertices, with $A_i=\{x_1,\ldots,x_i\}$ and $A_0=\varnothing$, we prove
 	\begin{equation}\label{eq:overview-insertion}
 	\sum_{i=1}^M\bigl(h_{A_{i-1}}(x_i)+u_{A_i}(x_i)\bigr)\leq CM^{1+1/d}\, ,
 	\end{equation}
-	in Section~\ref{sec:insertion}. The gain is in bounding the sum:
-	bounding each term separately by $CM^{2/d}$ would give $CM^{1+2/d}$,
-	and only the earlier range exponent $d/(d+2)$
-	\citep[Theorem~1.1]{CollevecchioTarres2025}.
+	in Section~\ref{sec:insertion}. Bounding each term separately by
+	$CM^{2/d}$ would give $CM^{1+2/d}$ and only the earlier range exponent
+	$d/(d+2)$ \citep[Theorem~1.1]{CollevecchioTarres2025}.
+
+	To prove the smaller bound, consider the total normalized exit time
+	$T(A)=\sum_{x\in A}u_A(x)$. Adding $x$ to $A$ increases $T$ by
+	$h_A(x)u_{A\cup\{x\}}(x)$. This identity bounds the square of each $h$ term
+	by a constant times the corresponding increase in $T$. For the $u$ terms,
+	the square equals that increase times the effective resistance from the
+	added vertex to the complement of the enlarged set (Lemma~\ref{lem:schur}).
+	The increases sum to $T(A_M)\leq CM^{1+2/d}$, and the resistances have sum
+	at most $CM$ (Lemma~\ref{lem:packing}). For each $r\geq1$, vertices $x_i$
+	with $\dist(x_i,A_i^c)\geq r$ are pairwise at distance at least $r$.
+	Packing balls around these vertices gives the resistance bound. Cauchy--Schwarz then gives the order
+	$\sqrt{M M^{1+2/d}}=M^{1+1/d}$ in \eqref{eq:overview-insertion}.
 
 	\medskip
-	\noindent\textbf{Step 2. Relate elapsed time to these exit times.}
-	The potential $\Phi_n=2du_{S_n}(X_n)$ is the expected time for simple random
-	walk to leave $S_n$ from the current site. While the walk stays in $S_n$,
-	its conditional mean decreases by one at each step. A first crossing of an
-	edge can enlarge $S_n$ and increase the potential. In
-	Section~\ref{sec:potential} we define a nondecreasing process $\Gamma_n$,
-	starting at zero and increasing only at first crossings, so that
-	$n+\Phi_n-\Gamma_n$ is a supermartingale. Its increments use the exit-time
-	quantities $h_A$ and $u_A$, with a factor $\beta$ to account for the
-	probability of a first crossing outside $S_n$.
+	\noindent\textbf{Step 2. Bound expected elapsed time.}
+	Let $S_n$ be the set of sites whose incident edges have all been crossed
+	by time $n$. Inside $S_n$, all $2d$ edge weights equal $\beta$, so the
+	walk is simple random walk. Outside $S_n$, it has conditional probability
+	at least $1/(2d\beta)$ of crossing an untraversed edge at its next step.
 
-	To bound $\Gamma_{\sigma_k}$, we order the visited vertices so that the
-	sets $S_n$ for $n\leq\sigma_k$ lie in initial segments of that ordering
-	(Lemma~\ref{lem:walk-order}). Domain monotonicity then compares the increments
-	of $\Gamma$ with the terms of \eqref{eq:overview-insertion}. There are at
-	most $k+1$ visited vertices, and each departure vertex occurs at most $2d$
-	times among the first crossings. These facts give
-	$\Gamma_{\sigma_k}\leq K\beta k^{1+1/d}$
-	(Proposition~\ref{prop:charge}).
+	The potential $\Phi_n=2du_{S_n}(X_n)$ is the expected time for simple
+	random walk to leave $S_n$ from the current site. Given the walk up to time $n$, the expected
+	increment $\Phi_{n+1}-\Phi_n$ is $-1$ when $X_n\in S_n$. A first crossing can
+	enlarge $S_n$ and increase the potential. We define a nondecreasing
+	process $\Gamma_n$, starting at zero and increasing
+	only at first crossings, so that $n+\Phi_n-\Gamma_n$ is a supermartingale
+	(Lemma~\ref{lem:martingale}). At a first crossing at time $n+1$, the increment of $\Gamma$ is
+	$2d\beta h_{S_n}(X_n)$ for excursions from the departure site plus
+	the new potential $2du_{S_{n+1}}(X_{n+1})$ at the arrival site. The factor $\beta$ comes from the
+	lower bound on the probability of a first crossing. Optional stopping
+	and $\Phi_n\geq0$ then give
+	\[
+	\E_\beta\sigma_k\leq\E_\beta\Gamma_{\sigma_k}\, .
+	\]
 
 	\medskip
-	\noindent\textbf{Step 3. Deduce growth of the range.}
-	Optional stopping gives $\E_\beta\sigma_k\leq K\beta k^{1+1/d}$.
-	Markov's inequality and $|E_n|\leq d|R_n|$ then give the expected range bound
-	by taking $k$ of order $(n/\beta)^{d/(d+1)}$
-	(Section~\ref{sec:range}). Bounds on the individual increments of $\Gamma$
-	also give an exponential supermartingale. This yields a tail exponent of
-	order $k^{(d-1)/d}$ for $\sigma_k$, and hence the exponent $(d-1)/(d+1)$
-	in the range lower-tail bound (Section~\ref{sec:tail}).
+	\noindent\textbf{Step 3. Compare the walk with a vertex ordering.}
+	The sets $S_n$ are random and can gain two vertices at once, whereas
+	\eqref{eq:overview-insertion} adds one vertex at a time.
+	Lemma~\ref{lem:walk-order} orders the visited sites so that domain
+	monotonicity bounds the $h$ and $u$ terms defining $\Gamma$ by the
+	corresponding terms in \eqref{eq:overview-insertion}.
+	Each site contributes at most $2d$ departure terms and one
+	nonzero arrival term. There are at most $k+1$ visited sites at time
+	$\sigma_k$, so \eqref{eq:overview-insertion} gives
+	\[
+	\Gamma_{\sigma_k}\leq C\beta k^{1+1/d}\, .
+	\]
+	Proposition~\ref{prop:charge} proves this bound. Together with Step~2,
+	it gives the expected-time estimate and hence the range lower bound
+	(Section~\ref{sec:range}).
 
-	In Sections~\ref{sec:displacement} and~\ref{sec:sharp}, we deduce displacement
-	and box exit-time bounds and show that neither power in the expected range
-	bound can be improved uniformly in $\beta$. The occupation estimate in
-	Section~\ref{sec:return} uses a separate argument based on a truncated Green
-	function.
+	Bounds on the individual increments of $\Gamma$ also give an exponential
+	supermartingale, from which we obtain
+	\[
+	\P_\beta\{\sigma_k>8C\beta k^{1+1/d}\}
+	\leq\exp\bigl(-C^{-1}k^{(d-1)/d}\bigr)\, .
+	\]
+	Taking $k$ of order $(n/\beta)^{\frac{d}{d+1}}$ gives the range lower-tail
+	bound in Section~\ref{sec:tail}. In Sections~\ref{sec:displacement}
+	and~\ref{sec:sharp}, we deduce displacement and box exit-time bounds and
+	show that, in a bound uniform in $\beta$, neither power in \eqref{eq:main-range} can be improved
+	while the other is held fixed. The occupation estimate in Section~\ref{sec:return}
+	uses a separate argument based on a truncated Green function.
 
 	\subsection{Related work}\label{ssec:related-work}
 
-	Edge-reinforced random walks were introduced by Coppersmith and Diaconis
-	in unpublished work \citep[Section~1]{Davis1990}; see \citet{Pemantle2007}
-	for a survey. In the linearly reinforced model, the edge weight increases
-	at every crossing and the walk is a mixture of Markov chains.
-	For this model, \citet*[Theorems~1 and~3 of the author version]{AngelCrawfordKozma2014}
-	prove recurrence on bounded-degree graphs for sufficiently small initial
-	weights and transience on bounded-degree nonamenable graphs for sufficiently
-	large initial weights.
-
-	\citet[Theorems~1--2, Section~6, and Corollary~2]{SabotTarres2015}
-	represent linearly reinforced walk through the vertex-reinforced jump
-	process and a supersymmetric hyperbolic sigma model, obtaining recurrence
-	at strong reinforcement on $\Z^d$. They also study a nonreversible variant
-	of that jump process \citep{SabotTarres2026}.
-	For once-reinforcement with $\beta>1$, the exchangeability used in the
-	mixture representation fails \citep[p.~204]{Davis1990}.
-
-	\subsubsection{Recurrence and transience}
-	On $\Z$, the walk is recurrent \citep[Theorem~3.2\textup{(i)}]{Davis1990},
-	and the asymptotics of every moment of $|R_n|/\sqrt n$ are known for every
-	$\beta>0$ \citep[Theorem~1]{PfaffelhuberStiefel2021}. Recurrence also holds
-	on the doubly infinite ladder for every $\beta>1$
-	\citep[Theorem~2.1]{Sellke2006}, and on the product of $\Z$ with a finite
-	graph for sufficiently large $\beta$, where the range has a shape theorem
-	\citep[Theorems~1.1 and~1.2]{KiousSchapiraSingh2021}.
-
-	The known phase transitions occur on trees. Kious and Sidoravicius construct
-	polynomial-growth examples with a recurrence/transience threshold
-	\citep[Section~2 and Theorem~1]{KiousSidoravicius2018}; on a general tree
-	the threshold is the branching-ruin number
-	\citep[Theorem~1]{CollevecchioKiousSidoravicius2020}. On regular trees of
-	degree at least three, the walk is transient and has positive speed for
-	every $\beta>1$, and its height satisfies an invariance principle
-	\citep[Theorems~1--3]{DurrettKestenLimic2002}.
-
-	For $d\geq3$, Beffara and Sidoravicius conjecture a phase transition in
-	$\beta$ \citep[Section~2]{Kozma2012}. On $\Z^2$,
-	\citet[Conjecture~7]{Beffara2011} predicts, for sufficiently large $\beta$,
-	recurrence, a range of order $n^{2/3}$, a diameter of order $n^{1/3}$, and
-	a deterministic limit shape after rescaling by the diameter. His conjecture
-	concerns site reinforcement; he expects the edge-reinforced version to
-	behave the same way \citep[p.~53]{Beffara2011}. Our lower bounds give
-	the predicted range exponent.
-
-	\subsubsection{Range bounds and growth models}
+	\subsubsection{Once-reinforced random walk}
 	The previous range lower bound on $\Z^d$ is due to
-	\citet[Theorem~1.1]{CollevecchioTarres2025}. For every $\beta>1$, their
-	result gives an $\varepsilon>0$, depending on $d$ and $\beta$, such that
-	for all sufficiently large $n$,
+	\citet[Theorem~1.1]{CollevecchioTarres2025}. For every $\beta>1$, they
+	proved that there is $\varepsilon>0$, depending on $d$ and $\beta$, such
+	that, for all sufficiently large $n$,
 	\[
 	\P_\beta\{|R_n|\leq\varepsilon n^{d/(d+2)}\}
 	\leq\exp\bigl(-\varepsilon n^{d/(d+2)}\bigr)\, .
 	\]
-	We improve the range exponent to $d/(d+1)$, with the smaller lower-tail
-	exponent $(d-1)/(d+1)$ (Theorems~\ref{thm:main} and~\ref{thm:whp}).
-	Their proof embeds the walk in continuous time, with crossing rates $1$
-	on traversed edges and $1/\beta$ on untraversed edges, and uses a change
-	of measure to compare it with simple random walk
-	\citep[Section~1.1]{CollevecchioTarres2025}.
+	We improve the range exponent from $d/(d+2)$ to $d/(d+1)$, with the
+	smaller lower-tail exponent $(d-1)/(d+1)$
+	(Theorems~\ref{thm:main} and~\ref{thm:whp}). Their proof used a
+	continuous-time embedding and a change of measure to compare the walk
+	with simple random walk. Our proof bounds expected exit times summed
+	over increasing sets.
 
-	\citet[Section~2.3 and Proposition~2.5]{KiousSchapiraSingh2021} use
-	electrical-network estimates on the trace of the walk. The difference
-	between two exit-edge probabilities is at most the distance within the
-	trace between their departure vertices, divided by $\beta$. Our argument
-	instead bounds expected exit times, summed over increasing sets.
-	For mesoscopic growth models approximating strongly reinforced walks,
-	including once-reinforced random walk,
-	\citet[Theorems~1.4, 1.9, 1.10]{DemboGroismanHuangSidoravicius2021}
-	prove an averaging principle and a shape theorem.
+	On $\Z$, once-reinforced random walk is recurrent
+	\citep[Theorem~3.2]{Davis1990}, and the asymptotics of every moment of
+	$|R_n|/\sqrt n$ are known for every positive weight $\beta$ on traversed edges
+	\citep[Theorem~1]{PfaffelhuberStiefel2021}.
+	Recurrence holds on the doubly infinite ladder for every $\beta>1$
+	\citep[Theorem~2.1]{Sellke2006}, and on $\Z$ times a finite connected
+	graph for sufficiently large $\beta$. In the latter setting,
+	\citet{KiousSchapiraSingh2021} also proved a shape theorem for the range.
+
+	On regular trees of degree at least three, the walk is transient with
+	positive speed for every $\beta>1$, and its distance from the root
+	satisfies an invariance principle \citep{DurrettKestenLimic2002}.
+	In contrast, \citet{KiousSidoravicius2018} constructed trees of polynomial
+	growth on which increasing reinforcement changes transience to
+	recurrence. \citet[Theorem~1]{CollevecchioKiousSidoravicius2020}
+	identified the critical reinforcement on every infinite locally finite
+	tree and classified recurrence and transience away from that value.
+	For $\Z^d$ with $d\geq3$, Beffara and Sidoravicius conjectured a phase
+	transition in $\beta$ \citep[Section~2]{Kozma2012}.
+
+	\subsubsection{Site reinforcement}
+	In the physics literature, \citet{Sapozhnikov1994} independently
+	introduced the once-site-reinforced self-attracting walk.
+	Early simulations were not precise enough to determine the displacement
+	exponent or whether the walk undergoes a phase transition as the
+	reinforcement varies. For sufficiently large reinforcement,
+	\citet*{OrdemannBerkolaikoHavlinBunde2000} predicted root-mean-square
+	displacement of order $n^{1/(d+1)}$ and expected range of order
+	$n^{d/(d+1)}$; see also \citet*{OrdemannTomerBerkolaikoHavlinBunde2001}.
+	\citet*{FosterGrassbergerPaczuski2009} supported these predictions with
+	further simulations and heuristic arguments, and predicted the same
+	exponents for edge reinforcement.
+
+	For several variants of once-reinforced walk  on $\Z^2$,
+	\citet[Conjecture~7]{Beffara2011} predicted recurrence at sufficiently
+	large reinforcement, range size of order $t^{2/3}$, diameter of order
+	$t^{1/3}$, and convergence in probability to a deterministic shape
+	after rescaling by the diameter. 
 
 	\subsubsection{Rotor walk}
-	The exponent $d/(d+1)$ also appears for rotor walk. On every bounded-degree
-	Eulerian graph with $|B(o,r)|\geq kr^d$, the range after $t$ steps has size
-	at least a positive constant multiple of $t^{d/(d+1)}$ for every rotor
-	mechanism and initial configuration; the constant depends only on the
-	graph \citep[Theorem~1.1]{FlorescuLevinePeres2016}. For the clockwise
-	mechanism on $\Z^2$ with independent uniform initial rotors, the exponent
-	$2/3$ is attained \citep[Theorem~1.1]{BouRabeePeres2026}.
+	The same range lower bound holds for rotor walk on $\Z^d$:
+	\citet[Theorem~1.1]{FlorescuLevinePeres2016} proved that it visits at least
+	a constant multiple of $n^{d/(d+1)}$ sites in $n$ steps, for every rotor
+	mechanism and initial configuration. On $\Z^2$ with the clockwise
+	mechanism and independent uniform initial rotors,
+	\citet[Theorem~1.1]{BouRabeePeres2026} proved that the range size divided
+	by $n^{2/3}$ converges almost surely to a deterministic positive constant.
 
-	A rotor circuit consists of $\deg(o)$ successive returns to the starting
-	vertex $o$ \citep[Section~1.1]{BouRabeePeres2026}. Each completed circuit
-	crosses every directed edge at most once and every directed edge whose tail
-	lies in the preceding range exactly once. Its range contains that range
-	and its outer boundary \citep[Lemma~2.4]{FlorescuLevinePeres2016}.
-	For once-reinforced random walk, the sum of exit-time quantities in
-	\eqref{eq:overview-insertion} supplies the bound on elapsed time.
 
 	\subsection{Notation and conventions}
 
@@ -358,40 +353,20 @@ urlcolor=BrickRed
 		We write $\dist(x,y)$ for $\dist(x,\{y\})$.
 		\item $|D|$ is the cardinality of a finite set $D$, and $\|\cdot\|_\infty$ is
 		the $\ell^\infty$ norm on $\Z^d$.
-		\item $c>0$ and $C<\infty$ are constants that depend only on $d$ and may
-		change from line to line.  They never depend on $\beta$, $k$, $m$, or $n$.
-		\item Assigning weight $1+\delta$ to a traversed edge corresponds to
-		$\beta=1+\delta$.  After rescaling the traversed-edge weight to $1$, the
-		untraversed-edge weight is $\beta^{-1}$.
-		\item Our range bounds assume $d\geq2$. The exit-time estimates and the
-		identities for inserting one vertex hold for $d\geq1$, as do the two
-		supermartingale lemmas (Lemmas~\ref{lem:max-exit}, \ref{lem:schur},
-		\ref{lem:martingale}, and~\ref{lem:exp}). In dimension one the
-		asymptotics of the expected range are known
-		\citep[Theorem~1]{PfaffelhuberStiefel2021}, and in Section~\ref{ssec:d1} we
-		compare them with ours.
+		\item $C\geq1$ denotes a finite constant depending only on $d$ that may
+		change from line to line. We write $C^{-1}$ for the corresponding lower bounds.
 	\end{itemize}
 
 	\subsection{Formalization}\label{ssec:formalization}
 
 	Every theorem, lemma and proposition of this paper has been formalized in
-	Lean~4 and proved from Mathlib, together with the two almost sure bounds stated
+	Lean~4 and proved from Mathlib, together with the almost sure bounds stated
 	after Theorem~\ref{thm:whp} and in Proposition~\ref{prop:displacement}.  No
 	proof uses an axiom beyond the three of Lean's own logic, and no proof uses
 	\texttt{sorry}.  The development is at
 	\url{https://github.com/nitromannitol/ORRW-Lower-Bound}.
 
-	Each formalized statement is linked to its paper label and pinned by a
-	cryptographic hash. The checks detect changes to the pinned Lean statements
-	and confirm that every theorem, lemma and proposition has a corresponding
-	formal declaration. The mathematical correspondence between the paper and
-	those declarations is recorded separately.
-
-	Two modelling choices affect the correspondence. At a fixed time $n$, the
-	law is a probability mass function on the finite set of step sequences.
-	The almost sure bounds use a measure on infinite paths built from the
-	one-step kernels. Effective resistance is defined by the identity in
-	\eqref{eq:schur}, so the formalization takes that identity as a definition;
+	The formalization defines effective resistance by \eqref{eq:schur};
 	it does not prove the electrical-network interpretation.
 
 	\section*{Acknowledgments}
@@ -399,12 +374,6 @@ urlcolor=BrickRed
 	RFIS-W2531011.  We acknowledge use of ChatGPT 5.6.
 
 	\section{Exit times for increasing sets}\label{sec:insertion}
-
-	We need exit-time bounds that remain useful as the visited set grows.
-	Bounding each of $M$ exit times by the maximum for the final set would
-	give order $M^{1+2/d}$. We prove the smaller bound $CM^{1+1/d}$ for the
-	sum in \eqref{eq:overview-insertion}, uniformly over the order in which
-	vertices are added (Lemma~\ref{lem:insertion}).
 
 	Let $(Y_n)_{n\geq0}$ be simple random walk on $\Z^d$, with law $\P_x$ and
 	expectation $\E_x$ when started at $x$. For a finite set $A$, let
@@ -438,18 +407,8 @@ urlcolor=BrickRed
 		h_A(x)\coloneqq1+\sum_{y\in A,\ y\sim x}u_A(y)\, .
 	\end{equation}
 	This is the expected time for simple random walk started at $x$ to return
-	to $x$ or leave $A\cup\{x\}$. The first step takes one unit of time.
+	to $x$ for the first time or leave $A\cup\{x\}$. The first step takes one unit of time.
 	If it lands at $y\in A$, the expected time then spent in $A$ is $2du_A(y)$.
-
-	The gain in the sum comes from the change in $T(A)$ when a vertex is
-	added. That change is $h_A(x)u_{A\cup\{x\}}(x)$
-	(Lemma~\ref{lem:schur}), so summing the changes depends only on the final
-	set. To bound the sum of the $u$ terms, we also sum effective resistances
-	from each added vertex to the complement of the set at that stage.
-	Vertices added at distance at least $r$ from the complement are separated
-	by at least $r$, so there are at most $CMr^{-d}$ of them. This bounds the
-	sum of resistances by $CM$ when $d\geq2$ (Lemma~\ref{lem:packing}).
-	The Cauchy--Schwarz inequality then gives the exponent $1+1/d$.
 
 	We will also use domain monotonicity. If $A\subseteq D$, then
 	$\tau_A\leq\tau_D$ along the same walk started in $A$. Together with
@@ -473,22 +432,17 @@ urlcolor=BrickRed
 	\end{lemma}
 
 	\begin{proof}
-		The Nash inequality holds on $\Z^d$ with exponent $d$
-		\citep[Lemma~3.13]{Barlow2017}, so Cauchy--Schwarz applied to functions
-		supported in $A$ gives the Faber--Krahn inequality $\lambda(A)\geq
-		c|A|^{-2/d}$ for the smallest eigenvalue of $-\Delta_A$.
-		On the unit-conductance lattice the weighted volume of $A$ is $2d|A|$ and
-		the normalized Laplacian is $\Delta/(2d)$, so the mean number of steps
-		needed to leave $A$ is at most $C|A|^{2/d}$
-		\citep[Definitions~1.1 and~1.4, Proposition~3.5]{Telcs2006}.
-		That mean is $2du_A$ by \eqref{eq:mean-steps}.  Equation~\eqref{eq:h-def} and the degree bound
-		give the estimate for $h_A$, and summing the estimate for $u_A$ over $A$
-		gives the estimate for $T(A)$.
+		The Nash inequality on $\Z^d$ with exponent $d$
+		\citep[Lemma~3.13]{Barlow2017} gives the Faber--Krahn inequality
+		$\lambda(A)\geq C^{-1}|A|^{-2/d}$ for the smallest eigenvalue of $-\Delta_A$.
+		On the unit-conductance lattice $A$ has weighted volume $2d|A|$ and the
+		normalized Dirichlet Laplacian is $\Delta_A/(2d)$, so the mean number of steps needed
+		to leave $A$ is at most $C|A|^{2/d}$
+		\citep[Proposition~3.5]{Telcs2006}, and that mean
+		is $2du_A$ by \eqref{eq:mean-steps}.  The bound for $h_A$ follows from
+		\eqref{eq:h-def} and the degree bound, and the bound for $T(A)$ by summing
+		over $A$.
 	\end{proof}
-
-	To compute the change in exit time when a vertex $x$ is added, we count
-	visits to $x$ and the expected time from each visit until the next return
-	or exit. This gives the identities needed to sum over successive additions.
 
 	\begin{lemma}[Adding one vertex]\label{lem:schur}
 		Let $d\geq1$, let $A\subset\Z^d$ be finite, let $x\notin A$, and set
@@ -515,17 +469,17 @@ urlcolor=BrickRed
 
 	\begin{proof}
 		Write $R\coloneqq\Reff\bigl(x\leftrightarrow(A^+)^c\bigr)$.  Before leaving
-		$A^+$ the walk visits $x$ a geometric number of times with mean $2dR$
-		\citep[p.~25, Equation~(2.5)]{LyonsPeres2016}. The expected time from
+		$A^+$, simple random walk started at $x$ visits $x$ a geometric number
+		of times with mean $2dR$
+		\citep[Equation~(2.5)]{LyonsPeres2016}, and the expected time from
 		each visit until the next return or exit is $h_A(x)$, so
-		$\E_x\tau_{A^+}=2dRh_A(x)$. Equation~\eqref{eq:mean-steps} gives
-		\eqref{eq:schur}, with the inequality following from the visit at time zero.
-
+		$\E_x\tau_{A^+}=2dRh_A(x)$ and \eqref{eq:mean-steps} gives
+		\eqref{eq:schur}, the inequality coming from the visit at time zero.
 		The strong Markov property at $\tau_A$ gives
-		$u_{A^+}(y)=u_A(y)-\Delta_{A^+}^{-1}(y,x)u_{A^+}(x)/R$ for $y\in A$.
-		The matrix $-\Delta_{A^+}^{-1}$ is symmetric, with row and column sums
-		$u_{A^+}$. Summing the identity over $A^+$ therefore gives
-		\eqref{eq:deltaT}, and \eqref{eq:hbound} follows from \eqref{eq:schur}.
+		$u_{A^+}(y)=u_A(y)-\Delta_{A^+}^{-1}(y,x)u_{A^+}(x)/R$ for $y\in A$, and
+		$-\Delta_{A^+}^{-1}$ is symmetric with row sums $u_{A^+}$, so summing over
+		$A^+$ gives \eqref{eq:deltaT} and \eqref{eq:hbound} follows from
+		\eqref{eq:schur}.
 	\end{proof}
 
 	\begin{lemma}[Sum of effective resistances]\label{lem:packing}
@@ -538,36 +492,24 @@ urlcolor=BrickRed
 	\end{lemma}
 
 	\begin{proof}
-		Every edge of $\Z^d$ carries unit conductance, as in Lemma~\ref{lem:schur}.
-		Let $\rho_i\coloneqq\dist(x_i,A_i^c)$, so that $\rho_i\geq1$. Sending a
-		unit flow along a shortest path from $x_i$ to $A_i^c$ dissipates energy
-		$\rho_i$, so Thomson's principle \citep[\S1.3.5,
-		pp.~50--51]{DoyleSnell1984} gives
+		Let $\rho_i\coloneqq\dist(x_i,A_i^c)$.  Sending a unit flow along a shortest
+		path to $A_i^c$, Thomson's principle
+		\citep[Section~1.3.5]{DoyleSnell1984} gives
 		\begin{equation}\label{eq:thomson}
 			\Reff\bigl(x_i\leftrightarrow A_i^c\bigr)\leq\rho_i\, .
 		\end{equation}
-
-		Fix an integer $r\geq2$ and consider the indices $i$ with $\rho_i\geq r$.  If
-		$i<j$ and $\rho_i,\rho_j\geq r$, then every vertex within distance
-		$r-1$ of $x_i$ lies in $A_i$, whereas $x_j\notin A_i$, so
-		$\dist(x_i,x_j)\geq r$.  Set $s\coloneqq\lfloor(r-1)/2\rfloor$.  The
-		$\ell^1$-balls of radius $s$ about the vertices $x_i$ with $\rho_i\geq r$ are
-		therefore pairwise disjoint, and each is contained in $A_M$.
-
-		The $\ell^1$-ball of radius $s$ about $x_i$ contains every vertex $x_i+z$ with
-		$z\in\Z_{\geq0}^d$ of coordinate sum at most $s$, so it has at least
-		$\binom{s+d}{d}\geq(s+1)^d/d!$ vertices, and $s+1=\lfloor(r+1)/2\rfloor\geq r/2$.
-		Disjointness therefore gives $|\{i:\rho_i\geq r\}|\leq2^dd!Mr^{-d}$.
-
-		Summing the counts $|\{i:\rho_i\geq r\}|$ over $r\geq1$ and using
-		\eqref{eq:thomson},
+		For each integer $r\geq2$, the sites with $\rho_i\geq r$ are separated
+		by distance at least $r$: if $i<j$, then $x_j\notin A_i$, whereas every
+		vertex within distance $r-1$ of $x_i$ lies in $A_i$.
+		Their $\ell^1$-balls of radius $\lfloor(r-1)/2\rfloor$ are therefore
+		disjoint subsets of $A_M$, each containing at least $C^{-1}r^d$ vertices.
+		Thus $|\{i:\rho_i\geq r\}|\leq CMr^{-d}$, and
 		\[
 		\sum_{i=1}^M\Reff\bigl(x_i\leftrightarrow A_i^c\bigr)
-		\leq\sum_{i=1}^M\rho_i
-		=\sum_{r\geq1}\bigl|\{i:\rho_i\geq r\}\bigr|
-		\leq M+2^dd!M\sum_{r\geq2}r^{-d}\, ,
+		\leq\sum_{r\geq1}|\{i:\rho_i\geq r\}|
+		\leq CM\sum_{r\geq1}r^{-d}\leq CM\, ,
 		\]
-		and the series converges because $d\geq2$.
+		since $d\geq2$.
 	\end{proof}
 
 	\begin{lemma}[Sum over successive vertex additions]\label{lem:insertion}
@@ -589,11 +531,10 @@ urlcolor=BrickRed
 		\sum_{i=1}^Mh_{A_{i-1}}(x_i)\leq CM^{1+1/d}\, .
 		\]
 
-		Next, abbreviate
-		$\Reff_i\coloneqq\Reff(x_i\leftrightarrow A_i^c)$.  The second relation of
-		\eqref{eq:hbound} is $u_{A_i}(x_i)^2=\Reff_i(T(A_i)-T(A_{i-1}))$.  The Cauchy--Schwarz inequality, the telescoping identity for
-		$\sum_i(T(A_i)-T(A_{i-1}))$, Lemma~\ref{lem:packing}, and
-		Lemma~\ref{lem:max-exit} give
+		Write $\Reff_i\coloneqq\Reff(x_i\leftrightarrow A_i^c)$. By the second
+		identity in \eqref{eq:hbound},
+		$u_{A_i}(x_i)^2=\Reff_i(T(A_i)-T(A_{i-1}))$.
+		Cauchy--Schwarz and Lemmas~\ref{lem:packing} and~\ref{lem:max-exit} give
 		\[
 		\sum_{i=1}^Mu_{A_i}(x_i)
 		\leq\Bigl(\sum_{i=1}^M\Reff_i\Bigr)^{1/2}T(A_M)^{1/2}
@@ -604,53 +545,31 @@ urlcolor=BrickRed
 
 	\section{A potential and a supermartingale}\label{sec:potential}
 
-	We use the exit-time estimates to bound the time needed to cross $k$
-	distinct edges. Recall that $S_n$ consists of sites whose incident edges
-	have all been crossed. While the walk remains in $S_n$, it is simple
-	random walk, and the expected remaining exit time decreases by one per
-	step. This expected time is the potential $\Phi_n$.
-
-	First crossings can enlarge $S_n$ and increase $\Phi_n$. We define
-	$\Gamma_n$ to increase only at these crossings, by an amount that includes
-	the new potential. The conditional expected increase in $\Gamma_n-\Phi_n$
-	is at least one, so $n+\Phi_n-\Gamma_n$ is a supermartingale
-	(Lemma~\ref{lem:martingale}). Optional stopping will then bound elapsed
-	time by $\Gamma_n$.
-
-	The bound on $\Gamma_n$ is deterministic. At time $\sigma_k$, assign to
-	each visited site the largest index of an incident edge among the first
-	$k$ distinct edges crossed. Order the sites by these indices, placing a
-	departure before an arrival when they tie. This makes every $S_n$ for
-	$n\leq\sigma_k$ a subset of an appropriate initial segment of the ordering
-	(Lemma~\ref{lem:walk-order}). Domain monotonicity and
-	\eqref{eq:insertion-sum} then give
-	$\Gamma_n\leq K\beta|E_n|^{1+1/d}$ (Proposition~\ref{prop:charge}).
-
 	Let
 	\[
 		\begin{gathered}
 		S_n\coloneqq\{x\in\Z^d:\text{every edge incident to $x$ lies in $E_n$}\},\\
 		\nu_n\coloneqq\#\{y\sim X_n:\{X_n,y\}\notin E_n\},
 		\qquad
-		\mu_n\coloneqq\beta(2d-\nu_n)+\nu_n\, ,
+		\mu_n\coloneqq\beta(2d-\nu_n)+\nu_n\, .
 		\end{gathered}
 	\]
-	so that $S_0=\varnothing$, $\nu_n$ counts the untraversed edges at the site
-	the walk occupies at step $n$, and $\mu_n$ is the total weight there, so that
-	$\mu_n\leq2d\beta$.  Thus $X_n\in S_n$ if and only if $\nu_n=0$.  Let
+	Here $S_0=\varnothing$, $\nu_n$ counts the untraversed edges incident to
+	$X_n$, and $\mu_n$ is the total weight of the edges incident to $X_n$.
+	We have $\mu_n\leq2d\beta$ and $X_n\in S_n$ if and only if $\nu_n=0$. Let
 	\[
 		\sigma_k\coloneqq\inf\{n\geq0:|E_n|=k\},
 		\qquad\sigma_0\coloneqq0,
 		\qquad v_k\coloneqq X_{\sigma_k-1},
 		\qquad w_k\coloneqq X_{\sigma_k}\, ,
 	\]
-	for every integer $k\geq1$, so that $\sigma_k$ is the step at which the walk
-	crosses its $k$th distinct edge, $v_k$ is the site it departs from, and $w_k$
-	the site it arrives at.  Since $|E_n|$ increases by at most one at each step,
+	for every integer $k\geq1$, with $v_k$ and $w_k$ defined on
+	$\{\sigma_k<\infty\}$. Thus $\sigma_k$ is the time of the $k$th first
+	crossing, and $v_k$ and $w_k$ are its departure and arrival sites.  Since $|E_n|$ increases by at most one at each step,
 	\begin{equation}\label{eq:sigma-range}
 		\{\sigma_k\leq n\}=\{|E_n|\geq k\}\, .
 	\end{equation}
-	Write $\eta_n\coloneqq\one_{\{|E_n|>|E_{n-1}|\}}$ for the indicator that the
+	For $n\geq1$, write $\eta_n\coloneqq\one_{\{|E_n|>|E_{n-1}|\}}$ for the indicator that the
 	$n$th step crosses an untraversed edge, and let $(\mathcal F_n)_{n\geq0}$ be
 	the filtration generated by $(X_n)_{n\geq0}$.
 
@@ -680,42 +599,29 @@ urlcolor=BrickRed
 	\end{lemma}
 
 	\begin{proof}
-		Every site of $S_n$ is incident to $2d$ traversed edges, so $|S_n|\leq n$; hence
-		Lemma~\ref{lem:max-exit} bounds $\Phi_n$ and every increment of $\Gamma$ up to
-		step $n$ by a finite quantity depending only on $d$, $\beta$ and $n$.  In
-		particular $\Phi_n$ and $\Gamma_n$ are integrable.  We prove that
+		Lemma~\ref{lem:max-exit} and $|S_n|\leq n$ give integrability of
+		$\Phi_n$ and $\Gamma_n$.  It remains to prove
 		\begin{equation}\label{eq:drift}
 			\E_\beta\bigl[\Gamma_{n+1}-\Gamma_n-(\Phi_{n+1}-\Phi_n)\mid\mathcal F_n\bigr]
-			\geq1\, ,
+			\geq1\, .
 		\end{equation}
-		which is the assertion.
+		If $X_n\in S_n$, then, conditional on $\mathcal F_n$, the next site is
+		uniform among the neighbors of $X_n$, with
+		$S_{n+1}=S_n$ and $\Gamma_{n+1}=\Gamma_n$.  The exit-time identity
+		\eqref{eq:mean-steps} gives
+		$\E_\beta[\Phi_{n+1}\mid\mathcal F_n]=\Phi_n-1$, so equality holds.
 
-		Suppose that $X_n\in S_n$.  Every edge at $X_n$ is then traversed, so all
-		$2d$ of them have weight $\beta$ and the walk moves to a uniformly chosen neighbor;
-		moreover the step crosses no untraversed edge, so $E_{n+1}=E_n$,
-		$S_{n+1}=S_n$ and $\eta_{n+1}=0$.  By \eqref{eq:mean-steps} and the Markov
-		property, $\E_\beta[\Phi_{n+1}\mid\mathcal F_n]=\Phi_n-1$, and $\Gamma_{n+1}=\Gamma_n$,
-		so the left side of \eqref{eq:drift} equals $1$.
-
-		Suppose instead that $X_n\notin S_n$, so that $\Phi_n=0$ and $\nu_n\geq1$.  The
-		walk crosses an untraversed edge with probability $\nu_n/\mu_n$ and steps to each neighbor joined to $X_n$ by a traversed edge with probability
-		$\beta/\mu_n$.  A neighbor of $X_n$ that
-		lies in $S_n$ is joined to $X_n$ by a traversed edge, and $u_{S_n}$ vanishes
-		off $S_n$, so the contribution of the steps along traversed edges to
-		$\E_\beta[\Phi_{n+1}\mid\mathcal F_n]$ is, by \eqref{eq:h-def},
+		If $X_n\notin S_n$, then $\Phi_n=0$ and $\nu_n\geq1$.
+		When an untraversed edge is crossed, $\Phi_{n+1}$ also appears in the
+		increment of $\Gamma_n$, so its contributions to \eqref{eq:drift} cancel.
+		Each neighbor in $S_n$ is reached with probability $\beta/\mu_n$.
+		Writing $h\coloneqq h_{S_n}(X_n)$, equations~\eqref{eq:h-def} and
+		\eqref{eq:a-def} show that the left side of \eqref{eq:drift} is
 		\[
-			\frac\beta{\mu_n}\sum_{y\sim X_n}2du_{S_n}(y)
-			=\frac{2d\beta}{\mu_n}\bigl(h_{S_n}(X_n)-1\bigr)\, .
+		\frac{\nu_n\gamma_n}{\mu_n}-\frac{2d\beta}{\mu_n}(h-1)
+		=\frac{2d\beta}{\mu_n}\bigl(h(\nu_n-1)+1\bigr)\geq1\, ,
 		\]
-		When an untraversed edge is crossed, the increase $\Phi_{n+1}$ in the potential
-		also appears in $\Gamma_{n+1}-\Gamma_n$, so those terms cancel.  Writing
-		$h\coloneqq h_{S_n}(X_n)$, the left side of \eqref{eq:drift} is therefore
-		\[
-			\frac{\nu_n\gamma_n}{\mu_n}-\frac{2d\beta}{\mu_n}(h-1)
-			=\frac{2d\beta}{\mu_n}\bigl(h(\nu_n-1)+1\bigr)
-			\geq\frac{2d\beta}{\mu_n}\geq1\, ,
-		\]
-		because $h\geq1$, $\nu_n\geq1$ and $\mu_n\leq2d\beta$.
+		since $h\geq1$ and $\mu_n\leq2d\beta$.
 	\end{proof}
 
 	The sets $S_{\sigma_j}$ are random, and the bound in
@@ -761,11 +667,11 @@ urlcolor=BrickRed
 	\end{proof}
 
 	\begin{proposition}[Bound on the nondecreasing process]\label{prop:charge}
-		Let $d\geq2$.  There is a constant $K<\infty$, depending only on $d$, such
+		Let $d\geq2$.  There is a constant $C<\infty$, depending only on $d$, such
 		that for every $\beta\geq1$, almost surely,
 		\begin{equation}\label{eq:charge-bound}
-			\Gamma_n\leq K\beta|E_n|^{1+1/d}
-			\qquad\text{for every integer }n\geq0\, .
+			\Gamma_n\leq C\beta|E_n|^{1+1/d}
+			\qquad\text{for every }n\geq0\, .
 		\end{equation}
 	\end{proposition}
 
@@ -795,79 +701,40 @@ urlcolor=BrickRed
 			\Gamma_n\leq4d^2\beta\sum_{i=1}^M\bigl(h_{A_{i-1}}(x_i)+u_{A_i}(x_i)\bigr)
 			\leq C\beta M^{1+1/d}\leq C\beta(2k)^{1+1/d}\, ,
 		\]
-		which is \eqref{eq:charge-bound} for a suitable $K$.
+		which is \eqref{eq:charge-bound} for a suitable $C$.
 	\end{proof}
 
 	\section{The expected range}\label{sec:range}
-
-	Optional stopping bounds $\E_\beta\sigma_k$ by $K\beta k^{1+1/d}$.
-	Markov's inequality and $|E_n|\leq d|R_n|$ then give the lower bound on
-	$\E_\beta|R_n|$ in Theorem~\ref{thm:main}.
-
 	\begin{proof}[Proof of Theorem~\ref{thm:main}]
-		Let $k\geq1$ and $N\geq0$ be integers.  Optional stopping applied to the
-		supermartingale of Lemma~\ref{lem:martingale} at the bounded stopping time
-		$\sigma_k\wedge N$ gives
-		$\E_\beta[\sigma_k\wedge N]+\E_\beta\Phi_{\sigma_k\wedge N}
-		-\E_\beta\Gamma_{\sigma_k\wedge N}\leq0$, that is,
-		\[
-			\E_\beta[\sigma_k\wedge N]
-			\leq\E_\beta\Gamma_{\sigma_k\wedge N}-\E_\beta\Phi_{\sigma_k\wedge N}
-			\leq\E_\beta\Gamma_{\sigma_k\wedge N}\, ,
-		\]
-		because $\Phi\geq0$.  Since $|E_{\sigma_k\wedge N}|\leq k$,
-		Proposition~\ref{prop:charge} bounds the right-hand side by
-		$K\beta k^{1+1/d}$.  Letting $N\to\infty$ and using monotone convergence,
+		For integers $k\geq1$ and $N\geq0$, apply optional stopping to
+		Lemma~\ref{lem:martingale} at $\sigma_k\wedge N$.  Since $\Phi\geq0$ and
+		$|E_{\sigma_k\wedge N}|\leq k$, Proposition~\ref{prop:charge} gives
+		$\E_\beta[\sigma_k\wedge N]\leq C\beta k^{1+1/d}$.
+		Monotone convergence as $N\to\infty$ gives
 		\begin{equation}\label{eq:sigma-mean}
-			\E_\beta\sigma_k\leq K\beta k^{1+1/d}\, ,
+			\E_\beta\sigma_k\leq C\beta k^{1+1/d}\, .
 		\end{equation}
-		in particular $\sigma_k<\infty$ almost surely.
 
-		Now fix an integer $n\geq0$, and let
-		$a\coloneqq\bigl(n/(2K\beta)\bigr)^{d/(d+1)}$ and
-		$k\coloneqq\lfloor a\rfloor$.  Suppose first that $a\geq1$.  Then $k\geq1$
-		and $k\geq a/2$, while $K\beta a^{1+1/d}=n/2$, so \eqref{eq:sigma-mean} and
-		Markov's inequality give
-		\[
-			\P_\beta\{\sigma_k\leq n\}
-			\geq1-\frac{\E_\beta\sigma_k}n
-			\geq1-\frac{K\beta k^{1+1/d}}n
-			\geq\frac12\, .
-		\]
-		Every subgraph of $\Z^d$ on $m$ vertices has at most $dm$ edges, so
+		Set $a\coloneqq(n/(2C\beta))^{\frac{d}{d+1}}$.
+		If $a\geq1$, take $k=\lfloor a\rfloor\geq a/2$.
+		Markov's inequality and \eqref{eq:sigma-mean} give
+		$\P_\beta\{\sigma_k\leq n\}\geq1/2$.
+		The degree bound gives
 		\begin{equation}\label{eq:edges-sites}
 			|E_n|\leq d|R_n|\, .
 		\end{equation}
-		By \eqref{eq:sigma-range} and \eqref{eq:edges-sites}, the event
-		$\{\sigma_k\leq n\}$ forces $|R_n|\geq k/d\geq a/(2d)$, and therefore
+		Together with \eqref{eq:sigma-range}, this gives
 		\[
-			\E_\beta|R_n|\geq\frac a{4d}
-			=\frac{(2K)^{-d/(d+1)}}{4d}\beta^{-d/(d+1)}n^{d/(d+1)}\, .
+		\E_\beta|R_n|\geq\frac{k}{2d}\geq\frac a{4d}
+		\geq C^{-1}\beta^{-\frac{d}{d+1}}n^{\frac{d}{d+1}}\, .
 		\]
-
-		Suppose instead that $a<1$.  Then
-		$\beta^{-d/(d+1)}n^{d/(d+1)}=(2K)^{d/(d+1)}a<(2K)^{d/(d+1)}$, while
-		$\E_\beta|R_n|\geq1$ because $R_n$ contains the origin.  Hence
-		\eqref{eq:main-range} holds for every $n\geq0$ once $c$ is small enough.
+		For $a<1$, use $|R_n|\geq1$ and increase $C$.
 	\end{proof}
 
 	\section{A stretched-exponential tail}\label{sec:tail}
 
-	The expected-time bound gives a fixed positive probability of crossing
-	$k$ distinct edges within order $\beta k^{1+1/d}$ steps. To prove the
-	range lower-tail bound, we need the probability of taking longer to
-	decrease with $k$. We obtain this from an exponential supermartingale.
-
-	Three bounds enter the argument: an upper bound $p$ on the stopped
-	potential, an upper bound $q$ on each increment of $\Gamma$, and an upper
-	bound $b$ on $\Gamma$ itself. They give exponential moments of
-	$\sigma_k\wedge N$, uniformly in $N$, with rate of order $1/(1+p+q)$
-	(Lemma~\ref{lem:exp}). For the walk,
-	$p\leq Ck^{2/d}$, $q\leq C\beta k^{2/d}$, and
-	$b\leq K\beta k^{1+1/d}$. At times of order $b$, the tail exponent therefore
-	has order $k^{(d-1)/d}$ (Proposition~\ref{prop:tail}). Taking $k$ of order
-	$(n/\beta)^{d/(d+1)}$ gives the exponent $(d-1)/(d+1)$ in
-	Theorem~\ref{thm:whp}. This application uses $d\geq2$ and $\beta\geq1$.
+	An exponential supermartingale strengthens the expected-time estimate
+	\eqref{eq:sigma-mean} to a tail bound for $\sigma_k$.
 
 	\begin{lemma}[An exponential-moment bound]\label{lem:exp}
 		Let $d\geq1$ be an integer and let $\beta\geq1$.  Let
@@ -885,7 +752,7 @@ urlcolor=BrickRed
 			\qquad
 			\Gamma_{n\wedge\zeta}\leq b\, ,
 		\]
-		for every integer $n\geq0$, and let
+		for every $n\geq0$, and let
 		$\theta\coloneqq\bigl[4(1+p+q)\bigr]^{-1}$.  Then for every integer $N\geq0$,
 		\[
 			\E_\beta e^{\theta(N\wedge\zeta)/2}\leq e^{2\theta b},
@@ -896,120 +763,97 @@ urlcolor=BrickRed
 	\end{lemma}
 
 	\begin{proof}
-		Write $\delta_n\coloneqq \Gamma_{(n+1)\wedge\zeta}-\Gamma_{n\wedge\zeta}$, so that
-		$0\leq\theta\delta_n\leq\frac14$.  Since $e^{-2x}\leq1-x$ for
-		$0\leq x\leq\frac12$, and since $\delta_n$ and $\Phi_{(n+1)\wedge\zeta}$ are nonnegative,
+		Write $\delta_n\coloneqq\Gamma_{(n+1)\wedge\zeta}-\Gamma_{n\wedge\zeta}$
+		and set
 		\[
-			e^{-2\theta\delta_n}\bigl(1+\theta\Phi_{(n+1)\wedge\zeta}\bigr)
-			\leq(1-\theta\delta_n)\bigl(1+\theta\Phi_{(n+1)\wedge\zeta}\bigr)
-			\leq1+\theta\Phi_{(n+1)\wedge\zeta}-\theta\delta_n\, .
+		Z_n\coloneqq e^{\theta(n\wedge\zeta)/2-2\theta\Gamma_{n\wedge\zeta}}
+		\bigl(1+\theta\Phi_{n\wedge\zeta}\bigr)\, .
 		\]
-		The assumed supermartingale inequality gives
-		\[
-			\E_\beta\bigl[\Phi_{(n+1)\wedge\zeta}-\delta_n\mid\mathcal F_n\bigr]
-			\leq\Phi_{n\wedge\zeta}-\one_{\{n<\zeta\}}\, ,
-		\]
-		so taking conditional expectations above bounds
-		$\E_\beta[e^{-2\theta\delta_n}(1+\theta\Phi_{(n+1)\wedge\zeta})\mid\mathcal F_n]$ by
-		$1+\theta\Phi_{n\wedge\zeta}-\theta\one_{\{n<\zeta\}}$.  Because
-		$\theta p\leq\frac14$ we have $1+\theta\Phi_{n\wedge\zeta}\leq2$, so
-		$\theta\geq\tfrac\theta2(1+\theta\Phi_{n\wedge\zeta})$ and, by
-		$1-x\leq e^{-x}$, the expression
-		$1+\theta\Phi_{n\wedge\zeta}-\theta\one_{\{n<\zeta\}}$ is at most
-		$e^{-\theta\one_{\{n<\zeta\}}/2}\bigl(1+\theta\Phi_{n\wedge\zeta}\bigr)$. Let
-		\[
-			Z_n\coloneqq
-			e^{\theta(n\wedge\zeta)/2-2\theta\Gamma_{n\wedge\zeta}}
-			\bigl(1+\theta\Phi_{n\wedge\zeta}\bigr)\, .
-		\]
-		Since $(n+1)\wedge\zeta=n\wedge\zeta+\one_{\{n<\zeta\}}$, the process
-		$(Z_n)$ is a nonnegative supermartingale with $Z_0=1$.  Using $\Gamma_{N\wedge\zeta}\leq b$
-		and $\Phi_{N\wedge\zeta}\geq0$ gives $\E_\beta e^{\theta(N\wedge\zeta)/2}\leq e^{2\theta b}$
-		for every integer $N\geq0$.  Markov's inequality then
-		gives
-		$\P_\beta\{N\wedge\zeta\geq4b+s\}\leq e^{-\theta(4b+s)/2}e^{2\theta b}=e^{-\theta s/2}$.
+		We show that $(Z_n)$ is a supermartingale.
+		Since $0\leq\theta\delta_n\leq1/4$, the inequality
+		$e^{-2x}\leq1-x$ for $0\leq x\leq1/2$ and the assumed supermartingale
+		property give
+		\begin{align*}
+		\E_\beta\bigl[e^{-2\theta\delta_n}
+		(1+\theta\Phi_{(n+1)\wedge\zeta})\mid\mathcal F_n\bigr]
+		&\leq1+\theta\Phi_{n\wedge\zeta}-\theta\one_{\{n<\zeta\}}\\
+		&\leq e^{-\theta\one_{\{n<\zeta\}}/2}
+		(1+\theta\Phi_{n\wedge\zeta})\, .
+		\end{align*}
+		The last inequality uses $1+\theta\Phi_{n\wedge\zeta}\leq2$ and
+		$1-x\leq e^{-x}$.  Since
+		$((n+1)\wedge\zeta)-(n\wedge\zeta)=\one_{\{n<\zeta\}}$, it follows that
+		$\E_\beta[Z_{n+1}\mid\mathcal F_n]\leq Z_n$.
+		Now $Z_0=1$, $\Phi_{N\wedge\zeta}\geq0$, and $\Gamma_{N\wedge\zeta}\leq b$ give
+		$\E_\beta e^{\theta(N\wedge\zeta)/2}\leq e^{2\theta b}$.
+		The tail bound follows by Markov's inequality.
 	\end{proof}
 
 	\begin{proposition}[Tail of $\sigma_k$]\label{prop:tail}
-		Let $d\geq2$ and let $K$ be the constant of
-		Proposition~\ref{prop:charge}.  There is $c>0$, depending only on $d$, such
+		Let $d\geq2$. There is a constant $C\geq1$, depending only on $d$, such
 		that for every $\beta\geq1$ and every integer $k\geq1$,
 		\[
-			\P_\beta\bigl\{\sigma_k>8K\beta k^{1+1/d}\bigr\}
-			\leq\exp\bigl(-ck^{(d-1)/d}\bigr)\, .
+			\P_\beta\bigl\{\sigma_k>8C\beta k^{1+1/d}\bigr\}
+			\leq\exp\bigl(-C^{-1}k^{(d-1)/d}\bigr)\, .
 		\]
 	\end{proposition}
 
 	\begin{proof}
-		Apply Lemma~\ref{lem:exp} to the supermartingale of
-		Lemma~\ref{lem:martingale} and the stopping time $\zeta\coloneqq\sigma_k$.  For
-		$n\leq\sigma_k$ we have $|E_n|\leq k$, and every site of $S_n$ is incident to $2d$
-		traversed edges, so $|S_n|\leq k/d$.  Lemma~\ref{lem:max-exit} therefore
-		gives a constant $C_1<\infty$, depending only on $d$, with
+		Apply Lemma~\ref{lem:exp} with $\zeta=\sigma_k$ to the supermartingale
+		of Lemma~\ref{lem:martingale}.  For $n\leq\sigma_k$, we have $|S_n|\leq k/d$.
+		Lemma~\ref{lem:max-exit} and \eqref{eq:C-def} therefore bound
+		$\Phi_{n\wedge\sigma_k}$ by $Ck^{2/d}$ and
+		$\Gamma_{(n+1)\wedge\sigma_k}-\Gamma_{n\wedge\sigma_k}$ by $2C\beta k^{2/d}$.
+		Choose $C\geq8$ large enough for these bounds and
+		Proposition~\ref{prop:charge}. In Lemma~\ref{lem:exp}, take
 		\[
-			\Phi_n\leq C_1k^{2/d}
-			\qquad\text{and}\qquad
-			0\leq\gamma_n\leq C_1\beta k^{2/d}
-			\qquad(n\leq\sigma_k)\, ,
+		p=Ck^{2/d},\qquad q=2C\beta k^{2/d},\qquad
+		b=C\beta k^{1+1/d}\, .
 		\]
-		by \eqref{eq:a-def} when $\nu_n\geq1$ and because $\gamma_n=0$ when
-		$\nu_n=0$.  The increment of $\Gamma_n$ at step $\sigma_j$ is
-		$\gamma_{\sigma_j-1}+\Phi_{\sigma_j}$,
-		so we may take $p\coloneqq C_1k^{2/d}$ and
-		$q\coloneqq2C_1\beta k^{2/d}$, and
-		Proposition~\ref{prop:charge} lets us take $b\coloneqq K\beta k^{1+1/d}$.
-		Since $\beta\geq1$ and $k\geq1$,
-		\[
-			\theta=\frac1{4(1+p+q)}\geq\frac c{\beta k^{2/d}},
-			\qquad\text{so}\qquad
-			2\theta b\geq ck^{1-1/d}\, .
-		\]
-		Taking $s\coloneqq4b$ and an integer $N>8b$ in Lemma~\ref{lem:exp} gives
+		Then $\theta=[4(1+p+q)]^{-1}\geq1/(16C\beta k^{2/d})$.
+		Taking $s=4b$ and an integer $N>8b$ gives
 		\[
 		\P_\beta\{\sigma_k>8b\}
 		\leq\P_\beta\{N\wedge\sigma_k\geq8b\}
-		\leq e^{-2\theta b}\, ,
+		\leq e^{-2\theta b}\leq\exp\bigl(-k^{(d-1)/d}/8\bigr)
+		\leq\exp\bigl(-C^{-1}k^{(d-1)/d}\bigr)\, .
 		\]
-		which is the assertion.
 	\end{proof}
 
 	\begin{proof}[Proof of Theorem~\ref{thm:whp}]
-		Suppose that $n\geq16K\beta$, and let
+		Suppose that $n\geq16C\beta$, and let
 		\[
-		k\coloneqq\lfloor(n/(8K\beta))^{d/(d+1)}\rfloor\, .
+		k\coloneqq\lfloor(n/(8C\beta))^{\frac{d}{d+1}}\rfloor\, .
 		\]
-		Then $(n/(8K\beta))^{d/(d+1)}\geq2^{d/(d+1)}\geq1$, so $k\geq1$ and
+		Then $(n/(8C\beta))^{\frac{d}{d+1}}\geq2^{\frac{d}{d+1}}\geq1$, so $k\geq1$ and
 		\[
-		k\geq\tfrac12(n/(8K\beta))^{d/(d+1)},
-		\qquad 8K\beta k^{1+1/d}\leq n\, .
+		k\geq\tfrac12(n/(8C\beta))^{\frac{d}{d+1}},
+		\qquad 8C\beta k^{1+1/d}\leq n\, .
 		\]
 		By \eqref{eq:sigma-range} and
 		Proposition~\ref{prop:tail},
 		\[
 			\P_\beta\{|E_n|<k\}
 			=\P_\beta\{\sigma_k>n\}
-			\leq\P_\beta\bigl\{\sigma_k>8K\beta k^{1+1/d}\bigr\}
-			\leq\exp\bigl(-ck^{(d-1)/d}\bigr)\, .
+			\leq\P_\beta\bigl\{\sigma_k>8C\beta k^{1+1/d}\bigr\}
+			\leq\exp\bigl(-C^{-1}k^{(d-1)/d}\bigr)\, .
 		\]
-		By \eqref{eq:edges-sites}, the complementary event forces
+		On $\{|E_n|\geq k\}$, equation~\eqref{eq:edges-sites} gives
 		\[
-		|R_n|\geq k/d\geq c(n/\beta)^{d/(d+1)},
-		\qquad k^{(d-1)/d}\geq c(n/\beta)^{(d-1)/(d+1)}\, .
+		|R_n|\geq k/d\geq C^{-1}(n/\beta)^{\frac{d}{d+1}},
+		\qquad k^{(d-1)/d}\geq C^{-1}(n/\beta)^{(d-1)/(d+1)}\, .
 		\]
 		The theorem follows after
-		shrinking $c$ and enlarging $C$.
+		enlarging $C$.
 	\end{proof}
 
 	\section{Displacement and exit times}\label{sec:displacement}
 
-	A box contains only finitely many vertices and edges. The range lower
-	bounds therefore force a lower bound on maximal displacement, and the
-	time to cross enough distinct edges bounds the time to leave the box.
-
 	Let $B_r\coloneqq[-r,r]^d\cap\Z^d$ and let
 	$\tau_{B_r}\coloneqq\inf\{n\geq0:X_n\notin B_r\}$ be its exit time.
-	The maximal displacement $\Lambda_n\coloneqq\max_{0\leq k\leq n}\|X_k\|_\infty$
-	gives a box containing $R_n$, so
+	Define the maximal displacement by
+	$\Lambda_n\coloneqq\max_{0\leq k\leq n}\|X_k\|_\infty$.
+	Since $R_n\subseteq B_{\Lambda_n}$,
 	\begin{equation}\label{eq:range-box}
 		|R_n|\leq(2\Lambda_n+1)^d,
 		\qquad\text{equivalently}\qquad
@@ -1017,7 +861,7 @@ urlcolor=BrickRed
 	\end{equation}
 
 	\begin{proposition}[Displacement and exit times]\label{prop:displacement}
-		Let $d\geq2$.  There are constants $c>0$ and $C<\infty$, depending only
+		Let $d\geq2$.  There is a constant $C\geq1$, depending only
 		on $d$, such that for every $\beta\geq1$,
 		\[
 		\E_\beta\tau_{B_r}\leq C\beta(2r+1)^{d+1}
@@ -1025,115 +869,84 @@ urlcolor=BrickRed
 		\]
 		and
 		\[
-		\E_\beta\Lambda_n\geq c\beta^{-1/(d+1)}n^{1/(d+1)}
-		\qquad\text{for every integer }n\geq0\, .
+		\E_\beta\Lambda_n\geq C^{-1}\beta^{-1/(d+1)}n^{1/(d+1)}
+		\qquad\text{for every }n\geq0\, .
 		\]
 		Moreover, $\P_\beta$-almost surely, \[
-		\liminf_{n\to\infty}\Lambda_nn^{-1/(d+1)}\geq c\beta^{-1/(d+1)}\, . \]
+		\liminf_{n\to\infty}\Lambda_nn^{-1/(d+1)}\geq C^{-1}\beta^{-1/(d+1)}\, . \]
 	\end{proposition}
 
 	\begin{proof}
-		We first bound the exit time.  If $n<\tau_{B_r}$ then $R_n$ lies in the box
-		of radius $r$, so $|R_n|\leq(2r+1)^d$ and, by \eqref{eq:edges-sites},
-		$|E_n|\leq d(2r+1)^d$.  Hence the walk has left that box by the step at
-		which it crosses its $k_r$th distinct edge, where
-		$k_r\coloneqq d(2r+1)^d+1$; that is, $\tau_{B_r}\leq\sigma_{k_r}$.  Since
-		$k_r\leq2d(2r+1)^d$, \eqref{eq:sigma-mean} gives
+		The box $B_r$ contains at most $d(2r+1)^d$ edges, so
+		$\tau_{B_r}\leq\sigma_{k_r}$ for $k_r=d(2r+1)^d+1$.
+		Equation~\eqref{eq:sigma-mean} gives
 		\[
-		\E_\beta\tau_{B_r}\leq K\beta k_r^{1+1/d}
-		\leq(2d)^{1+1/d}K\beta(2r+1)^{d+1}\, .
+		\E_\beta\tau_{B_r}\leq C\beta k_r^{1+1/d}
+		\leq C\beta(2r+1)^{d+1}\, .
 		\]
 
-		For the expected displacement, set $a\coloneqq(n/(2K\beta))^{d/(d+1)}$ and
-		$k\coloneqq\lfloor a\rfloor$.  Suppose first that $a\geq2^{d+1}d$.  As in
-		the proof of Theorem~\ref{thm:main}, $\P_\beta\{|R_n|\geq k/d\}\geq\frac12$
-		and $k\geq a/2$, so $(k/d)^{1/d}\geq(a/2d)^{1/d}\geq2$ and hence
-		$(k/d)^{1/d}-1\geq\frac12(k/d)^{1/d}$.  On the event $\{|R_n|\geq k/d\}$,
-		\eqref{eq:range-box} gives
+		For the expected maximal displacement, set
+		$a=(n/(2C\beta))^{\frac{d}{d+1}}$ and $k=\lfloor a\rfloor$.
+		If $a\geq2^{d+1}d$, the proof of Theorem~\ref{thm:main} gives
+		$\P_\beta\{|R_n|\geq k/d\}\geq1/2$ and $k\geq a/2$.
+		On this event, \eqref{eq:range-box} gives
+		$\Lambda_n\geq\tfrac14(k/d)^{1/d}$, and hence
 		\[
-		\Lambda_n\geq\tfrac14(k/d)^{1/d}\geq\tfrac14(a/2d)^{1/d}\, ,
+		\E_\beta\Lambda_n\geq\tfrac18(a/(2d))^{1/d}
+		\geq C^{-1}\beta^{-1/(d+1)}n^{1/(d+1)}\, .
 		\]
-		so $\E_\beta\Lambda_n\geq\frac18(a/2d)^{1/d}$.  Since
-		$a=(n/(2K\beta))^{d/(d+1)}$,
-		\[
-		a^{1/d}=(2K)^{-1/(d+1)}(n/\beta)^{1/(d+1)}\, ,
-		\]
-		which is the claimed bound with
-		$c\coloneqq\frac18(2d)^{-1/d}(2K)^{-1/(d+1)}$.
-
-		Suppose instead that $a<2^{d+1}d$.  If $n\geq1$, then $\Lambda_n\geq1$,
-		while $(n/\beta)^{1/(d+1)}=(2K)^{1/(d+1)}a^{1/d}$ is bounded by a constant
-		depending only on $d$, so the bound holds after shrinking $c$; and if $n=0$,
-		both sides vanish.
-
-		For the almost sure bound, \eqref{eq:range-box} gives
-		$\liminf_{n\to\infty}\Lambda_nn^{-1/(d+1)}
-		\geq\frac12\bigl(\liminf_{n\to\infty}|R_n|n^{-d/(d+1)}\bigr)^{1/d}$, and the
-		right-hand side is at least $\frac12\bigl(c\beta^{-d/(d+1)}\bigr)^{1/d}$ by
-		the almost sure consequence of Theorem~\ref{thm:whp} recorded in
-		Section~\ref{ssec:main-results}.  Taking $C\coloneqq(2d)^{1+1/d}K$,
-		and $c>0$ small enough for both of the lower bounds just proved,
-		completes the proof.
+		For $a<2^{d+1}d$, use $\Lambda_n\geq1$ when $n\geq1$ and increase $C$;
+		at $n=0$ both sides vanish.
+		The almost sure bound follows from \eqref{eq:range-box} and the almost
+		sure range bound in Section~\ref{ssec:main-results}.
 	\end{proof}
 
 	\section{Optimality of the exponents}\label{sec:sharp}
 
-	The expected range stays bounded when $n$ has order $\beta$: after the
-	first step, the probability of crossing an untraversed edge is at most
-	$(2d-1)/(\beta+2d-1)$. This prevents either exponent in
-	\eqref{eq:main-range} from improving in a bound uniform in $\beta$
-	(Proposition~\ref{prop:beta-sharp}). We also compare the bound with the
-	known one-dimensional asymptotics.
+	Taking $\beta=n$ keeps the expected range bounded as $n\to\infty$.
+	Consequently, a lower bound uniform in $\beta$ cannot have a larger power
+	of $n$ with the power of $\beta$ fixed, or a larger power of $\beta$ with
+	the power of $n$ fixed. Proposition~\ref{prop:beta-sharp} gives the precise
+	statement.
 
 	\begin{proposition}[The exponents are optimal]\label{prop:beta-sharp} Let
-		$d\geq2$. For every $\beta\geq1$ and every integer $n\geq1$,
+		$d\geq2$. For every $\beta\geq1$ and every $n\geq1$,
 		\begin{equation}\label{eq:range-upper}
 			\E_\beta|R_n|\leq2+2dn/\beta\, .
 		\end{equation}
 		Consequently, if the real numbers $\gamma$ and $c>0$ satisfy
-		$\E_\beta|R_n|\geq c\beta^{-\gamma}n^{d/(d+1)}$ for all $\beta\geq1$ and all
+		$\E_\beta|R_n|\geq c\beta^{-\gamma}n^{\frac{d}{d+1}}$ for all $\beta\geq1$ and all
 		$n\geq1$, then $\gamma\geq d/(d+1)$. If the real numbers $s$ and $c>0$ satisfy
-		$\E_\beta|R_n|\geq c\beta^{-d/(d+1)}n^{s}$ for all $\beta\geq1$ and all
+		$\E_\beta|R_n|\geq c\beta^{-\frac{d}{d+1}}n^{s}$ for all $\beta\geq1$ and all
 		$n\geq1$, then $s\leq d/(d+1)$.
 	\end{proposition}
 
 	\begin{proof}
-		The edges crossed by time $n$ form a connected subgraph containing $R_n$, so
-		$|R_n|\leq1+|E_n|$.
+		Connectedness gives $|R_n|\leq1+|E_n|$.  After the first step, at least
+		one incident edge has been crossed, so the conditional probability of
+		crossing an untraversed edge is at most
+		$(2d-1)/(\beta+2d-1)\leq2d/\beta$.
+		Thus $\E_\beta|E_n|\leq1+2dn/\beta$, proving \eqref{eq:range-upper}.
 
-		The first step crosses an untraversed edge.  At every later step the walk stands at
-		a vertex with at least one traversed incident edge, so if that vertex has $j$ untraversed incident edges, then $0\leq j\leq2d-1$ and
-	the next step crosses an untraversed edge with probability
-		\[
-		\frac{j}{j+\beta(2d-j)}\leq\frac{2d-1}{2d-1+\beta}\leq\frac{2d}\beta\, .
-		\]
-		The middle expression is the value at $j=2d-1$ of a function increasing in
-		$j$.  Hence $\E_\beta|E_n|\leq1+2dn/\beta$, which gives
-		\eqref{eq:range-upper}.
-
-		Now take $n\coloneqq\lceil\beta\rceil$, so that $\beta\leq n\leq2\beta$.
-		Under the first hypothesis, $n\geq\beta$ and $d/(d+1)>0$ give
-		$n^{d/(d+1)}\geq\beta^{d/(d+1)}$, so \eqref{eq:range-upper} gives
-		$c\beta^{d/(d+1)-\gamma}\leq c\beta^{-\gamma}n^{d/(d+1)}\leq2+4d$ for every
-		$\beta\geq1$, and letting $\beta\to\infty$ forces $\gamma\geq d/(d+1)$. Under
-		the second hypothesis we may assume $s\geq0$, since $s<0\leq d/(d+1)$ is
-		already the assertion; then $n^s\geq\beta^s$, so $c\beta^{s-d/(d+1)}\leq
-		c\beta^{-d/(d+1)}n^s\leq2+4d$, and letting $\beta\to\infty$ forces $s\leq
-		d/(d+1)$.
+		For the restrictions on the exponents, take $\beta=n\to\infty$.
+		Equation~\eqref{eq:range-upper} bounds $\E_\beta|R_n|$ uniformly in $n$,
+		whereas the two hypotheses give lower bounds
+		$cn^{d/(d+1)-\gamma}$ and $cn^{s-d/(d+1)}$, respectively.
+		In each case, the exponent must be nonpositive.
 	\end{proof}
 
-	After its first step it retraces
-	the single traversed edge at each of the next $n-1$ steps with probability
+	After its first step, the walk crosses
+	the same edge at each of the next $n-1$ steps with probability
 	$(\beta/(\beta+2d-1))^{n-1}$, so $\P_\beta\{|R_n|=2\}\to1$ whenever
 	$n/\beta\to0$.
 
 	\subsection{Dimension one}\label{ssec:d1}
 
-	 Theorem~\ref{thm:main} assumes $d\geq2$. The known one-dimensional asymptotics have the power of $n$ in
-	\eqref{eq:main-range}; their leading coefficient has the corresponding power
-	of $\beta$ as $\beta\to\infty$.
+	In dimension one, the expected range is asymptotic to a multiple of
+	$\sqrt n$ as $n\to\infty$ for each fixed $\beta$. That multiple is asymptotic to
+	$\sqrt{2/\beta}$ as $\beta\to\infty$.
 
-	\citet[Theorem~1]{PfaffelhuberStiefel2021} compute the asymptotics of every
+	\citet[Theorem~1]{PfaffelhuberStiefel2021} computed the asymptotics of every
 	moment of the range on $\Z$. In their notation the weight of a traversed
 	edge is our $\beta$, and the quantity they call the range
 	is $\max_{k\leq n}X_k-\min_{k\leq n}X_k$, which is $|R_n|-1$ here. Their
@@ -1151,8 +964,8 @@ urlcolor=BrickRed
 
 	\section{Return probabilities}\label{sec:return}
 
-	We bound the expected time spent at a fixed site (Theorem~\ref{thm:return}),
-	which gives the uniform occupation bound in Theorem~\ref{thm:occupation-intro}.
+	We bound the expected number of visits to each site by $C\beta n^{1/(d+1)}$
+	before time $n$, uniformly over all sites.
 	The argument is independent of the range estimates. We use the notation
 	$\mu_j$, $E_j$, and $\eta_{j+1}$ from Section~\ref{sec:potential}.
 
@@ -1161,8 +974,7 @@ urlcolor=BrickRed
 	distinct edges. The absolute value of this sum is bounded by the total
 	variation of the potential over the edges of $\Z^d$. Truncating the Green
 	function of the lazy walk after $R$ steps gives a potential with finite total
-	variation. The term $Q^R(0,\cdot)$ in the truncated Poisson equation gives the
-	truncation error, and optimizing over $R$ gives the exponent $1/(d+1)$.
+	variation. Optimizing over $R$ gives the exponent $1/(d+1)$.
 
 	Let $P$ be the transition operator of simple random walk on $\Z^d$, let
 	$Q\coloneqq\frac12(I+P)$ be its lazy version, and for an integer $R\geq1$ let
@@ -1233,27 +1045,16 @@ urlcolor=BrickRed
 			\leq
 			\begin{cases}
 				C\bigl[\log(h+2)+(\beta-1)^{2/3}h^{1/3}\bigr],&d=2,\\
-				C\bigl[1+(\beta-1)^{d/(d+1)}h^{1/(d+1)}\bigr],&d\geq3,
-			\end{cases}\, ,
-		\end{equation}
-		and in either case the right-hand side is at most $C\beta h^{1/(d+1)}$.  In
-		particular $\E_\beta L_n(z)\leq C\beta n^{1/(d+1)}$ for every $z$ and every
-		$n\geq1$, which is Theorem~\ref{thm:occupation-intro}, and dividing by $n$,
-		\begin{equation}\label{eq:cesaro}
-			\sup_{z\in\Z^d}\frac1n\sum_{j=0}^{n-1}\P_\beta\{X_j=z\}
-			\leq C\beta n^{-d/(d+1)}
-			\qquad(n\geq1)\, .
+				C\bigl[1+(\beta-1)^{\frac{d}{d+1}}h^{\frac{1}{d+1}}\bigr],&d\geq3,
+			\end{cases}\, .
 		\end{equation}
 	\end{theorem}
 
 	\begin{proof}
 		First suppose that $m\geq1$. Write $\Delta_jf\coloneqq f(X_{j+1})-f(X_j)$ for a bounded
-		$f\colon\Z^d\to\R$.  The walk steps from $X_j$ to a neighbor $y$ with
-		probability $\beta/\mu_j$ if $\{X_j,y\}\in E_j$ and $1/\mu_j$ if not, and
-		$\eta_{j+1}$ is the indicator of the second case, so adding
-		$(\beta-1)\eta_{j+1}\Delta_jf$ restores the weight $\beta$ on the
-		untraversed edges, so the conditional expectation is a scalar multiple of
-		$(P-I)f(X_j)$:
+		$f\colon\Z^d\to\R$. Multiplying $\Delta_jf$ by $\beta$ on first
+		crossings makes the coefficient of $f(y)-f(X_j)$ in the conditional
+		expectation equal to $\beta/\mu_j$ for every neighbor $y$. Thus
 		\begin{equation}\label{eq:compensator}
 			\E_\beta\bigl[\Delta_jf+(\beta-1)\eta_{j+1}\Delta_jf\mid\mathcal F_j\bigr]
 			=\frac{2d\beta}{\mu_j}(P-I)f(X_j)\, .
@@ -1266,7 +1067,7 @@ urlcolor=BrickRed
 		+(\beta-1)\sum_{j=m}^{m+h-1}\eta_{j+1}\Delta_jf\Bigr]\, .
 		\]
 		After its first step the walk always stands at a site with a traversed
-		incident edge, so $\beta\leq\mu_j\leq2d\beta$ and hence $2\leq \kappa_j\leq4d$.
+		incident edge, so $\beta\leq\mu_j\leq2d\beta$ and hence $2\leq \kappa_j\leq4d$ for $j\geq1$.
 		The steps with $\eta_{j+1}=1$ cross distinct edges, so the last sum is at
 		most the total variation of $g_R$ over all edges of $\Z^d$.  Dividing by
 		$2$ and applying Lemma~\ref{lem:green},
@@ -1283,47 +1084,75 @@ urlcolor=BrickRed
 		which adds at most $1$.
 
 		For $0<\beta-1\leq h$, choose $R=\lceil(h/(\beta-1))^{2/(d+1)}\rceil$.
-		The first and third terms in \eqref{eq:optimize} are each at most a constant
-		depending only on $d$ times $(\beta-1)^{d/(d+1)}h^{1/(d+1)}$.
+		The terms $hR^{-d/2}$ and $(\beta-1)\sqrt R$ are each at most
+		$C(\beta-1)^{\frac{d}{d+1}}h^{1/(d+1)}$.
 		This proves \eqref{eq:occupation} for $d\geq3$. For $d=2$, it proves
 		\eqref{eq:occupation} when $h^{-1/2}\leq\beta-1\leq h$, since then
 		$R\leq h+1$ and $\log(R+1)\leq C\log(h+2)$.  If $d\geq3$ and $\beta=1$, let $R\to\infty$.
-		If $d=2$ and $\beta-1<h^{-1/2}$, take $R=h$, which bounds the first and third
-		terms of \eqref{eq:optimize} by constants. If $\beta-1>h$, use the trivial
+		If $d=2$ and $\beta-1<h^{-1/2}$, take $R=h$, which bounds $hR^{-d/2}$ and $(\beta-1)\sqrt R$
+		by constants. If $\beta-1>h$, use the trivial
 		bound $h$, which is at most
-		$(\beta-1)^{d/(d+1)}h^{1/(d+1)}$ because
-		$h^{d/(d+1)}\leq(\beta-1)^{d/(d+1)}$.
+		$(\beta-1)^{\frac{d}{d+1}}h^{1/(d+1)}$ because
+		$h^{\frac{d}{d+1}}\leq(\beta-1)^{\frac{d}{d+1}}$.
 
-		Finally $(\beta-1)^{d/(d+1)}\leq\beta$ and $\log(h+2)\leq Ch^{1/(d+1)}$,
-		which gives the simpler bound; \eqref{eq:cesaro} follows by taking $m=0$ and
-		$h=n$, and the site $z$ is arbitrary throughout.
 	\end{proof}
+
+	Taking $m=0$ and $h=n$ in \eqref{eq:occupation}, and using
+	$\log(n+2)\leq Cn^{1/3}$ when $d=2$, gives, for every $n\geq1$,
+	\begin{equation}\label{eq:cesaro}
+		\sup_{z\in\Z^d}\sum_{j=0}^{n-1}\P_\beta\{X_j=z\}
+		\leq C\bigl(1+(\beta-1)^{\frac{d}{d+1}}\bigr)n^{\frac{1}{d+1}}\, .
+	\end{equation}
+	Since $1+(\beta-1)^{\frac{d}{d+1}}\leq2\beta$, this also gives
+	\eqref{eq:occupation-intro}.
+
 
 	\section{Open questions}\label{sec:questions}
 	
-	
-	\begin{problem}[A matching upper bound]\label{prob:upper}
-		Fix $d\geq2$. For which $\beta$ is $\E_\beta|R_n|\leq
-		K_{\beta}n^{d/(d+1)}$ for every integer $n\geq1$? The answer must depend on
-		$\beta$, since at $\beta=1$ the walk is simple random walk.
+
+
+\begin{problem}[A matching upper bound]\label{prob:upper}
+		Fix $d\geq2$. Is there a threshold $\beta_d$ such that for every $\beta>\beta_d$ there exists $C(\beta,d)<\infty $ with  $\E_\beta|R_n|\leq
+		C(\beta,d) \, n^{d/(d+1)}$ for all  $n\geq1$?  Can one take $\beta_2=1$?
 	\end{problem}
 	
 	\begin{problem}[A limit for the rescaled range]\label{prob:limit}
-		Suppose that $d=2$ and $\beta>1$, or $d>2$ and $\beta$ is large. Does $|R_n|n^{-d/(d+1)}$ converge almost surely
-		to a deterministic positive limit, and does $n^{-1/(d+1)}R_n$ converge to a
-		deterministic limit shape? Simulations (see Figure~\ref{fig:range}) suggest that the answer is positive, and the limit shape might be a ball. 
+    Suppose that the answer to Problem~\ref{prob:upper} is affirmative for
+		$d\geq2$, and fix $\beta>\beta_d$. Does $|R_n|n^{-d/(d+1)}$ converge
+		almost surely to a deterministic positive limit? Does
+		$n^{-1/(d+1)}R_n$ converge almost surely, in Hausdorff distance, to a
+		deterministic compact set? 
+	\end{problem}
+    
+    
+    A deterministic limit shape under spatial rescaling by $n^{-1/3}$ exists
+	for the clockwise rotor walk on $\Z^2$ with independent uniform initial rotors \citep[Theorem~1.1]{BouRabeePeres2026}.
+Simulations (see Figure~\ref{fig:range}) suggest that the answer to Problem~\ref{prob:limit} is positive, and the limit shape might be a ball. 
 
-        Both limits hold for the clockwise rotor walk on $\Z^2$ with independent uniform initial rotors \citep[Theorem~1.1]{BouRabeePeres2026}.
+	
+	
+	
+	\begin{problem} \label{prob:recurrence}
+		Is once-reinforced random walk on $\Z^2$ recurrent for every $\beta>1$?  
 	\end{problem}
-	
-	
-	
-	
-	\begin{problem}[Recurrence in the plane]\label{prob:recurrence}
-		Is once-reinforced random walk on $\Z^2$ recurrent for every $\beta>1$?  This is part of the conjecture for $\Z^2$ quoted in
+    Problem \ref{prob:recurrence} is part of the conjecture for $\Z^2$ quoted in
 		\citet[Section~1]{CollevecchioTarres2025}.
+
+
+	\begin{problem}[Universality]\label{prob:universality}
+		Which planar walks have expected range of order $n^{2/3}$?
+		When their ranges have deterministic limit shapes under spatial
+		rescaling by $n^{-1/3}$, are these shapes the same up to dilation?
 	\end{problem}
-	
+
+	Both edge and vertex Once-reinforced walks on $\Z^2$ at sufficiently
+	large reinforcement are candidates for the same range exponent
+	\citep[Section~I]{FosterGrassbergerPaczuski2009}; see also
+	Section~\ref{ssec:related-work}. 
+
+
+
+
 	\bibliographystyle{plainnat}
 	\bibliography{references}
 

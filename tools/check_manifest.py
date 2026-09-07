@@ -387,6 +387,18 @@ def block_of(text: str, path: Path, errors: list) -> tuple[str, int] | None:
     return block, e + len(END)
 
 
+def check_source_pin(manifest: dict) -> None:
+    """Require the manuscript bytes named by the manifest's source pin."""
+    pin = manifest.get("source_pin")
+    if not isinstance(pin, dict) or not pin.get("file") or not pin.get("sha256"):
+        raise ValueError("missing manuscript source pin")
+    path = ROOT / pin["file"]
+    if not path.is_file():
+        raise ValueError(f"missing pinned manuscript: {pin['file']}")
+    if hashlib.sha256(path.read_bytes()).hexdigest() != pin["sha256"]:
+        raise ValueError(f"manuscript source hash mismatch: {pin['file']}")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -397,6 +409,11 @@ def main() -> int:
     errors: list[str] = []
     manifest_text = MANIFEST.read_text()
     manifest = yaml.safe_load(manifest_text)
+    try:
+        check_source_pin(manifest)
+    except ValueError as error:
+        print(f"check_manifest: FAIL: {error}")
+        return 1
     nodes = manifest.get("nodes") or []
     declarations = source_declarations()
     resolver = DeclarationResolver(declarations)

@@ -1,7 +1,7 @@
 /-
 Theorem 1.1 of orrw.tex, frozen.
 
-Paper line encoded, `orrw.tex:106-113` (label `thm:main`, equation `eq:main-range`):
+Paper line encoded, `orrw.tex:112-119` (label `thm:main`, equation `eq:main-range`):
 
   "Theorem (Range lower bound). Let \$d\geq2\$. There is a constant \$c>0\$,
    depending only on \$d\$, such that for every \$\beta\geq1\$,

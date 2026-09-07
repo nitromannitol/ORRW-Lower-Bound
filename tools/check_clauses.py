@@ -56,8 +56,8 @@ REVIEWED: dict[str, str] = {
         "three assertions in one display, rendered as three Lean conjuncts; the two "
         "maxima become universal bounds over x in A and x not in A",
     "lem-schur":
-        "three displays (eq:schur, eq:deltaT, eq:hbound) = five assertions, all five "
-        "all five frozen",
+        "five algebraic assertions proved; the inverse-diagonal identity for resistance "
+        "is a definition, not a separate theorem (see VERIFICATION.md)",
     "lem-packing":
         "one display; the paper's A_i = {x_1..x_i} is Lean's `insert (x i) ((Iio i).image x)` "
         "under 0-indexing",
@@ -86,11 +86,10 @@ REVIEWED: dict[str, str] = {
     "lem-green":
         "three bounds, plus a `Summable` conjunct the paper leaves implicit and Lean must assert",
     "thm-occupation":
-        "eq:occupation only; thm:return is split across three nodes, the others being "
-        "thm-occupation-measure and thm-occupation-cesaro",
+        "eq:occupation, including both dimension cases; its corollaries are now outside thm:return",
     "thm-occupation-cesaro":
-        "the eq:cesaro display of thm:return, with sup_z rendered as a universal "
-        "quantifier inside the constant (ruling R-006)",
+        "weaker C beta bound for the time average; current eq:cesaro retains sharper beta "
+        "dependence, deducible from occupation but not a separate frozen declaration",
     "thm-occupation-measure":
         "eq:occupation-intro, with sup_z rendered as a universal quantifier inside the "
         "constant (ruling R-006)",
@@ -192,8 +191,7 @@ def main() -> int:
         print(f"\ncheck_clauses: {len(unreviewed)} statement(s) have no recorded "
               f"correspondence: {', '.join(unreviewed)}", file=sys.stderr)
         return 1
-    print(f"\ncheck_clauses: OK ({len(rows)} statements, each read against the paper "
-          f"and its correspondence recorded; {len(flagged)} where the count heuristic "
+    print(f"\ncheck_clauses: OK ({len(rows)} statements, each has a recorded correspondence note; {len(flagged)} where the count heuristic "
           f"says the paper asserts more, all explained above)")
     return 0
 

@@ -7,10 +7,10 @@ edit it by hand.
 
 ## What is claimed
 
-Every theorem, lemma and proposition of the paper is stated in Lean 4 and
-proved from Mathlib alone.  No statement rests on an unproved hypothesis, an
-added axiom, or a `sorry`.  The two almost-sure corollaries the paper states
-in prose are included, against a measure on infinite paths built here.
+Lean checked the declarations listed below and their transitive axiom dependencies.
+The source and statement hashes, paper labels, and generated documentation also passed
+their checks. These checks do not prove equivalence between LaTeX and Lean statements;
+see [VERIFICATION.md](VERIFICATION.md) for the correspondence and its limits.
 
 ## Environment
 
@@ -18,10 +18,11 @@ in prose are included, against a measure on infinite paths built here.
 |---|---|
 | Lean toolchain | `leanprover/lean4:v4.26.0` |
 | Mathlib revision | `2df2f0150c275ad53cb3c90f7c98ec15a56a1a67` |
-| Paper (`paper/orrw.tex`) SHA-256 | `31b5a322248db0c53cd6e922a97b192181837a0feef339c0ca9be14cff9acabf` |
-| Build | succeeded, 7804 jobs |
+| Paper (`paper/orrw.tex`) SHA-256 | `cd913b195b6a2e4992eae367952beaba3a065ff2b0e7aaa9b794ab69e7b5781a` |
+| Lean sources and build configuration SHA-256 | `3bf54daa5a66e00b58de2cad8f064969328c9bcdae1c58f58249148b07189764` |
+| Build | succeeded |
 | Build warnings | 0 |
-| Generated | 2026-09-05 |
+| Generated | 2026-09-07 |
 
 ## Reproducing it
 
@@ -30,9 +31,9 @@ elan toolchain install $(cat lean-toolchain)
 lake exe cache get      # optional: prebuilt Mathlib
 lake build ORRW
 python3 tools/check_manifest.py     # frozen statements match their hashes
-python3 tools/check_axioms.py       # no axiom closure contains sorryAx
+python3 tools/check_axioms.py       # complete output; only the three permitted axioms
 python3 tools/check_warnings.py     # the build emits no unauthorized warning
-python3 tools/check_coverage.py     # every paper statement is formalized
+python3 tools/check_coverage.py     # every paper theorem label is represented
 python3 tools/certificate.py --check
 ```
 
@@ -65,14 +66,14 @@ nowhere below.
 | 17 | `prop-beta-sharp` | `ORRW.Frozen.exponents_optimal` | `prop:beta-sharp` | classical only |
 | 18 | `lem-green` | `ORRW.Frozen.lazy_green_bounds` | `lem:green` | classical only |
 | 19 | `thm-occupation` | `ORRW.Frozen.occupation` | `thm:return` | classical only |
-| 20 | `thm-occupation-cesaro` | `ORRW.Frozen.occupation_cesaro` | `thm:return` | classical only |
+| 20 | `thm-occupation-cesaro` | `ORRW.Frozen.occupation_cesaro` | `eq:cesaro` | classical only |
 | 21 | `thm-occupation-measure` | `ORRW.Frozen.occupation_measure` | `thm:occupation-intro` | classical only |
 | 22 | `bridge-path-measure` | `ORRW.Frozen.pathMeasure_restr` | — | classical only |
 | 23 | `ae-range` | `ORRW.Frozen.range_ae` | — | classical only |
 | 24 | `ae-displacement` | `ORRW.Frozen.displacement_ae` | — | classical only |
 
 24 of 24 nodes depend on nothing beyond the three classical
-axioms.  Every node's state in `ledger/manifest.yaml` is `SEALED`.
+axioms. Every node has a checked state (`SEALED` or `PROVED`) in the manifest.
 
 ## Frozen statements
 

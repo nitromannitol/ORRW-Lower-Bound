@@ -1,7 +1,7 @@
 /-
 Frozen statement of Lemma 8.1 of Bou-Rabee--Peres, *Once-reinforced random walk
 on `ℤ^d` has range exponent at least `d/(d+1)`*, Section 8, Lemma (Truncated
-Green function), label `lem:green`, `orrw.tex:1179-1195`:
+Green function), label `lem:green`, `orrw.tex:991-1007`:
 
   "Let `d ≥ 2` and let `R ≥ 1` be an integer.  Then
      `‖Q^R(0,·)‖_∞ ≤ C R^{-d/2}`,

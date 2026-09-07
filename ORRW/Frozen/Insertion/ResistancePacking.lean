@@ -1,7 +1,7 @@
 /-
 Frozen statement of the resistance packing lemma of Bou-Rabee--Peres,
 *Once-reinforced random walk on `ℤ^d` has range exponent at least `d/(d+1)`*,
-Section 2, Lemma (Sum of effective resistances), label `lem:packing`, `orrw.tex:531-538`:
+Section 2, Lemma (Sum of effective resistances), label `lem:packing`, `orrw.tex:485-492`:
 
   "Let `d ≥ 2`, let `M ≥ 1` be an integer, let `x_1, …, x_M` be distinct
    vertices of `ℤ^d`, and let `A_i := {x_1, …, x_i}` for `1 ≤ i ≤ M`.  Then

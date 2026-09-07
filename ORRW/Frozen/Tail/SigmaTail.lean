@@ -1,7 +1,7 @@
 /-
 Frozen statement of Proposition 5.2 of Bou-Rabee--Peres, *Once-reinforced random
 walk on `ℤ^d` has range exponent at least `d/(d+1)`*, Section 5, Proposition
-(Tail of `σ_k`), label `prop:tail`, `orrw.tex:933-941`:
+(Tail of `σ_k`), label `prop:tail`, `orrw.tex:792-799`:
 
   "Let `d ≥ 2` and let `K` be the constant of Proposition `prop:charge`.  There
    is `c > 0`, depending only on `d`, such that for every `β ≥ 1` and every

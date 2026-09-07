@@ -99,7 +99,7 @@ def main() -> int:
             print(f"  {nid}: move {', '.join(off)} inside the existential", file=sys.stderr)
         return 1
     print(f"\ncheck_constants: OK ({ok} statements; every existential constant is "
-          f"bound before β, n, k, m and h, so it can depend only on d)")
+          f"bound before β, n, k, m and h, in the syntax examined; see VERIFICATION.md for mathematical correspondence)")
     return 0
 
 

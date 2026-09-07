@@ -1,7 +1,7 @@
 /-
 Frozen statement of Proposition 3.3 of Bou-Rabee--Peres, *Once-reinforced random
 walk on `ℤ^d` has range exponent at least `d/(d+1)`*, Section 3, Proposition
-(Bound on the nondecreasing process), label `prop:charge`, `orrw.tex:763-770`:
+(Bound on the nondecreasing process), label `prop:charge`, `orrw.tex:669-676`:
 
   "Let `d ≥ 2`.  There is a constant `K < ∞`, depending only on `d`, such that
    for every `β ≥ 1`, almost surely,

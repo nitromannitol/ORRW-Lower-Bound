@@ -29,32 +29,29 @@ and notes on differences in formulation.
 
 | id | ruling |
 |---|---|
-| R-001 | The law of the first `n` steps is a probability mass function on the finite set of direction words `Fin n → Dir d`, not a measure on infinite paths.  Every quantity the two main theorems mention is a function of the first `n` steps, so no infinite-horizon measure and no measurability side condition arises.  `orrw.tex:96-107`, `ssec:main-results`. |
+| R-001 | The law of the first `n` steps is a probability mass function on the finite set of direction words `Fin n → Dir d`, not a measure on infinite paths.  Every quantity the two main theorems mention is a function of the first `n` steps, so no infinite-horizon measure and no measurability side condition arises.  `ssec:main-results`. |
 | R-002 | A site of `ℤ^d` is `Fin d → ℤ` and a step is a `Dir d = Fin d × Bool`; the walk is recorded by its direction word, so the sample space is a `Fintype` and expectations are `Finset` sums. |
 | R-003 | `prb` takes a `Prop`-valued predicate and sums `prob w * ite (P w) 1 0` under `Classical`, so that no decidability instance can quietly change which event is being measured. |
 
 ### Where a Lean statement is not literally the paper's
 
-Every theorem, lemma and proposition of the paper is formalized, but three of
-them are transcribed in a shape that is not word-for-word the paper's.  Each is
-listed here so a reader does not have to discover it.
+The following entries describe the principal modelling conventions.
+[VERIFICATION.md](VERIFICATION.md) records the changes in constant notation
+and the revised occupation corollary in the current manuscript snapshot.
 
 | paper | how the Lean statement differs | why |
 |---|---|---|
 | `lem:exp` | both statements use the ORRW filtration and give bounds at every finite horizon; Lean represents `Φ_{n∧ζ}`, `Γ_{n∧ζ}` and `n∧ζ` as functions of finite histories and assumes the stopped one-step drift | the author approved specializing the paper on 2026-09-05.  The frozen Lean statement and its constants are unchanged.  Every printed stopping time satisfies the increment identities required in Lean; see F-601 through F-605 |
-| `lem:schur` | the identification `Reff(x ↔ (A⁺)^c) = -Δ_{A⁺}^{-1}(x,x)` is a definition, not a proved statement | ruling L-002.  The other four assertions of the lemma, including both identities of `eq:hbound`, are proved |
+| `lem:schur` | the identification `Reff(x ↔ (A⁺)^c) = -Δ_{A⁺}^{-1}(x,x)` is a definition, not a proved statement | ruling L-002.  The other five assertions of the lemma, including both identities of `eq:hbound`, are proved |
 | `lem:martingale` | the paper says `(n + Φ_n - Γ_n)` is a supermartingale; the Lean statement is the equivalent one-step drift `1 ≤ E[ΔΓ - ΔΦ]` | that drift is the paper's own `eq:drift`, and it is what the proof of `prop:tail` consumes |
 
-Two paper statements are each split across several nodes, which
-`tools/check_clauses.py` records: `thm:return` into `thm-occupation`,
-`thm-occupation-measure` and `thm-occupation-cesaro`; and `prop:displacement`
-into `prop-displacement` and `ae-displacement`.
+The occupation estimates have separate declarations for the interval bound,
+the introductory occupation bound, and the older time-averaged corollary.
+The last is weaker in its dependence on reinforcement than the current
+`eq:cesaro`; see VERIFICATION.md. Proposition `prop:displacement` has separate
+finite-horizon and almost-sure declarations.
 
-Nothing else differs.  In particular the finite-horizon parameter `N` that
-several statements carry is universally quantified, so it constrains nothing:
-it is the ruling R-001 convention, not a hypothesis the paper does not grant.
-
-### What ruling R-001 leaves outside: nothing
+### The infinite-path law
 
 R-001 models the law of the first `n` steps as a pmf on `Fin n -> Dir d`, so it
 has no measure on infinite paths of its own.  Two claims in the paper are about
@@ -62,8 +59,8 @@ all times at once and so could not be stated under it:
 
 | paper | claim | node |
 |---|---|---|
-| `orrw.tex:135-136` | `liminf |R_n| n^{-d/(d+1)} >= c b^{-d/(d+1)}` a.s. | `ae-range` |
-| closing display of `prop:displacement` | `liminf L_n n^{-1/(d+1)} >= c b^{-1/(d+1)}` a.s. | `ae-displacement` |
+| after `thm:whp` | `liminf |R_n| n^{-d/(d+1)} >= c b^{-d/(d+1)}` a.s. | `ae-range` |
+| closing display of `prop:displacement` | `liminf Λ_n n^{-1/(d+1)} >= c b^{-1/(d+1)}` a.s. | `ae-displacement` |
 
 Both are now formalized.  `ORRW/Support/InfinitePath.lean` builds
 `ORRW.pathMeasure`, the law of the walk on infinite direction words, from the
@@ -72,8 +69,6 @@ finite-dimensional marginals are exactly `ORRW.prob`; and
 `ORRW.pathMeasure_event` transfers any fixed-time event across that identity.
 The two claims then follow by Borel-Cantelli, as the paper says they do.
 
-So R-001 costs nothing: it keeps the fixed-time development finite and
-elementary, and the infinite-path measure is built once, where it is needed.
 `prop:charge` says "almost surely" and is formalized directly, because it is
 rendered for every direction word, which is strictly stronger than for almost
 every one.  `tools/check_coverage.py` confirms that every theorem, lemma and
@@ -103,37 +98,37 @@ that no longer appears here, and nothing in `ORRW/` depends on them.
 
 | id | Lean | paper | state |
 |---|---|---|---|
-| `thm-main` | [ORRW.Frozen.range_lower_bound](ORRW/Frozen/RangeLowerBound.lean#L18) | [thm:main](paper/orrw.tex#L106) | SEALED |
-| `thm-whp` | [ORRW.Frozen.range_tail](ORRW/Frozen/RangeTail.lean#L20) | [thm:whp](paper/orrw.tex#L123) | SEALED |
-| `lem-max-exit` | [ORRW.Frozen.max_exit](ORRW/Frozen/Insertion/ExitTimeBounds.lean#L34) | [lem:max-exit](paper/orrw.tex#L464) | SEALED |
-| `lem-schur` | [ORRW.Frozen.one_point_insertion](ORRW/Frozen/Insertion/OnePointInsertion.lean#L38) | [lem:schur](paper/orrw.tex#L493) | SEALED |
-| `lem-packing` | [ORRW.Frozen.resistance_packing](ORRW/Frozen/Insertion/ResistancePacking.lean#L34) | [lem:packing](paper/orrw.tex#L531) | SEALED |
-| `lem-insertion` | [ORRW.Frozen.insertion_inequality](ORRW/Frozen/Insertion/InsertionInequality.lean#L34) | [lem:insertion](paper/orrw.tex#L573) | SEALED |
+| `thm-main` | [ORRW.Frozen.range_lower_bound](ORRW/Frozen/RangeLowerBound.lean#L18) | [thm:main](paper/orrw.tex#L112) | SEALED |
+| `thm-whp` | [ORRW.Frozen.range_tail](ORRW/Frozen/RangeTail.lean#L20) | [thm:whp](paper/orrw.tex#L128) | SEALED |
+| `lem-max-exit` | [ORRW.Frozen.max_exit](ORRW/Frozen/Insertion/ExitTimeBounds.lean#L34) | [lem:max-exit](paper/orrw.tex#L423) | SEALED |
+| `lem-schur` | [ORRW.Frozen.one_point_insertion](ORRW/Frozen/Insertion/OnePointInsertion.lean#L38) | [lem:schur](paper/orrw.tex#L447) | SEALED |
+| `lem-packing` | [ORRW.Frozen.resistance_packing](ORRW/Frozen/Insertion/ResistancePacking.lean#L34) | [lem:packing](paper/orrw.tex#L485) | SEALED |
+| `lem-insertion` | [ORRW.Frozen.insertion_inequality](ORRW/Frozen/Insertion/InsertionInequality.lean#L34) | [lem:insertion](paper/orrw.tex#L515) | SEALED |
 | `guard-total-weight-pos` | [ORRW.Frozen.totalWeight_pos](ORRW/Frozen/Guards/TotalWeightPos.lean#L14) | model guard for ORRW.stepProb (ORRW/Basic.lean) | SEALED |
 | `guard-prob-pmf` | [ORRW.Frozen.sum_prob_eq_one](ORRW/Frozen/Guards/ProbIsPMF.lean#L15) | model guard for ORRW.prob (ORRW/Basic.lean) | SEALED |
-| `guard-edges-le-sites` | [ORRW.Frozen.card_edges_le_card_range](ORRW/Frozen/Guards/EdgesLeSites.lean#L18) | [eq:edges-sites](paper/orrw.tex#L838) | SEALED |
+| `guard-edges-le-sites` | [ORRW.Frozen.card_edges_le_card_range](ORRW/Frozen/Guards/EdgesLeSites.lean#L18) | [eq:edges-sites](paper/orrw.tex#L723) | SEALED |
 | `guard-one-step-witness` | [ORRW.Frozen.expect_card_range_one_step](ORRW/Frozen/Guards/OneStepWitness.lean#L20) | numeric witness for the normalization of ORRW.expect | SEALED |
-| `lem-martingale` | [ORRW.Frozen.supermartingale_drift](ORRW/Frozen/Potential/Supermartingale.lean#L51) | [lem:martingale](paper/orrw.tex#L677) | SEALED |
-| `lem-walk-order` | [ORRW.Frozen.insertion_order](ORRW/Frozen/Potential/InsertionOrder.lean#L58) | [lem:walk-order](paper/orrw.tex#L726) | SEALED |
-| `prop-charge` | [ORRW.Frozen.accumulated_charge](ORRW/Frozen/Potential/AccumulatedCharge.lean#L42) | [prop:charge](paper/orrw.tex#L763) | SEALED |
-| `lem-exp` | [ORRW.Frozen.time_versus_charge](ORRW/Frozen/Tail/TimeVersusCharge.lean#L73) | [lem:exp](paper/orrw.tex#L872) | SEALED |
-| `prop-tail` | [ORRW.Frozen.sigma_tail](ORRW/Frozen/Tail/SigmaTail.lean#L43) | [prop:tail](paper/orrw.tex#L933) | SEALED |
-| `prop-displacement` | [ORRW.Frozen.displacement](ORRW/Frozen/Tail/Displacement.lean#L63) | [prop:displacement](paper/orrw.tex#L1019) | SEALED |
-| `prop-beta-sharp` | [ORRW.Frozen.exponents_optimal](ORRW/Frozen/Tail/ExponentsOptimal.lean#L43) | [prop:beta-sharp](paper/orrw.tex#L1088) | SEALED |
-| `lem-green` | [ORRW.Frozen.lazy_green_bounds](ORRW/Frozen/Occupation/LazyGreen.lean#L92) | [lem:green](paper/orrw.tex#L1179) | SEALED |
-| `thm-occupation` | [ORRW.Frozen.occupation](ORRW/Frozen/Occupation/Occupation.lean#L70) | [thm:return](paper/orrw.tex#L1227) | SEALED |
-| `thm-occupation-cesaro` | [ORRW.Frozen.occupation_cesaro](ORRW/Frozen/Occupation/OccupationCesaro.lean#L57) | [thm:return](paper/orrw.tex#L1227) | SEALED |
-| `thm-occupation-measure` | [ORRW.Frozen.occupation_measure](ORRW/Frozen/Occupation/OccupationMeasure.lean#L26) | [thm:occupation-intro](paper/orrw.tex#L146) | SEALED |
+| `lem-martingale` | [ORRW.Frozen.supermartingale_drift](ORRW/Frozen/Potential/Supermartingale.lean#L51) | [lem:martingale](paper/orrw.tex#L596) | SEALED |
+| `lem-walk-order` | [ORRW.Frozen.insertion_order](ORRW/Frozen/Potential/InsertionOrder.lean#L58) | [lem:walk-order](paper/orrw.tex#L632) | SEALED |
+| `prop-charge` | [ORRW.Frozen.accumulated_charge](ORRW/Frozen/Potential/AccumulatedCharge.lean#L42) | [prop:charge](paper/orrw.tex#L669) | SEALED |
+| `lem-exp` | [ORRW.Frozen.time_versus_charge](ORRW/Frozen/Tail/TimeVersusCharge.lean#L73) | [lem:exp](paper/orrw.tex#L739) | SEALED |
+| `prop-tail` | [ORRW.Frozen.sigma_tail](ORRW/Frozen/Tail/SigmaTail.lean#L43) | [prop:tail](paper/orrw.tex#L792) | SEALED |
+| `prop-displacement` | [ORRW.Frozen.displacement](ORRW/Frozen/Tail/Displacement.lean#L63) | [prop:displacement](paper/orrw.tex#L863) | SEALED |
+| `prop-beta-sharp` | [ORRW.Frozen.exponents_optimal](ORRW/Frozen/Tail/ExponentsOptimal.lean#L43) | [prop:beta-sharp](paper/orrw.tex#L912) | SEALED |
+| `lem-green` | [ORRW.Frozen.lazy_green_bounds](ORRW/Frozen/Occupation/LazyGreen.lean#L92) | [lem:green](paper/orrw.tex#L991) | SEALED |
+| `thm-occupation` | [ORRW.Frozen.occupation](ORRW/Frozen/Occupation/Occupation.lean#L70) | [thm:return](paper/orrw.tex#L1039) | SEALED |
+| `thm-occupation-cesaro` | [ORRW.Frozen.occupation_cesaro](ORRW/Frozen/Occupation/OccupationCesaro.lean#L20) | [eq:cesaro](paper/orrw.tex#L1102) | SEALED |
+| `thm-occupation-measure` | [ORRW.Frozen.occupation_measure](ORRW/Frozen/Occupation/OccupationMeasure.lean#L26) | [thm:occupation-intro](paper/orrw.tex#L145) | SEALED |
 | `bridge-path-measure` | [ORRW.Frozen.pathMeasure_restr](ORRW/Frozen/AlmostSure/PathMeasureBridge.lean#L34) | not a paper statement; required for the almost-sure corollaries (see CORRESPONDENCE.md, R-001 scope) | SEALED |
-| `ae-range` | [ORRW.Frozen.range_ae](ORRW/Frozen/AlmostSure/RangeAlmostSure.lean#L35) | [paper passage](paper/orrw.tex#L134), the Borel-Cantelli corollary stated in prose after thm:whp (ruling A-003) | SEALED |
-| `ae-displacement` | [ORRW.Frozen.displacement_ae](ORRW/Frozen/AlmostSure/DisplacementAlmostSure.lean#L29) | [prop:displacement](paper/orrw.tex#L1019), almost-sure clause | SEALED |
+| `ae-range` | [ORRW.Frozen.range_ae](ORRW/Frozen/AlmostSure/RangeAlmostSure.lean#L35) | [paper passage](paper/orrw.tex#L138), the Borel-Cantelli corollary stated in prose after thm:whp (ruling A-003) | SEALED |
+| `ae-displacement` | [ORRW.Frozen.displacement_ae](ORRW/Frozen/AlmostSure/DisplacementAlmostSure.lean#L29) | [prop:displacement](paper/orrw.tex#L863), almost-sure clause | SEALED |
 
 <!-- FROZEN-SURFACE-END -->
 
 ## Why the guards are frozen anchors
 
-The dominant failure mode is a vacuous statement, not a wrong proof.  Three
-specific hazards in this model:
+The following statements check that the definitions have the intended
+normalization and nondegeneracy:
 
 1. `stepProb` divides by `totalWeight`.  Division by zero is `0` in Lean, so a
    vanishing denominator would make `prob ≡ 0` and every expectation bound in

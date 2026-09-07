@@ -1,7 +1,7 @@
 /-
 Frozen statement of Proposition 7.1 of Bou-Rabee--Peres, *Once-reinforced random
 walk on `ℤ^d` has range exponent at least `d/(d+1)`*, Section 7, Proposition
-(The exponents are optimal), label `prop:beta-sharp`, `orrw.tex:1088-1098`:
+(The exponents are optimal), label `prop:beta-sharp`, `orrw.tex:912-922`:
 
   "Let `d ≥ 2`.  For every `β ≥ 1` and every integer `n ≥ 1`,
      `E_β|R_n| ≤ 2 + 2dn/β`.                                (`eq:range-upper`)

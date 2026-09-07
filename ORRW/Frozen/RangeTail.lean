@@ -1,7 +1,7 @@
 /-
 Theorem 1.2 of orrw.tex, frozen.
 
-Paper line encoded, `orrw.tex:123-131` (label `thm:whp`):
+Paper line encoded, `orrw.tex:128-136` (label `thm:whp`):
 
   "Theorem (Stretched-exponential tail). Let \$d\geq2\$. There are constants
    \$c>0\$ and \$C<\infty\$, depending only on \$d\$, such that for every

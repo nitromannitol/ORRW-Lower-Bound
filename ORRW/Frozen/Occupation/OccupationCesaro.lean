@@ -1,51 +1,14 @@
 /-
-Frozen statement of the corollary recorded inside Theorem 8.2 of
-Bou-Rabee--Peres, *Once-reinforced random walk on `ℤ^d` has range exponent at
-least `d/(d+1)`*, Section 8, Theorem (Occupation of a site), label `thm:return`,
-display `eq:cesaro` (`orrw.tex:1227-1247`):
+Time-averaged occupation corollary corresponding to the weaker C beta consequence
+of label `eq:cesaro` (orrw.tex:1102-1105).
 
-  "and dividing by `n`,
-     `sup_{z ∈ ℤ^d} (1/n) ∑_{j=0}^{n-1} P_β{X_j = z} ≤ C β n^{-d/(d+1)}`
-   `(n ≥ 1)`."
+The current paper retains C (1 + (beta-1)^(d/(d+1))) in the unnormalized sum.
+This frozen declaration retains the earlier C beta estimate for the average.
+It follows from the dimension-specific interval estimate in `occupation`.
+See VERIFICATION.md for the distinction.
 
-It is `eq:occupation` at `m = 0` and `h = n`, after the simplification
-`(β-1)^{d/(d+1)} ≤ β` and `log(h+2) ≤ C h^{1/(d+1)}`, divided by `n`.  The
-supremum over sites is rendered as a universal quantifier inside the scope of
-the single constant `C` (ruling R-006), which is what makes it the paper's
-`sup_z` and not the weaker `∀ z, ∃ C`.
-
-Modelling decisions.
-
-* Ruling F-821 (probabilities at one horizon).  As in ruling F-811, each
-  `P_β{X_j = 0}` is `ORRW.prb M β (fun w => ORRW.pos w j = 0)` at a single
-  horizon `M`, and `M` is quantified over every horizon with `N ≤ M`.  The
-  Cesaro window `N` and the horizon `M` are different quantities and are given
-  different names; at `M = N` the statement is the paper's display literally.
-
-* Ruling F-822 (`N ≥ 1` is the paper's hypothesis and is load bearing).  The
-  display carries `(N ≥ 1)`.  Without it the instance `N = 0` would be the empty
-  sum times `1 / 0 = 0` bounded by `C β · Real.rpow 0 (-d/(d+1)) = 0`, which is
-  true but says nothing; the hypothesis removes that content-free instance.
-
-* Ruling F-823 (`C` is bound before `β`, `N` and `M`).  The constant is the `C`
-  of `thm:return`, which depends only on `d`.
-
-* Ruling F-824 (real exponents).  `N^{-d/(d+1)}` is a `Real.rpow` power with the
-  exponent formed in `ℝ`.
-
-* Ruling F-825 (`1/N` is written as a factor).  The display is
-  `(1/N) ∑ … ≤ …`; the left-hand side is kept in that form rather than cleared,
-  so that the statement is the paper's, not an equivalent rearrangement.
-
-Vacuity.  The bound is a genuine decay claim: the left-hand side is an average
-of probabilities, so it is at most `1`, while the right-hand side tends to `0`.
-It cannot hold for the wrong reason by the left-hand side vanishing: the term
-`j = 0` is `ORRW.prb M β (fun w => ORRW.pos w 0 = 0)`, whose event is all of the
-sample space, so it equals `1` by `ORRW.Frozen.sum_prob_eq_one` and the sum is
-always at least `1`.  The claim therefore forces `C β N^{1/(d+1)} ≥ 1`, which is
-consistent, and rules out `C = 0`.  Non-degenerate instance: `d = 2`, `β = 3`,
-`N = 5`, `M = 5`, where the right-hand side is `3C · 5^{-2/3} ≈ 1.03 C` and the
-left-hand side lies in `[1/5, 1]`.
+The horizon M is at least the averaging window N, and the constant is quantified
+before beta, N, M, and the site z. This expresses uniformity over those parameters.
 -/
 import ORRW.Basic
 import ORRW.Support.Occupation

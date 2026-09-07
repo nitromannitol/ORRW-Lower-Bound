@@ -1,7 +1,7 @@
 /-
 Frozen statement of Lemma 3.2 of Bou-Rabee--Peres, *Once-reinforced random walk
 on `ℤ^d` has range exponent at least `d/(d+1)`*, Section 3, Lemma
-(Ordering the visited sites), label `lem:walk-order`, `orrw.tex:726-738`:
+(Ordering the visited sites), label `lem:walk-order`, `orrw.tex:632-644`:
 
   "Let `k ≥ 1` be an integer, and work on the event `{σ_k < ∞}`.  Put
    `V := R_{σ_k}` and `M := |V|`.  Then `M ≤ k+1`, and there is an ordering
