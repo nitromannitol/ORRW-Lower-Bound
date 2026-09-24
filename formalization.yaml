@@ -1,0 +1,239 @@
+version: "v0.3"
+
+project:
+  name: "ORRW-Lower-Bound"
+  authors:
+    - "Ahmed Bou-Rabee"
+  license: "Apache-2.0"
+
+sources:
+  - title: "Once-reinforced random walk on Z^d has range exponent at least d/(d+1)"
+    authors:
+      - "Ahmed Bou-Rabee"
+      - "Yuval Peres"
+    id: ""                      # TODO(author): the arXiv identifier (submitted 2026-09-07, pending)
+    url: ""
+    type: "preprint"
+    license: ""                 # TODO(author): the license under which the paper is posted
+    author_contacted: "n/a"     # the formalizer is an author of the source
+    prior_work: ""
+
+status:
+  scope: >-
+    A Lean 4 / Mathlib formalization of every theorem, lemma and proposition of
+    the paper: the range lower bound E|R_n| >= c beta^(-d/(d+1)) n^(d/(d+1))
+    (Theorem 1.1), its stretched-exponential lower tail (Theorem 1.2) and the
+    almost-sure bound drawn from it, the occupation measure bound (Theorem
+    1.3), and the lemmas and propositions of Sections 2 to 8 behind them, 24
+    registered statements in all, including a second almost-sure conclusion
+    (Proposition 6.1), four guards on the model and the identification of the
+    infinite-path law with the finite-horizon law.  SCOPE BOUNDARY: nothing is
+    assumed; no cited result is taken as a hypothesis (ASSUMPTIONS.md).  Not
+    formalized: the survey of related work, the simulations, the figures, the
+    open questions, and the electrical interpretation of effective resistance,
+    which is defined by the inverse diagonal of the Dirichlet Laplacian.  The
+    main theorems are stated in full in ORRW/MainTheorems.lean; all four are
+    additionally restated over a Mathlib-only vocabulary for the Lean
+    comparator (Audit/).
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms:
+    - "propext"
+    - "Classical.choice"
+    - "Quot.sound"
+  main_results:
+    - declaration: "ORRW.range_lower_bound"
+      file: "ORRW/MainTheorems.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "Audit/RangeLowerBound/comparator.json"
+      literature_dependencies: []
+    - declaration: "ORRW.range_tail"
+      file: "ORRW/MainTheorems.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "Audit/RangeTail/comparator.json"
+      literature_dependencies: []
+    - declaration: "ORRW.range_ae"
+      file: "ORRW/MainTheorems.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "Audit/RangeAlmostSure/comparator.json"
+      literature_dependencies: []
+    - declaration: "ORRW.occupation_measure"
+      file: "ORRW/MainTheorems.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "Audit/OccupationMeasure/comparator.json"
+      literature_dependencies: []
+    - declaration: "ORRWAudit.range_lower_bound"
+      file: "Audit/RangeLowerBound/Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "Audit/RangeLowerBound/comparator.json"
+      literature_dependencies: []
+    - declaration: "ORRWAudit.range_tail"
+      file: "Audit/RangeTail/Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "Audit/RangeTail/comparator.json"
+      literature_dependencies: []
+    - declaration: "ORRWAudit.range_ae"
+      file: "Audit/RangeAlmostSure/Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "Audit/RangeAlmostSure/comparator.json"
+      literature_dependencies: []
+    - declaration: "ORRWAudit.occupation_measure"
+      file: "Audit/OccupationMeasure/Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "Audit/OccupationMeasure/comparator.json"
+      literature_dependencies: []
+
+automation:
+  methods:
+    - method: "agent"
+      models:
+        - "claude-opus-5"
+        - "claude-haiku-4-5"
+        - "glm-5.3"
+        - "glm-5.3-flash"
+        - "gpt-6-astra"
+        - "claude-sonnet-5"
+        - "claude-opus-5-5"
+      framework: >-
+        Claude Code (Anthropic) as the supervising and proving harness, which
+        wrote nearly all of the Lean code through its subagents; Codex CLI
+        (OpenAI) for gpt-6-astra; scripted API fan-outs on the ollama cloud
+        (glm_lean.py, docstrings.py) for the GLM models
+      tool_setup: >-
+        The development was written under an earlier Lean toolchain and moved
+        on 2026-09-23 to leanprover/lean4:v4.32.0 with Mathlib at revision
+        81a5d257c8e410db227a6665ed08f64fea08e997 and the shared library
+        Lattice-Probability, now at commit bbe0b90.  Division of labour:
+        claude-opus-5 (Claude Code), in one session and its subagents, froze
+        the statements section by section, wrote the model, the proofs and the
+        checkers, and audited the Lean nodes against the paper (2026-09-04 and
+        2026-09-05), in a private working repository whose final state is the
+        first commit here (2026-09-05); claude-haiku-4-5 subagents under it
+        wrote small lemmas about the model and checked three Section 2 files
+        (2026-09-05); glm-5.3-flash drafted compile-filtered proof candidates
+        and docstrings, eighteen glm-5.3 auditors checked the statements one
+        node each, and a second audit by twelve glm-5.3 auditors found two
+        mismatches, both corrected before the release (2026-09-05);
+        gpt-6-astra (Codex CLI, reasoning xhigh) ran read-only audits of the
+        paper (2026-09-04 and 2026-09-05), made four commits linking the
+        paper's results to their Lean statements and editing the documentation
+        (2026-09-05), and audited six results of the public repository for
+        fidelity (2026-09-12), finding no substantive mismatch; two commits of
+        2026-09-07 added VERIFICATION.md, ORRW/Certificate.lean, the continuous
+        integration and a rewritten README and recorded the arXiv submission,
+        and no local record identifies the tool that made them; a
+        claude-sonnet-5 session drafted a README rewrite (2026-09-18), which
+        this version replaces; claude-opus-5-5 (Claude Code), supervising
+        claude-opus-5-5 subagents, ported the development to Lean v4.32.0,
+        replaced its copies of lattice objects by those of Lattice-Probability,
+        moved the resistance packing bound and the insertion inequality into
+        that library, and wrote ORRW/MainTheorems.lean, the comparator surface
+        Audit/ and this release documentation (2026-09-23 and 2026-09-24).  A
+        frozen-statement manifest (ledger/manifest.yaml) pins each registered
+        statement by the SHA-256 of its text, and the tools/ checkers verify
+        the hashes, the axiom closure of every node, a warning-free build,
+        coverage of every statement of the paper, a recorded clause-by-clause
+        reading of each statement, quantifier order and exponents.  The Lean
+        comparator (leanprover/comparator) was run on all four Audit pairs on
+        2026-09-24 at commit 8d0e8c3, and each pair passed with the Lean
+        kernel and with the independent nanoda kernel; Audit/COMPARATOR_RUNS.md
+        records the results and the reproduction steps.
+        .github/workflows/comparator.yml runs it on request.
+      cost:
+        wall_time: >-
+          about two days for the formalization (2026-09-04 to 2026-09-05, every
+          statement sealed on 2026-09-05), then the port, the move of shared
+          lemmas into Lattice-Probability and the comparator surface on
+          2026-09-23 and 2026-09-24
+        spend_usd: "not tracked (subscription and API accounts)"
+        hardware: "a 20-thread Intel i9-9900X / 125 GB RAM Ubuntu machine"
+      prompting_notes: >-
+        Human-directed agent work, supervised by the author, with the author's
+        rulings recorded for statement-level decisions.  Every statement was
+        pinned before its proof was attempted, and proofs were accepted only
+        through the manifest and axiom gates.
+  spend_usd: "not tracked (subscription and API accounts)"
+  notes: >-
+    All Lean code in this repository was written by the listed models under the
+    supervision of the author.  Every proof is checked by the Lean kernel and
+    Mathlib; the verified library contains no sorry and no custom axiom, and
+    no cited result enters as a hypothesis.  The Mathlib-only comparator
+    challenge files (Audit/*/Challenge.lean) each contain exactly one
+    intentional statement-level sorry (the theorem body), which is filled by
+    the corresponding Audit/*/Solution.lean.  The dependency
+    Lattice-Probability is a separate library shared by several
+    formalizations; the lattice objects this repository takes from it were
+    first written here and moved into it.
+
+fidelity:
+  divergences: >-
+    VERIFICATION.md and CORRESPONDENCE.md record where a Lean statement is not
+    literally the paper's.  In summary: the law of the first n steps is a
+    probability mass function on direction words, and the almost-sure
+    conclusions use the infinite-path law built by the Ionescu-Tulcea theorem,
+    whose finite-dimensional marginals are proved to be that law; the
+    almost-sure conclusions are proved as eventual lower bounds, which imply
+    the printed bounds on the lower limit; some statements carry separate
+    constants c and C where the paper writes one C >= 1; effective resistance
+    is defined by the inverse diagonal of the Dirichlet Laplacian, so the
+    electrical interpretation in Lemma 2.2 is a definition; Lemma 3.1 is
+    stated as the equivalent one-step drift inequality, and Lemma 5.1 for
+    finite-history processes with a predictable clock; a supremum over sites
+    is a universal quantifier inside the constant's scope; and the frozen
+    time-averaged occupation bound is weaker than the current display
+    eq:cesaro, whose sharper dependence on beta the interval bound of Theorem
+    8.2 keeps.
+
+review:
+  status: "author-verified"
+  reviewers:
+    - "Ahmed Bou-Rabee"
+  notes: >-
+    Correctness of every proof is guaranteed by the Lean kernel and Mathlib (no
+    sorry, no custom axiom).  The author ruled on the statement-level
+    decisions recorded during development.  The statements were additionally
+    audited against the paper by claude-opus-5 subagents and by glm-5.3
+    auditors during development, and six results of the public repository by
+    a read-only gpt-6-astra fidelity audit on 2026-09-12.  This is not
+    external peer review.
+
+alignment:
+  namespace: "ORRW"
+  statements:
+    - source: "Theorem 1.1 (thm:main)"
+      lean: "ORRW.range_lower_bound"
+      module: "ORRW.MainTheorems"
+      status: "proved"
+      note: "Certified statement ORRW.Frozen.range_lower_bound (thm-main). Comparator challenge Audit/RangeLowerBound/."
+    - source: "Theorem 1.2 (thm:whp)"
+      lean: "ORRW.range_tail"
+      module: "ORRW.MainTheorems"
+      status: "proved"
+      note: "Certified statement ORRW.Frozen.range_tail (thm-whp). Comparator challenge Audit/RangeTail/."
+    - source: "The almost-sure bound stated after Theorem 1.2 (thm:whp)"
+      lean: "ORRW.range_ae"
+      module: "ORRW.MainTheorems"
+      status: "proved"
+      note: "Certified statement ORRW.Frozen.range_ae (ae-range). Comparator challenge Audit/RangeAlmostSure/."
+    - source: "Theorem 1.3 (thm:occupation-intro)"
+      lean: "ORRW.occupation_measure"
+      module: "ORRW.MainTheorems"
+      status: "proved"
+      note: "Certified statement ORRW.Frozen.occupation_measure (thm-occupation-measure). Comparator challenge Audit/OccupationMeasure/."
+    - source: "Sections 2 to 8: every lemma, proposition and theorem"
+      lean: "ORRW.Frozen.*"
+      module: "ORRW.Frozen"
+      status: "proved"
+      note: "One registered statement per paper statement; the full map is in README.md and CORRESPONDENCE.md."
+
+acknowledgements: >-
+  The paper is joint work with Yuval Peres.  Built on Lean 4, Mathlib, Lake,
+  the shared library Lattice-Probability, and leanprover/comparator.

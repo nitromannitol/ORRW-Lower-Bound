@@ -1,0 +1,61 @@
+name: CI
+
+# Manual trigger only: these builds are Mathlib-scale, so they run on request.
+on:
+  workflow_dispatch:
+
+# Cancel superseded runs on the same ref.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      # Lattice-Probability is private: read it with the repository's deploy key.
+      - name: Read access to Lattice-Probability
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.LP_DEPLOY_KEY }}
+      - name: Fetch Lattice-Probability over SSH
+        run: |
+          git config --global url."git@github.com:nitromannitol/Lattice-Probability".insteadOf "https://github.com/nitromannitol/Lattice-Probability"
+
+      - name: Install elan
+        run: |
+          curl https://elan.lean-lang.org/elan-init.sh -sSf | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Get the Mathlib cache
+        run: lake exe cache get
+
+      - name: Enforce warning-free production build
+        shell: bash
+        run: |
+          set -o pipefail
+          lake build 2>&1 | tee production-build.log
+          if grep -iE '^warning:|declaration uses .sorry' production-build.log; then
+            echo "Production build emitted a warning."
+            exit 1
+          fi
+
+      # Build the axiom audit and surface its `#print axioms` output in the log,
+      # confirming the main theorems use only the standard Mathlib axioms.
+      - name: Axiom audit
+        shell: bash
+        run: |
+          set -o pipefail
+          lake build ORRW.Meta.AxiomsAudit 2>&1 | tee axioms-audit.log
+          if grep -iE '^warning:|declaration uses .sorry' axioms-audit.log; then
+            echo "Axiom audit build emitted a warning."
+            exit 1
+          fi
+
+      - name: Frozen statements, paper correspondence and certificate
+        run: |
+          python3 -m pip install -r tools/requirements.txt
+          python3 tools/verify.py

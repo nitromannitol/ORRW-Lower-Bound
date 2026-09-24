@@ -1,0 +1,191 @@
+\begin{thebibliography}{23}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Barlow(2017)]{Barlow2017}
+Martin~T. Barlow.
+\newblock \emph{Random Walks and Heat Kernels on Graphs}, volume 438 of
+  \emph{London Mathematical Society Lecture Note Series}.
+\newblock Cambridge University Press, 2017.
+\newblock \doi{10.1017/9781107415690}.
+\newblock URL \url{https://doi.org/10.1017/9781107415690}.
+
+\bibitem[Beffara(2011)]{Beffara2011}
+Vincent Beffara.
+\newblock \emph{M\'ecanique statistique et criticalit\'e en dimension deux}.
+\newblock Habilitation \`a diriger des recherches, \'Ecole Normale Sup\'erieure
+  de Lyon, 2011.
+\newblock URL \url{https://hal.science/tel-05738990}.
+\newblock HAL identifier {\tt tel-05738990}.
+
+\bibitem[Bou-Rabee and Peres(2026)]{BouRabeePeres2026}
+Ahmed Bou-Rabee and Yuval Peres.
+\newblock {E}ulerian walkers on {$\mathbb Z^2$} have range exponent {$2/3$},
+  2026.
+\newblock URL \url{https://doi.org/10.48550/arXiv.2608.23545}.
+\newblock arXiv:2608.23545.
+
+\bibitem[Collevecchio and Tarr{\`e}s(2025)]{CollevecchioTarres2025}
+Andrea Collevecchio and Pierre Tarr{\`e}s.
+\newblock Once-reinforced and self-interacting random walks beyond
+  exchangeability, 2025.
+\newblock URL \url{https://doi.org/10.48550/arXiv.2509.04318}.
+\newblock arXiv:2509.04318.
+
+\bibitem[Collevecchio et~al.(2020)Collevecchio, Kious, and
+  Sidoravicius]{CollevecchioKiousSidoravicius2020}
+Andrea Collevecchio, Daniel Kious, and Vladas Sidoravicius.
+\newblock The branching-ruin number and the critical parameter of
+  once-reinforced random walk on trees.
+\newblock \emph{Comm. Pure Appl. Math.}, 73\penalty0 (1):\penalty0 210--236,
+  2020.
+\newblock \doi{10.1002/cpa.21860}.
+\newblock URL \url{https://doi.org/10.1002/cpa.21860}.
+
+\bibitem[Davis(1990)]{Davis1990}
+Burgess Davis.
+\newblock Reinforced random walk.
+\newblock \emph{Probab. Theory Related Fields}, 84\penalty0 (2):\penalty0
+  203--229, 1990.
+\newblock \doi{10.1007/BF01197845}.
+\newblock URL \url{https://doi.org/10.1007/BF01197845}.
+
+\bibitem[Doyle and Snell(1984)]{DoyleSnell1984}
+Peter~G. Doyle and J.~Laurie Snell.
+\newblock \emph{Random Walks and Electric Networks}, volume~22 of \emph{Carus
+  Mathematical Monographs}.
+\newblock Mathematical Association of America, 1984.
+\newblock \doi{10.5948/UPO9781614440222}.
+\newblock URL \url{https://doi.org/10.5948/UPO9781614440222}.
+
+\bibitem[Durrett et~al.(2002)Durrett, Kesten, and
+  Limic]{DurrettKestenLimic2002}
+Rick Durrett, Harry Kesten, and Vlada Limic.
+\newblock Once edge-reinforced random walk on a tree.
+\newblock \emph{Probab. Theory Related Fields}, 122\penalty0 (4):\penalty0
+  567--592, 2002.
+\newblock \doi{10.1007/s004400100179}.
+\newblock URL \url{https://doi.org/10.1007/s004400100179}.
+
+\bibitem[Dvoretzky and Erd\H{o}s(1951)]{DvoretzkyErdos1951}
+Aryeh Dvoretzky and Paul Erd\H{o}s.
+\newblock Some problems on random walk in space.
+\newblock In \emph{Proceedings of the Second Berkeley Symposium on Mathematical
+  Statistics and Probability}, pages 353--367. University of California Press,
+  Berkeley, 1951.
+\newblock \doi{10.1525/9780520411586-026}.
+\newblock URL \url{https://doi.org/10.1525/9780520411586-026}.
+
+\bibitem[Elboim and Kozma(2026)]{ElboimKozma2026}
+Dor Elboim and Gady Kozma.
+\newblock Once-reinforced random walk in high dimensions, 2026.
+\newblock URL \url{https://doi.org/10.48550/arXiv.2601.17972}.
+\newblock arXiv:2601.17972.
+
+\bibitem[Florescu et~al.(2016)Florescu, Levine, and
+  Peres]{FlorescuLevinePeres2016}
+Laura Florescu, Lionel Levine, and Yuval Peres.
+\newblock The range of a rotor walk.
+\newblock \emph{Amer. Math. Monthly}, 123\penalty0 (7):\penalty0 627--642,
+  2016.
+\newblock \doi{10.4169/amer.math.monthly.123.7.627}.
+\newblock URL \url{https://doi.org/10.4169/amer.math.monthly.123.7.627}.
+
+\bibitem[Foster et~al.(2009)Foster, Grassberger, and
+  Paczuski]{FosterGrassbergerPaczuski2009}
+Jacob~G. Foster, Peter Grassberger, and Maya Paczuski.
+\newblock Reinforced walks in two and three dimensions.
+\newblock \emph{New J. Phys.}, 11\penalty0 (2):\penalty0 023009, 2009.
+\newblock \doi{10.1088/1367-2630/11/2/023009}.
+\newblock URL \url{https://doi.org/10.1088/1367-2630/11/2/023009}.
+
+\bibitem[Kious and Sidoravicius(2018)]{KiousSidoravicius2018}
+Daniel Kious and Vladas Sidoravicius.
+\newblock Phase transition for the once-reinforced random walk on {$\mathbb
+  Z^d$}-like trees.
+\newblock \emph{Ann. Probab.}, 46\penalty0 (4):\penalty0 2121--2133, 2018.
+\newblock \doi{10.1214/17-AOP1222}.
+\newblock URL \url{https://doi.org/10.1214/17-AOP1222}.
+
+\bibitem[Kious et~al.(2021)Kious, Schapira, and Singh]{KiousSchapiraSingh2021}
+Daniel Kious, Bruno Schapira, and Arvind Singh.
+\newblock Once reinforced random walk on {$\mathbb Z\times\Gamma$}.
+\newblock \emph{Ann. Inst. Henri Poincar{\'e} Probab. Stat.}, 57\penalty0
+  (4):\penalty0 2219--2242, 2021.
+\newblock \doi{10.1214/21-AIHP1151}.
+\newblock URL \url{https://doi.org/10.1214/21-AIHP1151}.
+
+\bibitem[Kozma(2013)]{Kozma2012}
+Gady Kozma.
+\newblock Reinforced random walk.
+\newblock In \emph{European Congress of Mathematics, Krak{\'o}w, 2--7 July,
+  2012}, pages 429--443. European Mathematical Society, 2013.
+\newblock \doi{10.4171/120-1/25}.
+\newblock URL \url{https://doi.org/10.4171/120-1/25}.
+
+\bibitem[Lyons and Peres(2016)]{LyonsPeres2016}
+Russell Lyons and Yuval Peres.
+\newblock \emph{Probability on Trees and Networks}.
+\newblock Cambridge University Press, 2016.
+\newblock \doi{10.1017/9781316672815}.
+\newblock URL \url{https://doi.org/10.1017/9781316672815}.
+
+\bibitem[Ordemann et~al.(2000)Ordemann, Berkolaiko, Havlin, and
+  Bunde]{OrdemannBerkolaikoHavlinBunde2000}
+A.~Ordemann, G.~Berkolaiko, S.~Havlin, and A.~Bunde.
+\newblock Swelling-collapse transition of self-attracting walks.
+\newblock \emph{Phys. Rev. E}, 61\penalty0 (2):\penalty0 R1005--R1007, 2000.
+\newblock \doi{10.1103/PhysRevE.61.R1005}.
+\newblock URL \url{https://doi.org/10.1103/PhysRevE.61.R1005}.
+
+\bibitem[Ordemann et~al.(2001)Ordemann, Tomer, Berkolaiko, Havlin, and
+  Bunde]{OrdemannTomerBerkolaikoHavlinBunde2001}
+A.~Ordemann, E.~Tomer, G.~Berkolaiko, S.~Havlin, and A.~Bunde.
+\newblock Structural properties of self-attracting walks.
+\newblock \emph{Phys. Rev. E}, 64\penalty0 (4):\penalty0 046117, 2001.
+\newblock \doi{10.1103/PhysRevE.64.046117}.
+\newblock URL \url{https://doi.org/10.1103/PhysRevE.64.046117}.
+
+\bibitem[Pfaffelhuber and Stiefel(2021)]{PfaffelhuberStiefel2021}
+Peter Pfaffelhuber and Jakob Stiefel.
+\newblock The range of once-reinforced random walk in one dimension.
+\newblock \emph{Random Structures Algorithms}, 58\penalty0 (1):\penalty0
+  164--175, 2021.
+\newblock \doi{10.1002/rsa.20948}.
+\newblock URL \url{https://doi.org/10.1002/rsa.20948}.
+
+\bibitem[Priezzhev et~al.(1996)Priezzhev, Dhar, Dhar, and
+  Krishnamurthy]{PriezzhevDharDharKrishnamurthy1996}
+V.~B. Priezzhev, Deepak Dhar, Abhishek Dhar, and Supriya Krishnamurthy.
+\newblock Eulerian walkers as a model of self-organized criticality.
+\newblock \emph{Phys. Rev. Lett.}, 77\penalty0 (25):\penalty0 5079--5082, 1996.
+\newblock \doi{10.1103/PhysRevLett.77.5079}.
+
+\bibitem[Sapozhnikov(1994)]{Sapozhnikov1994}
+V.~B. Sapozhnikov.
+\newblock Self-attracting walk with $\nu<1/2$.
+\newblock \emph{J. Phys. A}, 27\penalty0 (6):\penalty0 L151--L153, 1994.
+\newblock \doi{10.1088/0305-4470/27/6/001}.
+
+\bibitem[Sellke(2006)]{Sellke2006}
+Thomas Sellke.
+\newblock Recurrence of reinforced random walk on a ladder.
+\newblock \emph{Electron. J. Probab.}, 11\penalty0 (11):\penalty0 301--310,
+  2006.
+\newblock \doi{10.1214/EJP.v11-313}.
+\newblock URL \url{https://doi.org/10.1214/EJP.v11-313}.
+
+\bibitem[Telcs(2006)]{Telcs2006}
+Andr\'as Telcs.
+\newblock Upper bounds for transition probabilities on graphs and isoperimetric
+  inequalities.
+\newblock \emph{Markov Process. Related Fields}, 12\penalty0 (1):\penalty0
+  1--26, 2006.
+\newblock \doi{10.48550/arXiv.0801.2341}.
+\newblock URL \url{https://doi.org/10.48550/arXiv.0801.2341}.
+\newblock arXiv:0801.2341.
+
+\end{thebibliography}

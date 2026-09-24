@@ -1,0 +1,13 @@
+{
+  "challenge_module": "Audit.RangeLowerBound.Challenge",
+  "solution_module": "Audit.RangeLowerBound.Solution",
+  "theorem_names": [
+    "ORRWAudit.range_lower_bound"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": false
+}

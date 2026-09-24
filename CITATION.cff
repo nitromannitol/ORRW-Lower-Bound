@@ -1,0 +1,37 @@
+cff-version: 1.2.0
+message: "If you use this formalization, please cite it as below."
+title: "ORRW-Lower-Bound: a Lean 4 formalization of Once-reinforced random walk on Z^d has range exponent at least d/(d+1)"
+abstract: >-
+  A machine-checked Lean 4 / mathlib formalization of the paper
+  "Once-reinforced random walk on Z^d has range exponent at least d/(d+1)"
+  (Bou-Rabee and Peres): for d >= 2 and reinforcement beta >= 1 the expected
+  range of once-reinforced random walk satisfies
+  E|R_n| >= c beta^(-d/(d+1)) n^(d/(d+1)) (Theorem 1.1), with a
+  stretched-exponential lower tail (Theorem 1.2) and the almost-sure bound it
+  implies, a bound on the occupation measure (Theorem 1.3), and every lemma
+  and proposition behind them.  Nothing is assumed: the development contains
+  no sorry, no custom axiom and no cited result taken as a hypothesis.
+type: software
+authors:
+  - family-names: Bou-Rabee
+    given-names: Ahmed
+keywords:
+  - Lean
+  - mathlib
+  - formal verification
+  - once-reinforced random walk
+  - self-interacting random walk
+  - probability
+license: Apache-2.0
+# Add a Zenodo DOI here once an archived release is minted.
+repository-code: "https://github.com/nitromannitol/ORRW-Lower-Bound"
+references:
+  - type: article
+    title: "Once-reinforced random walk on Z^d has range exponent at least d/(d+1)"
+    authors:
+      - family-names: Bou-Rabee
+        given-names: Ahmed
+      - family-names: Peres
+        given-names: Yuval
+    year: 2026
+    notes: "The paper formalized by this repository; submitted to arXiv on 2026-09-07, identifier pending."
