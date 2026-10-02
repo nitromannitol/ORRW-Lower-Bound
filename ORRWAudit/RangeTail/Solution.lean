@@ -1,17 +1,17 @@
 import Mathlib
 import ORRW.MainTheorems
-import Audit.Support.Vocabulary
-import Audit.Support.Bridge
+import ORRWAudit.RangeTail.SolutionBasic
+import ORRWAudit.Support.RangeTailBridge
 
 /-!
 # Solution: RangeTail
 
-The challenge module `Audit/RangeTail/Challenge.lean` imports only Mathlib and
+The challenge module `ORRWAudit/RangeTail/Challenge.lean` imports only Mathlib and
 states the theorem with one intentional `sorry`.  This solution imports the
-repository together with `Audit.Support.Vocabulary`, a verbatim copy of the
+repository together with `ORRWAudit.RangeTail.SolutionBasic`, a verbatim copy of the
 challenge's vocabulary, and proves the byte-identical statement from
 `ORRW.range_tail`.  Every vocabulary constant in this statement is definitionally
-equal to its repository counterpart (`Audit/Support/Bridge.lean` records each
+equal to its repository counterpart (`ORRWAudit/Support/RangeTailBridge.lean` records each
 identification), so the library theorem closes the goal by `exact`.
 -/
 

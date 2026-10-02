@@ -96,15 +96,15 @@ The ruling numbers `R-004` and `R-005` are not used.
 The main results are additionally exposed, stated in full, in
 [`ORRW/MainTheorems.lean`](ORRW/MainTheorems.lean), each proved by `exact` of
 its certified statement, and all four are restated over a Mathlib-only
-vocabulary for the comparator (see [`Audit/`](Audit/)).  None takes a cited
+vocabulary for the comparator (see [`ORRWAudit/`](ORRWAudit/)).  None takes a cited
 result as a hypothesis.
 
 | Source | Main theorem | Certified statement | Comparator |
 |---|---|---|---|
-| Theorem 1.1, `thm:main` | `ORRW.range_lower_bound` | `ORRW.Frozen.range_lower_bound` | `Audit/RangeLowerBound/` |
-| Theorem 1.2, `thm:whp` | `ORRW.range_tail` | `ORRW.Frozen.range_tail` | `Audit/RangeTail/` |
-| the almost-sure bound after Theorem 1.2 | `ORRW.range_ae` | `ORRW.Frozen.range_ae` | `Audit/RangeAlmostSure/` |
-| Theorem 1.3, `thm:occupation-intro` | `ORRW.occupation_measure` | `ORRW.Frozen.occupation_measure` | `Audit/OccupationMeasure/` |
+| Theorem 1.1, `thm:main` | `ORRW.range_lower_bound` | `ORRW.Frozen.range_lower_bound` | `ORRWAudit/RangeLowerBound/` |
+| Theorem 1.2, `thm:whp` | `ORRW.range_tail` | `ORRW.Frozen.range_tail` | `ORRWAudit/RangeTail/` |
+| the almost-sure bound after Theorem 1.2 | `ORRW.range_ae` | `ORRW.Frozen.range_ae` | `ORRWAudit/RangeAlmostSure/` |
+| Theorem 1.3, `thm:occupation-intro` | `ORRW.occupation_measure` | `ORRW.Frozen.occupation_measure` | `ORRWAudit/OccupationMeasure/` |
 
 ## Frozen surface
 

@@ -1,0 +1,14 @@
+{
+  "challenge_module": "ORRWAudit.RangeAlmostSure.Challenge",
+  "solution_module": "ORRWAudit.RangeAlmostSure.Solution",
+  "theorem_names": [
+    "ORRWAudit.range_ae"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

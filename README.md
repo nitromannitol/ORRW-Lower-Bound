@@ -172,7 +172,7 @@ difference in formulation.  In summary:
 ## Guarantees
 
 - **No `sorry`** in the library: `tools/check_manifest.py` fails on any `sorry`, `admit`,
-  `axiom` or `sorryAx` under `ORRW/`.  The four comparator challenges under `Audit/`
+  `axiom` or `sorryAx` under `ORRW/`.  The four comparator challenges under `ORRWAudit/`
   each contain one intentional statement-level `sorry`, which the corresponding solution
   file proves.
 - **No custom axiom.**  The main theorems depend only on mathlib's three standard
@@ -187,22 +187,21 @@ difference in formulation.  In summary:
   rebuilt from Mathlib primitives alone (the lattice, direction words, the step rule and
   the law of once-reinforced random walk on words of length `n`, and its law on infinite
   words through Mathlib's Ionescu-Tulcea construction), in
-  [`Audit/RangeLowerBound/Challenge.lean`](Audit/RangeLowerBound/Challenge.lean),
-  [`Audit/RangeTail/Challenge.lean`](Audit/RangeTail/Challenge.lean),
-  [`Audit/RangeAlmostSure/Challenge.lean`](Audit/RangeAlmostSure/Challenge.lean)
+  [`ORRWAudit/RangeLowerBound/Challenge.lean`](ORRWAudit/RangeLowerBound/Challenge.lean),
+  [`ORRWAudit/RangeTail/Challenge.lean`](ORRWAudit/RangeTail/Challenge.lean),
+  [`ORRWAudit/RangeAlmostSure/Challenge.lean`](ORRWAudit/RangeAlmostSure/Challenge.lean)
   and
-  [`Audit/OccupationMeasure/Challenge.lean`](Audit/OccupationMeasure/Challenge.lean).
-  The configurations in `Audit/*/comparator.json` are for
+  [`ORRWAudit/OccupationMeasure/Challenge.lean`](ORRWAudit/OccupationMeasure/Challenge.lean).
+  The configurations in `ORRWAudit/*/comparator.json` are for
   [leanprover/comparator](https://github.com/leanprover/comparator), which checks that the
   restatement and the library theorem have identical elaborated types and that the proof
   reduces to the three standard axioms; each pair passes with the Lean kernel and again
   with the independent nanoda kernel.  The workflow
   [`.github/workflows/comparator.yml`](.github/workflows/comparator.yml) runs it on
-  request.  See [`Audit/README.md`](Audit/README.md), and
-  [`Audit/COMPARATOR_RUNS.md`](Audit/COMPARATOR_RUNS.md) for the pins and the results.
-  `Audit/StatementRegression.lean` additionally checks locally that each solution
-  statement is exactly the challenge statement and mentions no constant of `ORRW` or
-  `LatticeProb`.
+  request.  See [`ORRWAudit/README.md`](ORRWAudit/README.md), and
+  [`ORRWAudit/COMPARATOR_RUNS.md`](ORRWAudit/COMPARATOR_RUNS.md) for the pins and the results.
+  The comparator itself checks each solution statement against its challenge and the
+  dependency closure against Mathlib.
 - **Pinned toolchain.**  Lean `v4.32.0` ([`lean-toolchain`](lean-toolchain)), `mathlib` at
   revision `81a5d257c8e410db227a6665ed08f64fea08e997` and `Lattice-Probability` at
   commit `bbe0b90a7cf0517db0578139aaab7f152edbc45e`, recorded in
@@ -219,7 +218,7 @@ check those ranges.
 About 7,600 lines of Lean in 52 modules, of which about 5,300 lines are code once
 comments and blank lines are removed, on top of mathlib and the Lattice-Probability
 library.  The count covers `ORRW.lean` and `ORRW/`, and excludes the Mathlib-only
-comparator surface in `Audit/`.
+comparator surface in `ORRWAudit/`.
 
 ## Building
 
@@ -237,8 +236,7 @@ lake build           # compile the project
 
 ```bash
 lake build ORRW.Meta.AxiomsAudit   # print the axioms of the four main theorems
-lake build Audit                   # the comparator challenges and solutions
-lake build Audit.StatementRegression
+lake build ORRWAudit               # the comparator challenges and solutions
 lake env lean ORRW/Certificate.lean   # print the axioms of all 24 registered statements
 ```
 
@@ -295,12 +293,12 @@ ORRW/
   Potential.lean      the potential and the charge of Section 3
   Certificate.lean    prints the axioms of all 24 registered statements
 ORRW.lean             the root module (imports the whole library)
-Audit/                Mathlib-only comparator challenges and solutions
+ORRWAudit/            Mathlib-only comparator challenges and solutions
   README.md           what each comparator pair checks
   DESIGN.md           how the pairs are built: vocabulary, bridges
   COMPARATOR_RUNS.md  the comparator pins and results
-  <Pair>/             Challenge.lean, Solution.lean, comparator.json
-  Support/            the Mathlib-only vocabulary and the bridges
+  <Pair>/             Challenge.lean, SolutionBasic.lean, Solution.lean, comparator.json
+  Support/            one bridge per pair, identifying the vocabulary with the library
 ASSUMPTIONS.md        the cited results assumed (none; generated)
 CORRESPONDENCE.md     paper ↔ Lean: conventions, rulings, main results, node table
 VERIFICATION.md       constants and differences in formulation
@@ -331,7 +329,7 @@ To cite the formalization, use [`CITATION.cff`](CITATION.cff).
 This formalization is built on [Lean 4](https://lean-lang.org),
 [Mathlib](https://github.com/leanprover-community/mathlib4) and the shared library
 [`Lattice-Probability`](https://github.com/nitromannitol/Lattice-Probability); the
-comparator audit in [`Audit/`](Audit/) is set up for
+comparator audit in [`ORRWAudit/`](ORRWAudit/) is set up for
 [`leanprover/comparator`](https://github.com/leanprover/comparator).
 
 ## License

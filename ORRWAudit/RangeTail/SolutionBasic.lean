@@ -1,14 +1,12 @@
 import Mathlib
 
 /-!
-# Mathlib-only statement vocabulary for the comparator solutions
+# Mathlib-only statement vocabulary for the `RangeTail` comparator
 
-A verbatim copy of the vocabulary block (between `VOCABULARY-BEGIN` and
-`VOCABULARY-END`) shared by every `Audit/*/Challenge.lean`.  It imports only
-Mathlib, so the definitions it declares elaborate exactly as they do in the
-challenges; `Audit/check_standalone.sh --vocabulary` checks that the blocks are
-byte-identical.  This file plays the role of the per-challenge
-`SolutionBasic.lean` of the comparator pattern.
+Verbatim copy of the vocabulary block of `ORRWAudit/RangeTail/Challenge.lean` (between
+`VOCABULARY-BEGIN` and `VOCABULARY-END`); a mechanical copy, not hand-edited.  It imports only
+Mathlib, so the definitions it declares elaborate exactly as they do in the challenge;
+`ORRWAudit/check_standalone.sh --vocabulary` checks that the two blocks are byte-identical.
 -/
 
 -- VOCABULARY-BEGIN

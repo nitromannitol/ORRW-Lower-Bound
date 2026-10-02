@@ -12,7 +12,7 @@ lake build           # compile the project
 
 The production build is required to emit no Lean or linter warnings
 (`python3 tools/check_warnings.py`).  The four Mathlib-only files
-`Audit/*/Challenge.lean` are the sole exception: each contains one documented
+`ORRWAudit/*/Challenge.lean` are the sole exception: each contains one documented
 statement-level `sorry`, checked against its completed solution by
 `leanprover/comparator`.
 
@@ -42,7 +42,7 @@ A few practical notes for working with this development:
 
 - **The main results** are in `ORRW/MainTheorems.lean`; the axiom audit is
   `lake build ORRW.Meta.AxiomsAudit`, and the comparator surface is
-  `lake build Audit`.  `python3 tools/verify.py` runs every checker.
+  `lake build ORRWAudit`.  `python3 tools/verify.py` runs every checker.
 
 ## Elaboration policy for new files
 

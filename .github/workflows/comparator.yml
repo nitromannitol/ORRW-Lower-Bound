@@ -1,10 +1,10 @@
 name: Comparator audit
 
-# Runs the official leanprover/comparator on the four Audit/<X> pairs: for each
+# Runs the official leanprover/comparator on the four ORRWAudit/<X> pairs: for each
 # pair it checks that Solution proves a statement whose full dependency closure
 # matches Challenge's, uses only the permitted axioms, and is accepted by BOTH
-# the Lean kernel (replay) and the independent nanoda kernel (enable_nanoda is
-# switched on for this run).
+# the Lean kernel (replay) and the independent nanoda kernel (every
+# comparator.json sets enable_nanoda).
 #
 # Mathlib olean artifacts come from `lake exe cache get`.  The project's own
 # build is cached between runs; the first run on an empty cache builds the
@@ -64,7 +64,7 @@ jobs:
         run: lake exe cache get
 
       - name: Build the library and the audit surfaces
-        run: lake build Audit
+        run: lake build ORRWAudit
 
       - name: Cache verification tools
         id: tools-cache
@@ -111,13 +111,6 @@ jobs:
           git -C ~/tools/nanoda_lib checkout "$NANODA_REV"
           cd ~/tools/nanoda_lib && cargo +stable build --release
 
-      - name: Enable the nanoda kernel check (CI-only, on the workspace copy)
-        # The committed configs set enable_nanoda: false so that local
-        # reproduction needs only three tools; CI exercises the stronger
-        # two-kernel variant on its throwaway checkout.
-        run: |
-          sed -i 's/"enable_nanoda": false/"enable_nanoda": true/' Audit/*/comparator.json
-
       - name: Run the comparator on all four pairs
         env:
           COMPARATOR_LANDRUN: /home/runner/tools/bin/landrun
@@ -128,7 +121,7 @@ jobs:
           fail=0
           for X in RangeLowerBound RangeTail RangeAlmostSure OccupationMeasure; do
             echo "::group::$X"
-            if lake env ~/tools/comparator/.lake/build/bin/comparator "Audit/$X/comparator.json" \
+            if lake env ~/tools/comparator/.lake/build/bin/comparator "ORRWAudit/$X/comparator.json" \
                  | tee "/tmp/comparator-$X.log" \
                && grep -q "Your solution is okay!" "/tmp/comparator-$X.log"; then
               echo "$X: OK"

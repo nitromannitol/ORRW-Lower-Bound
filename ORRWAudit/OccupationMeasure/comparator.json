@@ -1,0 +1,14 @@
+{
+  "challenge_module": "ORRWAudit.OccupationMeasure.Challenge",
+  "solution_module": "ORRWAudit.OccupationMeasure.Solution",
+  "theorem_names": [
+    "ORRWAudit.occupation_measure"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

@@ -10,7 +10,7 @@ project:
     stretched-exponential lower tail (Theorem 1.2), the almost-sure bound it
     implies, and a bound on the occupation measure (Theorem 1.3). Every lemma
     and proposition behind them is formalized as well, and nothing is assumed.
-    The four main theorems are independently checked using the Audit/
+    The four main theorems are independently checked using the ORRWAudit/
     comparator pairs.
   authors:
     - "Ahmed Bou-Rabee"
@@ -59,7 +59,7 @@ status:
     which is defined by the inverse diagonal of the Dirichlet Laplacian.  The
     main theorems are stated in full in ORRW/MainTheorems.lean; all four are
     additionally restated over a Mathlib-only vocabulary for the Lean
-    comparator (Audit/).
+    comparator (ORRWAudit/).
   sorry_count: 0
   sorry_count_scope: "ORRW production library only"
   comparator_challenge_sorry_count: 4
@@ -73,49 +73,49 @@ status:
       file: "ORRW/MainTheorems.lean"
       sorry_count: 0
       axioms: ["propext", "Classical.choice", "Quot.sound"]
-      comparator_config: "Audit/RangeLowerBound/comparator.json"
+      comparator_config: "ORRWAudit/RangeLowerBound/comparator.json"
       literature_dependencies: []
     - declaration: "ORRW.range_tail"
       file: "ORRW/MainTheorems.lean"
       sorry_count: 0
       axioms: ["propext", "Classical.choice", "Quot.sound"]
-      comparator_config: "Audit/RangeTail/comparator.json"
+      comparator_config: "ORRWAudit/RangeTail/comparator.json"
       literature_dependencies: []
     - declaration: "ORRW.range_ae"
       file: "ORRW/MainTheorems.lean"
       sorry_count: 0
       axioms: ["propext", "Classical.choice", "Quot.sound"]
-      comparator_config: "Audit/RangeAlmostSure/comparator.json"
+      comparator_config: "ORRWAudit/RangeAlmostSure/comparator.json"
       literature_dependencies: []
     - declaration: "ORRW.occupation_measure"
       file: "ORRW/MainTheorems.lean"
       sorry_count: 0
       axioms: ["propext", "Classical.choice", "Quot.sound"]
-      comparator_config: "Audit/OccupationMeasure/comparator.json"
+      comparator_config: "ORRWAudit/OccupationMeasure/comparator.json"
       literature_dependencies: []
     - declaration: "ORRWAudit.range_lower_bound"
-      file: "Audit/RangeLowerBound/Solution.lean"
+      file: "ORRWAudit/RangeLowerBound/Solution.lean"
       sorry_count: 0
       axioms: ["propext", "Classical.choice", "Quot.sound"]
-      comparator_config: "Audit/RangeLowerBound/comparator.json"
+      comparator_config: "ORRWAudit/RangeLowerBound/comparator.json"
       literature_dependencies: []
     - declaration: "ORRWAudit.range_tail"
-      file: "Audit/RangeTail/Solution.lean"
+      file: "ORRWAudit/RangeTail/Solution.lean"
       sorry_count: 0
       axioms: ["propext", "Classical.choice", "Quot.sound"]
-      comparator_config: "Audit/RangeTail/comparator.json"
+      comparator_config: "ORRWAudit/RangeTail/comparator.json"
       literature_dependencies: []
     - declaration: "ORRWAudit.range_ae"
-      file: "Audit/RangeAlmostSure/Solution.lean"
+      file: "ORRWAudit/RangeAlmostSure/Solution.lean"
       sorry_count: 0
       axioms: ["propext", "Classical.choice", "Quot.sound"]
-      comparator_config: "Audit/RangeAlmostSure/comparator.json"
+      comparator_config: "ORRWAudit/RangeAlmostSure/comparator.json"
       literature_dependencies: []
     - declaration: "ORRWAudit.occupation_measure"
-      file: "Audit/OccupationMeasure/Solution.lean"
+      file: "ORRWAudit/OccupationMeasure/Solution.lean"
       sorry_count: 0
       axioms: ["propext", "Classical.choice", "Quot.sound"]
-      comparator_config: "Audit/OccupationMeasure/comparator.json"
+      comparator_config: "ORRWAudit/OccupationMeasure/comparator.json"
       literature_dependencies: []
 
 automation:
@@ -143,8 +143,8 @@ automation:
         closure of every node, a warning-free build, coverage of every
         statement of the paper, a recorded clause-by-clause reading of each
         statement, quantifier order and exponents.  The Lean comparator
-        (leanprover/comparator) passes on all four Audit pairs with the Lean
-        kernel and with the independent nanoda kernel; Audit/COMPARATOR_RUNS.md
+        (leanprover/comparator) passes on all four ORRWAudit pairs with the Lean
+        kernel and with the independent nanoda kernel; ORRWAudit/COMPARATOR_RUNS.md
         records the pins, the results and the reproduction steps, and
         .github/workflows/comparator.yml runs it on request.
       cost:
@@ -162,9 +162,9 @@ automation:
     supervision of the author.  Every proof is checked by the Lean kernel and
     Mathlib; the verified library contains no sorry and no custom axiom, and
     no cited result enters as a hypothesis.  The Mathlib-only comparator
-    challenge files (Audit/*/Challenge.lean) each contain exactly one
+    challenge files (ORRWAudit/*/Challenge.lean) each contain exactly one
     intentional statement-level sorry (the theorem body), which is filled by
-    the corresponding Audit/*/Solution.lean.  The dependency
+    the corresponding ORRWAudit/*/Solution.lean.  The dependency
     Lattice-Probability is a separate library shared by several
     formalizations.  No available record identifies the tool that produced
     VERIFICATION.md, ORRW/Certificate.lean and the continuous-integration
@@ -207,22 +207,22 @@ alignment:
       lean: "ORRW.range_lower_bound"
       module: "ORRW.MainTheorems"
       status: "proved"
-      note: "Certified statement ORRW.Frozen.range_lower_bound (thm-main). Comparator challenge Audit/RangeLowerBound/."
+      note: "Certified statement ORRW.Frozen.range_lower_bound (thm-main). Comparator challenge ORRWAudit/RangeLowerBound/."
     - source: "Theorem 1.2 (thm:whp)"
       lean: "ORRW.range_tail"
       module: "ORRW.MainTheorems"
       status: "proved"
-      note: "Certified statement ORRW.Frozen.range_tail (thm-whp). Comparator challenge Audit/RangeTail/."
+      note: "Certified statement ORRW.Frozen.range_tail (thm-whp). Comparator challenge ORRWAudit/RangeTail/."
     - source: "The almost-sure bound stated after Theorem 1.2 (thm:whp)"
       lean: "ORRW.range_ae"
       module: "ORRW.MainTheorems"
       status: "proved"
-      note: "Certified statement ORRW.Frozen.range_ae (ae-range). Comparator challenge Audit/RangeAlmostSure/."
+      note: "Certified statement ORRW.Frozen.range_ae (ae-range). Comparator challenge ORRWAudit/RangeAlmostSure/."
     - source: "Theorem 1.3 (thm:occupation-intro)"
       lean: "ORRW.occupation_measure"
       module: "ORRW.MainTheorems"
       status: "proved"
-      note: "Certified statement ORRW.Frozen.occupation_measure (thm-occupation-measure). Comparator challenge Audit/OccupationMeasure/."
+      note: "Certified statement ORRW.Frozen.occupation_measure (thm-occupation-measure). Comparator challenge ORRWAudit/OccupationMeasure/."
     - source: "Sections 2 to 8: every lemma, proposition and theorem"
       lean: "ORRW.Frozen.*"
       module: "ORRW.Frozen"

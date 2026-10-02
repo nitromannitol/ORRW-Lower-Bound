@@ -1,0 +1,14 @@
+{
+  "challenge_module": "ORRWAudit.RangeTail.Challenge",
+  "solution_module": "ORRWAudit.RangeTail.Solution",
+  "theorem_names": [
+    "ORRWAudit.range_tail"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}
