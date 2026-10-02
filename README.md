@@ -317,9 +317,9 @@ tools/                the checkers and generators listed under Building
 
 ## How this was built
 
-The Lean code was written by Claude (Opus 5, Opus 5.5, Haiku 4.5 and Sonnet 5), GLM (5.3
-and 5.3-flash) and gpt-6-astra under the close supervision of the author; models, tooling
-and cost are disclosed in [`formalization.yaml`](formalization.yaml), following the
+The Lean code was written mostly by Claude (Opus 5, Opus 5.5 and Haiku 4.5), with
+contributions by GLM-5.3-flash, under the close supervision of the author; models, tooling,
+cost and review status are disclosed in [`formalization.yaml`](formalization.yaml), following the
 [mathlib-initiative](https://github.com/mathlib-initiative/formalization.yaml) standard.
 
 ## Authors, citation, acknowledgements

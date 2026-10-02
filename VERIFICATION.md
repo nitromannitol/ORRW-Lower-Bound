@@ -37,11 +37,12 @@ Lean indexes each such edge once by a site and a positive coordinate direction.
   exit time. This passage is a correspondence argument; the frozen export is
   the finite-horizon statement.
 - **Exit-time normalization.** The paper and Lean define `u_A = -Δ_A⁻¹ 1`.
-  For the discrete-time simple random walk used in the current paper,
-  `2d u_A(x)` is the expected exit time. The older continuous-time description
-  in the header of the library module `LatticeProb/Walk/Dirichlet.lean` uses rate one along each edge, for which
-  `u_A` itself is the expected exit time. The algebraic definition is unchanged;
-  the probabilistic interpretation is not a separate frozen theorem.
+  For the discrete-time simple random walk of the paper, `2d u_A(x)` is the
+  expected exit time. The header of the library module
+  `LatticeProb/Walk/Dirichlet.lean` describes the continuous-time walk with rate one
+  along each edge, for which `u_A` itself is the expected exit time. The algebraic
+  definition is the same in both readings; the probabilistic interpretation is not
+  a separate frozen theorem.
 - **Effective resistance.** `LatticeProb.Reff` is defined by the inverse diagonal of
   the Dirichlet Laplacian. The electrical-network interpretation of this
   quantity is not separately formalized. The algebraic identities and bounds
@@ -53,19 +54,14 @@ Lean indexes each such edge once by a site and a positive coordinate direction.
   paper's stochastic-process formulation is explained in the source headers.
 - **Uniformity in a site.** A bound for the supremum over sites is represented
   by a universal quantifier over sites inside the constant's scope.
-- **Occupation corollary.** The current `eq:cesaro` bounds the sum of return
+- **Occupation corollary.** The paper's `eq:cesaro` bounds the sum of return
   probabilities by `C (1 + (β−1)^(d/(d+1))) n^(1/(d+1))`.
   The frozen `occupation_cesaro` instead bounds their average by
-  `C β n^(−d/(d+1))`. It is a weaker consequence, not the literal updated
+  `C β n^(−d/(d+1))`. It is a weaker consequence, not the literal
   display. The dimension-specific interval estimate in `occupation` retains
-  the sharper `(β−1)` dependence and implies the updated display by the
+  the sharper `(β−1)` dependence and implies the display by the
   elementary simplification given in the paper. That sharper corollary has
   not been added as a separate Lean declaration.
-
-The manuscript revisions moved the occupation corollaries out of
-Theorem 8.2 and changed constant notation. No frozen declaration or proof was
-changed in this repository preparation. Source comments and the result map
-were updated to describe the revised snapshot.
 
 ## Reproducing the checks
 
