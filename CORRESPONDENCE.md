@@ -36,18 +36,18 @@ and notes on differences in formulation.
 ### Where a Lean statement is not literally the paper's
 
 The following entries describe the principal modelling conventions.
-[VERIFICATION.md](VERIFICATION.md) records the changes in constant notation
-and the revised occupation corollary in the current manuscript snapshot.
+[VERIFICATION.md](VERIFICATION.md) records the conventions for constants and
+each difference in formulation.
 
 | paper | how the Lean statement differs | why |
 |---|---|---|
-| `lem:exp` | both statements use the ORRW filtration and give bounds at every finite horizon; Lean represents `Φ_{n∧ζ}`, `Γ_{n∧ζ}` and `n∧ζ` as functions of finite histories and assumes the stopped one-step drift | the author approved specializing the paper on 2026-09-05.  The frozen Lean statement and its constants are unchanged.  Every printed stopping time satisfies the increment identities required in Lean; see F-601 through F-605 |
+| `lem:exp` | both statements use the ORRW filtration and give bounds at every finite horizon; Lean represents `Φ_{n∧ζ}`, `Γ_{n∧ζ}` and `n∧ζ` as functions of finite histories and assumes the stopped one-step drift | the author's ruling specializes the paper's formulation to finite histories.  Every printed stopping time satisfies the increment identities required in Lean; see F-601 through F-605 |
 | `lem:schur` | the identification `Reff(x ↔ (A⁺)^c) = -Δ_{A⁺}^{-1}(x,x)` is a definition, not a proved statement | ruling L-002.  The other five assertions of the lemma, including both identities of `eq:hbound`, are proved |
 | `lem:martingale` | the paper says `(n + Φ_n - Γ_n)` is a supermartingale; the Lean statement is the equivalent one-step drift `1 ≤ E[ΔΓ - ΔΦ]` | that drift is the paper's own `eq:drift`, and it is what the proof of `prop:tail` consumes |
 
 The occupation estimates have separate declarations for the interval bound,
-the introductory occupation bound, and the older time-averaged corollary.
-The last is weaker in its dependence on reinforcement than the current
+the introductory occupation bound, and the time-averaged corollary.
+The last is weaker in its dependence on reinforcement than the display
 `eq:cesaro`; see VERIFICATION.md. Proposition `prop:displacement` has separate
 finite-horizon and almost-sure declarations.
 
@@ -62,7 +62,7 @@ all times at once and so could not be stated under it:
 | after `thm:whp` | `liminf |R_n| n^{-d/(d+1)} >= c b^{-d/(d+1)}` a.s. | `ae-range` |
 | closing display of `prop:displacement` | `liminf Λ_n n^{-1/(d+1)} >= c b^{-1/(d+1)}` a.s. | `ae-displacement` |
 
-Both are now formalized.  `ORRW/Support/InfinitePath.lean` builds
+Both are formalized.  `ORRW/Support/InfinitePath.lean` builds
 `ORRW.pathMeasure`, the law of the walk on infinite direction words, from the
 one-step kernels by the Ionescu-Tulcea theorem; `bridge-path-measure` proves its
 finite-dimensional marginals are exactly `ORRW.prob`; and
@@ -89,8 +89,7 @@ that a cross-reference such as "see ruling L-002" can actually be followed.
 | `R-006` | a `sup` over sites is rendered as a `∀` inside the constant's scope | `ORRW/Frozen/Occupation/OccupationMeasure.lean` |
 | `F-***`, `W-***` | per-node transcription decisions | the header of the frozen file that uses them |
 
-`R-004` and `R-005` are retired: they governed an earlier Section 8 argument
-that no longer appears here, and nothing in `ORRW/` depends on them.
+The ruling numbers `R-004` and `R-005` are not used.
 
 ## Main results
 

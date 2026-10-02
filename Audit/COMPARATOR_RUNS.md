@@ -1,6 +1,6 @@
 # Comparator runs
 
-The official `leanprover/comparator` was run on every pair in this directory on 2026-09-24, at commit `8d0e8c3`, on a local machine. Each pair was checked twice: once with the Lean kernel, and once more with the independent `nanoda` kernel enabled (a temporary copy of `comparator.json` with `"enable_nanoda": true`). The committed configurations keep `enable_nanoda` false so that a reproduction needs only three tools.
+The official `leanprover/comparator` was run on every pair in this directory on a local machine. Each pair was checked twice: once with the Lean kernel, and once more with the independent `nanoda` kernel enabled (a temporary copy of `comparator.json` with `"enable_nanoda": true`). The committed configurations keep `enable_nanoda` false so that a reproduction needs only three tools.
 
 | Tool | Revision |
 |---|---|

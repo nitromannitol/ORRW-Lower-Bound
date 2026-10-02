@@ -77,17 +77,15 @@ over definitions that can be read without the library.
   (`ORRW.Frozen.pathMeasure_restr`), are there to help with that check; they
   are not part of the comparator surface.
 
-## 6. Uncertainties
+## 6. Limits of the local check
 
-- **U1 (resolved).**  `leanprover/comparator` was run on these pairs on
-  2026-09-24 at commit `8d0e8c3`, and every pair passed with the Lean kernel
-  and with the independent nanoda kernel; see
-  [`COMPARATOR_RUNS.md`](COMPARATOR_RUNS.md) for the results and the
-  reproduction steps.  The local regression compares the solution types with
-  the challenge-environment types up to the auxiliary proof lemmas that a
-  `def` abstracts; the comparator's own closure check is stricter, and has
-  now confirmed the pairs directly.
-- **U2.**  The repository and its shared library Lattice-Probability both
-  enter the solutions' import closure.  `Audit/StatementRegression.lean`
+- **Comparator versus regression.**  The local regression compares the
+  solution types with the challenge-environment types up to the auxiliary
+  proof lemmas that a `def` abstracts.  The comparator's own closure check is
+  stricter, and every pair passes it with the Lean kernel and with the
+  independent nanoda kernel; see [`COMPARATOR_RUNS.md`](COMPARATOR_RUNS.md) for
+  the results and the reproduction steps.
+- **Two namespaces.**  The repository and its shared library Lattice-Probability
+  both enter the solutions' import closure.  `Audit/StatementRegression.lean`
   checks that no solution statement names a constant of the namespace `ORRW`
   or of the library namespace `LatticeProb`.

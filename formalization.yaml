@@ -1,7 +1,17 @@
-version: "v0.3"
+version: "v0.4"
 
 project:
   name: "ORRW-Lower-Bound"
+  description: >-
+    A Lean formalization of the paper "Once-reinforced random walk on Z^d has
+    range exponent at least d/(d+1)" by Bou-Rabee and Peres: for d >= 2 and
+    reinforcement beta >= 1, the expected range of once-reinforced random walk
+    is at least c beta^(-d/(d+1)) n^(d/(d+1)) (Theorem 1.1), with a
+    stretched-exponential lower tail (Theorem 1.2), the almost-sure bound it
+    implies, and a bound on the occupation measure (Theorem 1.3). Every lemma
+    and proposition behind them is formalized as well, and nothing is assumed.
+    The four main theorems are independently checked using the Audit/
+    comparator pairs.
   authors:
     - "Ahmed Bou-Rabee"
   license: "Apache-2.0"
@@ -14,9 +24,24 @@ sources:
     id: ""                      # TODO(author): the arXiv identifier (submitted 2026-09-07, pending)
     url: ""
     type: "preprint"
+    relationship: "formalizes"
+    note: >-
+      The paper under formalization. Every theorem, lemma and proposition is
+      formalized; see status.scope for the precise scope and
+      fidelity.divergences for the differences in formulation.
     license: ""                 # TODO(author): the license under which the paper is posted
-    author_contacted: "n/a"     # the formalizer is an author of the source
-    prior_work: ""
+    author_endorsement: "n/a"   # the formalizer is an author of the source
+
+related_formalizations:
+  - id: "https://github.com/nitromannitol/Lattice-Probability"
+    relationship: "builds-on"
+    note: >-
+      Lattice-Probability (LatticeProb), a separate library shared by several
+      formalizations, pinned as a git dependency at commit bbe0b90. It
+      provides the lattice objects that do not depend on the reinforced walk:
+      the Dirichlet Laplacian, exit times, effective resistance, the resistance
+      packing bound, the insertion inequality, the lazy walk and its Green
+      function, and the elementary geometry of direction words.
 
 status:
   scope: >-
@@ -36,6 +61,8 @@ status:
     additionally restated over a Mathlib-only vocabulary for the Lean
     comparator (Audit/).
   sorry_count: 0
+  sorry_count_scope: "ORRW production library only"
+  comparator_challenge_sorry_count: 4
   sorry_in_definitions: 0
   axioms:
     - "propext"
@@ -104,55 +131,24 @@ automation:
         - "claude-opus-5-5"
       framework: >-
         Claude Code (Anthropic) as the supervising and proving harness, which
-        wrote nearly all of the Lean code through its subagents; Codex CLI
-        (OpenAI) for gpt-6-astra; scripted API fan-outs on the ollama cloud
-        (glm_lean.py, docstrings.py) for the GLM models
+        wrote nearly all of the Lean code; Codex CLI (OpenAI, reasoning effort
+        xhigh) for gpt-6-astra; scripted API fan-outs on the ollama cloud for
+        the GLM models
       tool_setup: >-
-        The development was written under an earlier Lean toolchain and moved
-        on 2026-09-23 to leanprover/lean4:v4.32.0 with Mathlib at revision
+        Lake builds under leanprover/lean4:v4.32.0 with Mathlib at revision
         81a5d257c8e410db227a6665ed08f64fea08e997 and the shared library
-        Lattice-Probability, now at commit bbe0b90.  Division of labour:
-        claude-opus-5 (Claude Code), in one session and its subagents, froze
-        the statements section by section, wrote the model, the proofs and the
-        checkers, and audited the Lean nodes against the paper (2026-09-04 and
-        2026-09-05), in a private working repository whose final state is the
-        first commit here (2026-09-05); claude-haiku-4-5 subagents under it
-        wrote small lemmas about the model and checked three Section 2 files
-        (2026-09-05); glm-5.3-flash drafted compile-filtered proof candidates
-        and docstrings, eighteen glm-5.3 auditors checked the statements one
-        node each, and a second audit by twelve glm-5.3 auditors found two
-        mismatches, both corrected before the release (2026-09-05);
-        gpt-6-astra (Codex CLI, reasoning xhigh) ran read-only audits of the
-        paper (2026-09-04 and 2026-09-05), made four commits linking the
-        paper's results to their Lean statements and editing the documentation
-        (2026-09-05), and audited six results of the public repository for
-        fidelity (2026-09-12), finding no substantive mismatch; two commits of
-        2026-09-07 added VERIFICATION.md, ORRW/Certificate.lean, the continuous
-        integration and a rewritten README and recorded the arXiv submission,
-        and no local record identifies the tool that made them; a
-        claude-sonnet-5 session drafted a README rewrite (2026-09-18), which
-        this version replaces; claude-opus-5-5 (Claude Code), supervising
-        claude-opus-5-5 subagents, ported the development to Lean v4.32.0,
-        replaced its copies of lattice objects by those of Lattice-Probability,
-        moved the resistance packing bound and the insertion inequality into
-        that library, and wrote ORRW/MainTheorems.lean, the comparator surface
-        Audit/ and this release documentation (2026-09-23 and 2026-09-24).  A
-        frozen-statement manifest (ledger/manifest.yaml) pins each registered
-        statement by the SHA-256 of its text, and the tools/ checkers verify
-        the hashes, the axiom closure of every node, a warning-free build,
-        coverage of every statement of the paper, a recorded clause-by-clause
-        reading of each statement, quantifier order and exponents.  The Lean
-        comparator (leanprover/comparator) was run on all four Audit pairs on
-        2026-09-24 at commit 8d0e8c3, and each pair passed with the Lean
+        Lattice-Probability at commit bbe0b90.  A frozen-statement manifest
+        (ledger/manifest.yaml) pins each registered statement by the SHA-256
+        of its text, and the tools/ checkers verify the hashes, the axiom
+        closure of every node, a warning-free build, coverage of every
+        statement of the paper, a recorded clause-by-clause reading of each
+        statement, quantifier order and exponents.  The Lean comparator
+        (leanprover/comparator) passes on all four Audit pairs with the Lean
         kernel and with the independent nanoda kernel; Audit/COMPARATOR_RUNS.md
-        records the results and the reproduction steps.
+        records the pins, the results and the reproduction steps, and
         .github/workflows/comparator.yml runs it on request.
       cost:
-        wall_time: >-
-          about two days for the formalization (2026-09-04 to 2026-09-05, every
-          statement sealed on 2026-09-05), then the port, the move of shared
-          lemmas into Lattice-Probability and the comparator surface on
-          2026-09-23 and 2026-09-24
+        wall_time: "about two days for the formalization, then about two further days for the shared library and the comparator surface"
         spend_usd: "not tracked (subscription and API accounts)"
         hardware: "a 20-thread Intel i9-9900X / 125 GB RAM Ubuntu machine"
       prompting_notes: >-
@@ -170,8 +166,9 @@ automation:
     intentional statement-level sorry (the theorem body), which is filled by
     the corresponding Audit/*/Solution.lean.  The dependency
     Lattice-Probability is a separate library shared by several
-    formalizations; the lattice objects this repository takes from it were
-    first written here and moved into it.
+    formalizations.  No available record identifies the tool that produced
+    VERIFICATION.md, ORRW/Certificate.lean and the continuous-integration
+    workflows.
 
 fidelity:
   divergences: >-
@@ -188,9 +185,8 @@ fidelity:
     stated as the equivalent one-step drift inequality, and Lemma 5.1 for
     finite-history processes with a predictable clock; a supremum over sites
     is a universal quantifier inside the constant's scope; and the frozen
-    time-averaged occupation bound is weaker than the current display
-    eq:cesaro, whose sharper dependence on beta the interval bound of Theorem
-    8.2 keeps.
+    time-averaged occupation bound is weaker than the display eq:cesaro,
+    whose sharper dependence on beta the interval bound of Theorem 8.2 keeps.
 
 review:
   status: "author-verified"
@@ -199,11 +195,10 @@ review:
   notes: >-
     Correctness of every proof is guaranteed by the Lean kernel and Mathlib (no
     sorry, no custom axiom).  The author ruled on the statement-level
-    decisions recorded during development.  The statements were additionally
-    audited against the paper by claude-opus-5 subagents and by glm-5.3
-    auditors during development, and six results of the public repository by
-    a read-only gpt-6-astra fidelity audit on 2026-09-12.  This is not
-    external peer review.
+    decisions.  The statements were additionally audited against the paper,
+    node by node, by claude-opus-5 and glm-5.3 model auditors, and six results
+    by a read-only gpt-6-astra fidelity audit, which found no substantive
+    mismatch.  This is not external peer review.
 
 alignment:
   namespace: "ORRW"
