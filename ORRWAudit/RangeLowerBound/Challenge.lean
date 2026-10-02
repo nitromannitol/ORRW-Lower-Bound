@@ -17,7 +17,7 @@ direction word; the traversed edges, the range and the step rule of
 once-reinforced random walk; its law on words of length `n`, with expectation
 and probability; and its law on infinite direction words, built by the
 Ionescu-Tulcea theorem.  It is a statement-level copy of the repository
-definitions (see `Audit/README.md` for the provenance table) and is
+definitions (see `ORRWAudit/README.md` for the provenance table) and is
 byte-identical in all four challenges.  The sole intentional `sorry` is the
 proof of the final theorem.
 
