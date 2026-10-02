@@ -16,15 +16,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
-      # Lattice-Probability is private: read it with the repository's deploy key.
-      - name: Read access to Lattice-Probability
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.LP_DEPLOY_KEY }}
-      - name: Fetch Lattice-Probability over SSH
-        run: |
-          git config --global url."git@github.com:nitromannitol/Lattice-Probability".insteadOf "https://github.com/nitromannitol/Lattice-Probability"
-
       - name: Install elan
         run: |
           curl https://elan.lean-lang.org/elan-init.sh -sSf | sh -s -- -y --default-toolchain none
