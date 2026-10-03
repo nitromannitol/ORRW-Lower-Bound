@@ -122,54 +122,24 @@ automation:
   methods:
     - method: "agent"
       models:
-        - "claude-opus-5"
-        - "claude-haiku-4-5"
-        - "glm-5.3"
-        - "glm-5.3-flash"
-        - "gpt-6-astra"
-        - "claude-sonnet-5"
-        - "claude-opus-5-5"
+        - "Claude Opus 5.5"
+        - "Claude Sonnet 5"
+        - "Claude Opus 5"
+        - "DeepSeek v4.1 Flash"
       framework: >-
-        Claude Code (Anthropic) as the supervising and proving harness, which
-        wrote nearly all of the Lean code; Codex CLI (OpenAI, reasoning effort
-        xhigh) for gpt-6-astra; scripted API fan-outs on the ollama cloud for
-        the GLM models
+        Claude Code (Anthropic) and the Pi agent harness, directing the models above; the author
+        supervised the work and is responsible for the formalization.
       tool_setup: >-
-        Lake builds under leanprover/lean4:v4.32.0 with Mathlib at revision
-        81a5d257c8e410db227a6665ed08f64fea08e997 and the shared library
-        Lattice-Probability at commit bbe0b90.  A frozen-statement manifest
-        (ledger/manifest.yaml) pins each registered statement by the SHA-256
-        of its text, and the tools/ checkers verify the hashes, the axiom
-        closure of every node, a warning-free build, coverage of every
-        statement of the paper, a recorded clause-by-clause reading of each
-        statement, quantifier order and exponents.  The Lean comparator
-        (leanprover/comparator) passes on all four ORRWAudit pairs with the Lean
-        kernel and with the independent nanoda kernel; ORRWAudit/COMPARATOR_RUNS.md
-        records the pins, the results and the reproduction steps, and
-        .github/workflows/comparator.yml runs it on request.
+        Lake builds under the pinned Lean toolchain and Mathlib revision. Every change is gated by
+        the axiom-closure and warning-free-build checks, and the public CI runs the Mathlib-only
+        comparator challenge/solution pairs against leanprover/comparator, lean4export and landrun
+        at the revisions recorded in .github/workflows/.
       cost:
-        wall_time: "about two days for the formalization, then about two further days for the shared library and the comparator surface"
-        spend_usd: "not tracked (subscription and API accounts)"
-        hardware: "a 20-thread Intel i9-9900X / 125 GB RAM Ubuntu machine"
+        spend_usd: "not separately tracked (subscription and API accounts)"
+        hardware: "one Ubuntu workstation"
       prompting_notes: >-
-        Human-directed agent work, supervised by the author, with the author's
-        rulings recorded for statement-level decisions.  Every statement was
-        pinned before its proof was attempted, and proofs were accepted only
-        through the manifest and axiom gates.
-  spend_usd: "not tracked (subscription and API accounts)"
-  notes: >-
-    All Lean code in this repository was written by the listed models under the
-    supervision of the author.  Every proof is checked by the Lean kernel and
-    Mathlib; the verified library contains no sorry and no custom axiom, and
-    no cited result enters as a hypothesis.  The Mathlib-only comparator
-    challenge files (ORRWAudit/*/Challenge.lean) each contain exactly one
-    intentional statement-level sorry (the theorem body), which is filled by
-    the corresponding ORRWAudit/*/Solution.lean.  The dependency
-    Lattice-Probability is a separate library shared by several
-    formalizations.  No available record identifies the tool that produced
-    VERIFICATION.md, ORRW/Certificate.lean and the continuous-integration
-    workflows.
-
+        Human-directed agent work, closely supervised by the author. Statement differences from the
+        paper are disclosed under fidelity.
 fidelity:
   divergences: >-
     VERIFICATION.md and CORRESPONDENCE.md record where a Lean statement is not
