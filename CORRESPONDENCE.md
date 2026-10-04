@@ -112,30 +112,30 @@ result as a hypothesis.
 
 | id | Lean | paper | state |
 |---|---|---|---|
-| `thm-main` | [ORRW.Frozen.range_lower_bound](ORRW/Frozen/RangeLowerBound.lean#L18) | [thm:main](paper/orrw.tex#L112) | SEALED |
-| `thm-whp` | [ORRW.Frozen.range_tail](ORRW/Frozen/RangeTail.lean#L20) | [thm:whp](paper/orrw.tex#L128) | SEALED |
-| `lem-max-exit` | [ORRW.Frozen.max_exit](ORRW/Frozen/Insertion/ExitTimeBounds.lean#L37) | [lem:max-exit](paper/orrw.tex#L423) | SEALED |
-| `lem-schur` | [ORRW.Frozen.one_point_insertion](ORRW/Frozen/Insertion/OnePointInsertion.lean#L41) | [lem:schur](paper/orrw.tex#L447) | SEALED |
-| `lem-packing` | [ORRW.Frozen.resistance_packing](ORRW/Frozen/Insertion/ResistancePacking.lean#L37) | [lem:packing](paper/orrw.tex#L485) | SEALED |
-| `lem-insertion` | [ORRW.Frozen.insertion_inequality](ORRW/Frozen/Insertion/InsertionInequality.lean#L36) | [lem:insertion](paper/orrw.tex#L515) | SEALED |
-| `guard-total-weight-pos` | [ORRW.Frozen.totalWeight_pos](ORRW/Frozen/Guards/TotalWeightPos.lean#L14) | model guard for ORRW.stepProb (ORRW/Basic.lean) | SEALED |
-| `guard-prob-pmf` | [ORRW.Frozen.sum_prob_eq_one](ORRW/Frozen/Guards/ProbIsPMF.lean#L15) | model guard for ORRW.prob (ORRW/Basic.lean) | SEALED |
-| `guard-edges-le-sites` | [ORRW.Frozen.card_edges_le_card_range](ORRW/Frozen/Guards/EdgesLeSites.lean#L18) | [eq:edges-sites](paper/orrw.tex#L723) | SEALED |
-| `guard-one-step-witness` | [ORRW.Frozen.expect_card_range_one_step](ORRW/Frozen/Guards/OneStepWitness.lean#L20) | numeric witness for the normalization of ORRW.expect | SEALED |
-| `lem-martingale` | [ORRW.Frozen.supermartingale_drift](ORRW/Frozen/Potential/Supermartingale.lean#L51) | [lem:martingale](paper/orrw.tex#L596) | SEALED |
-| `lem-walk-order` | [ORRW.Frozen.insertion_order](ORRW/Frozen/Potential/InsertionOrder.lean#L58) | [lem:walk-order](paper/orrw.tex#L632) | SEALED |
-| `prop-charge` | [ORRW.Frozen.accumulated_charge](ORRW/Frozen/Potential/AccumulatedCharge.lean#L42) | [prop:charge](paper/orrw.tex#L669) | SEALED |
-| `lem-exp` | [ORRW.Frozen.time_versus_charge](ORRW/Frozen/Tail/TimeVersusCharge.lean#L73) | [lem:exp](paper/orrw.tex#L739) | SEALED |
-| `prop-tail` | [ORRW.Frozen.sigma_tail](ORRW/Frozen/Tail/SigmaTail.lean#L43) | [prop:tail](paper/orrw.tex#L792) | SEALED |
-| `prop-displacement` | [ORRW.Frozen.displacement](ORRW/Frozen/Tail/Displacement.lean#L63) | [prop:displacement](paper/orrw.tex#L863) | SEALED |
-| `prop-beta-sharp` | [ORRW.Frozen.exponents_optimal](ORRW/Frozen/Tail/ExponentsOptimal.lean#L43) | [prop:beta-sharp](paper/orrw.tex#L912) | SEALED |
-| `lem-green` | [ORRW.Frozen.lazy_green_bounds](ORRW/Frozen/Occupation/LazyGreen.lean#L94) | [lem:green](paper/orrw.tex#L991) | SEALED |
-| `thm-occupation` | [ORRW.Frozen.occupation](ORRW/Frozen/Occupation/Occupation.lean#L70) | [thm:return](paper/orrw.tex#L1039) | SEALED |
-| `thm-occupation-cesaro` | [ORRW.Frozen.occupation_cesaro](ORRW/Frozen/Occupation/OccupationCesaro.lean#L20) | [eq:cesaro](paper/orrw.tex#L1102) | SEALED |
-| `thm-occupation-measure` | [ORRW.Frozen.occupation_measure](ORRW/Frozen/Occupation/OccupationMeasure.lean#L26) | [thm:occupation-intro](paper/orrw.tex#L145) | SEALED |
-| `bridge-path-measure` | [ORRW.Frozen.pathMeasure_restr](ORRW/Frozen/AlmostSure/PathMeasureBridge.lean#L34) | not a paper statement; required for the almost-sure corollaries (see CORRESPONDENCE.md, R-001 scope) | SEALED |
-| `ae-range` | [ORRW.Frozen.range_ae](ORRW/Frozen/AlmostSure/RangeAlmostSure.lean#L35) | [paper passage](paper/orrw.tex#L138), the Borel-Cantelli corollary stated in prose after thm:whp (ruling A-003) | SEALED |
-| `ae-displacement` | [ORRW.Frozen.displacement_ae](ORRW/Frozen/AlmostSure/DisplacementAlmostSure.lean#L29) | [prop:displacement](paper/orrw.tex#L863), almost-sure clause | SEALED |
+| `thm-main` | [ORRW.Frozen.range_lower_bound](ORRW/Frozen/RangeLowerBound.lean#L18) | [thm:main](paper/orrw.tex#L112) | PROVED |
+| `thm-whp` | [ORRW.Frozen.range_tail](ORRW/Frozen/RangeTail.lean#L20) | [thm:whp](paper/orrw.tex#L128) | PROVED |
+| `lem-max-exit` | [ORRW.Frozen.max_exit](ORRW/Frozen/Insertion/ExitTimeBounds.lean#L37) | [lem:max-exit](paper/orrw.tex#L423) | PROVED |
+| `lem-schur` | [ORRW.Frozen.one_point_insertion](ORRW/Frozen/Insertion/OnePointInsertion.lean#L41) | [lem:schur](paper/orrw.tex#L447) | PROVED |
+| `lem-packing` | [ORRW.Frozen.resistance_packing](ORRW/Frozen/Insertion/ResistancePacking.lean#L37) | [lem:packing](paper/orrw.tex#L485) | PROVED |
+| `lem-insertion` | [ORRW.Frozen.insertion_inequality](ORRW/Frozen/Insertion/InsertionInequality.lean#L36) | [lem:insertion](paper/orrw.tex#L515) | PROVED |
+| `guard-total-weight-pos` | [ORRW.Frozen.totalWeight_pos](ORRW/Frozen/Guards/TotalWeightPos.lean#L14) | model guard for ORRW.stepProb (ORRW/Basic.lean) | PROVED |
+| `guard-prob-pmf` | [ORRW.Frozen.sum_prob_eq_one](ORRW/Frozen/Guards/ProbIsPMF.lean#L15) | model guard for ORRW.prob (ORRW/Basic.lean) | PROVED |
+| `guard-edges-le-sites` | [ORRW.Frozen.card_edges_le_card_range](ORRW/Frozen/Guards/EdgesLeSites.lean#L18) | [eq:edges-sites](paper/orrw.tex#L723) | PROVED |
+| `guard-one-step-witness` | [ORRW.Frozen.expect_card_range_one_step](ORRW/Frozen/Guards/OneStepWitness.lean#L20) | numeric witness for the normalization of ORRW.expect | PROVED |
+| `lem-martingale` | [ORRW.Frozen.supermartingale_drift](ORRW/Frozen/Potential/Supermartingale.lean#L51) | [lem:martingale](paper/orrw.tex#L596) | PROVED |
+| `lem-walk-order` | [ORRW.Frozen.insertion_order](ORRW/Frozen/Potential/InsertionOrder.lean#L58) | [lem:walk-order](paper/orrw.tex#L632) | PROVED |
+| `prop-charge` | [ORRW.Frozen.accumulated_charge](ORRW/Frozen/Potential/AccumulatedCharge.lean#L42) | [prop:charge](paper/orrw.tex#L669) | PROVED |
+| `lem-exp` | [ORRW.Frozen.time_versus_charge](ORRW/Frozen/Tail/TimeVersusCharge.lean#L73) | [lem:exp](paper/orrw.tex#L739) | PROVED |
+| `prop-tail` | [ORRW.Frozen.sigma_tail](ORRW/Frozen/Tail/SigmaTail.lean#L43) | [prop:tail](paper/orrw.tex#L792) | PROVED |
+| `prop-displacement` | [ORRW.Frozen.displacement](ORRW/Frozen/Tail/Displacement.lean#L63) | [prop:displacement](paper/orrw.tex#L863) | PROVED |
+| `prop-beta-sharp` | [ORRW.Frozen.exponents_optimal](ORRW/Frozen/Tail/ExponentsOptimal.lean#L43) | [prop:beta-sharp](paper/orrw.tex#L912) | PROVED |
+| `lem-green` | [ORRW.Frozen.lazy_green_bounds](ORRW/Frozen/Occupation/LazyGreen.lean#L94) | [lem:green](paper/orrw.tex#L991) | PROVED |
+| `thm-occupation` | [ORRW.Frozen.occupation](ORRW/Frozen/Occupation/Occupation.lean#L70) | [thm:return](paper/orrw.tex#L1039) | PROVED |
+| `thm-occupation-cesaro` | [ORRW.Frozen.occupation_cesaro](ORRW/Frozen/Occupation/OccupationCesaro.lean#L20) | [eq:cesaro](paper/orrw.tex#L1102) | PROVED |
+| `thm-occupation-measure` | [ORRW.Frozen.occupation_measure](ORRW/Frozen/Occupation/OccupationMeasure.lean#L26) | [thm:occupation-intro](paper/orrw.tex#L145) | PROVED |
+| `bridge-path-measure` | [ORRW.Frozen.pathMeasure_restr](ORRW/Frozen/AlmostSure/PathMeasureBridge.lean#L34) | not a paper statement; required for the almost-sure corollaries (see CORRESPONDENCE.md, R-001 scope) | PROVED |
+| `ae-range` | [ORRW.Frozen.range_ae](ORRW/Frozen/AlmostSure/RangeAlmostSure.lean#L35) | [paper passage](paper/orrw.tex#L138), the Borel-Cantelli corollary stated in prose after thm:whp (ruling A-003) | PROVED |
+| `ae-displacement` | [ORRW.Frozen.displacement_ae](ORRW/Frozen/AlmostSure/DisplacementAlmostSure.lean#L29) | [prop:displacement](paper/orrw.tex#L863), almost-sure clause | PROVED |
 
 <!-- FROZEN-SURFACE-END -->
 
