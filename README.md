@@ -246,7 +246,7 @@ To use the library, `import ORRW` pulls in the whole development; the main resul
 The checkers in `tools/` need Python 3.10 or newer and PyYAML
 (`python3 -m pip install -r tools/requirements.txt`).  `python3 tools/verify.py` runs the
 regression tests of the checkers and every check below, and fails on the first failure;
-the CI workflow runs it on request.  `check_axioms.py` and `check_warnings.py`
+the CI workflow runs it on relevant changes to `main` or by manual dispatch.  `check_axioms.py` and `check_warnings.py`
 run Lean; the others read the manifest, the paper and the Lean sources.
 
 | command | what it guarantees |
