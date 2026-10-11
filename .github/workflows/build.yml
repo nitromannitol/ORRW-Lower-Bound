@@ -1,7 +1,19 @@
 name: CI
 
-# Manual trigger only: these builds are Mathlib-scale, so they run on request.
+# Build current source, statements, and audit tooling on each main-branch change.
 on:
+  push:
+    branches: [main]
+    paths:
+      - '**/*.lean'
+      - 'tools/**'
+      - 'paper/**'
+      - 'ledger/**'
+      - 'lakefile.lean'
+      - 'lake-manifest.json'
+      - 'lean-toolchain'
+      - 'formalization.yaml'
+      - '.github/workflows/build.yml'
   workflow_dispatch:
 
 # Cancel superseded runs on the same ref.
