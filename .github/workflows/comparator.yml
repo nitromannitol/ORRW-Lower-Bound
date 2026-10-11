@@ -10,8 +10,20 @@ name: Comparator audit
 # build is cached between runs; the first run on an empty cache builds the
 # whole ORRW library.
 
-# Manual trigger only: these builds are Mathlib-scale, so they run on request.
+# Audit changed proof sources and the comparator workflow on main.
 on:
+  push:
+    branches: [main]
+    paths:
+      - '**/*.lean'
+      - 'tools/**'
+      - 'paper/**'
+      - 'ledger/**'
+      - 'lakefile.lean'
+      - 'lake-manifest.json'
+      - 'lean-toolchain'
+      - 'formalization.yaml'
+      - '.github/workflows/comparator.yml'
   workflow_dispatch:
 
 concurrency:
