@@ -1,18 +1,20 @@
-# ORRW-Lower-Bound
+# Once-reinforced random walk on ℤ<sup>d</sup> has range exponent at least d/(d+1)
 
 A machine-checked **Lean 4** formalization of the paper
-[*Once-reinforced random walk on `ℤ^d` has range exponent at least `d/(d+1)`*](https://arxiv.org/abs/2610.00090)
-(Ahmed Bou-Rabee and Yuval Peres, arXiv:2610.00090), built
-on [`mathlib`](https://github.com/leanprover-community/mathlib4) and the shared
-library [`Lattice-Probability`](https://github.com/nitromannitol/Lattice-Probability)
-(`LatticeProb`).
+
+> Ahmed Bou-Rabee and Yuval Peres,
+> [*Once-reinforced random walk on `ℤ^d` has range exponent at least `d/(d+1)`*](https://arxiv.org/abs/2610.00090),
+> arXiv:2610.00090.
+
+The development is built on [mathlib](https://github.com/leanprover-community/mathlib4) and the shared library
+[Lattice-Probability](https://github.com/nitromannitol/Lattice-Probability) (`LatticeProb`).
 
 All four main theorems of the paper are proved, unconditionally, in the form in
 which its introduction states them, together with every lemma and proposition
 behind them.
 
-[![CI](https://github.com/nitromannitol/ORRW-Lower-Bound/actions/workflows/build.yml/badge.svg)](https://github.com/nitromannitol/ORRW-Lower-Bound/actions/workflows/build.yml)
-[![Comparator audit](https://github.com/nitromannitol/ORRW-Lower-Bound/actions/workflows/comparator.yml/badge.svg)](https://github.com/nitromannitol/ORRW-Lower-Bound/actions/workflows/comparator.yml)
+[![CI](https://github.com/nitromannitol/ORRW-Lower-Bound/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/nitromannitol/ORRW-Lower-Bound/actions/workflows/build.yml)
+[![Comparator audit](https://github.com/nitromannitol/ORRW-Lower-Bound/actions/workflows/comparator.yml/badge.svg?branch=main)](https://github.com/nitromannitol/ORRW-Lower-Bound/actions/workflows/comparator.yml)
 
 ## What is proved
 
