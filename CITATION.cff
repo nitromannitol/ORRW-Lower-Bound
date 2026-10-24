@@ -34,4 +34,8 @@ references:
       - family-names: Peres
         given-names: Yuval
     year: 2026
-    notes: "The paper formalized by this repository; submitted to arXiv on 2026-09-07, identifier pending."
+    url: "https://arxiv.org/abs/2610.00090"
+    identifiers:
+      - type: other
+        value: "arXiv:2610.00090"
+    notes: "The paper formalized by this repository."

@@ -21,15 +21,15 @@ sources:
     authors:
       - "Ahmed Bou-Rabee"
       - "Yuval Peres"
-    id: ""                      # TODO(author): the arXiv identifier (submitted 2026-09-07, pending)
-    url: ""
+    id: "arXiv:2610.00090"
+    url: "https://arxiv.org/abs/2610.00090"
     type: "preprint"
     relationship: "formalizes"
     note: >-
       The paper under formalization. Every theorem, lemma and proposition is
       formalized; see status.scope for the precise scope and
       fidelity.divergences for the differences in formulation.
-    license: ""                 # TODO(author): the license under which the paper is posted
+    license: "arXiv non-exclusive distribution license 1.0"
     author_endorsement: "n/a"   # the formalizer is an author of the source
 
 related_formalizations:

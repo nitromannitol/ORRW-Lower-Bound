@@ -1,8 +1,8 @@
 # ORRW-Lower-Bound
 
-A machine-checked **Lean 4** formalization of the paper *Once-reinforced
-random walk on `ℤ^d` has range exponent at least `d/(d+1)`* (Ahmed Bou-Rabee
-and Yuval Peres; submitted to arXiv on 2026-09-07, identifier pending), built
+A machine-checked **Lean 4** formalization of the paper
+[*Once-reinforced random walk on `ℤ^d` has range exponent at least `d/(d+1)`*](https://arxiv.org/abs/2610.00090)
+(Ahmed Bou-Rabee and Yuval Peres, arXiv:2610.00090), built
 on [`mathlib`](https://github.com/leanprover-community/mathlib4) and the shared
 library [`Lattice-Probability`](https://github.com/nitromannitol/Lattice-Probability)
 (`LatticeProb`).
@@ -315,12 +315,16 @@ tools/                the checkers and generators listed under Building
 
 ## How this was built
 
-The Lean code was written by AI coding agents under the close supervision of the author; the models, tooling and cost are disclosed in [`formalization.yaml`](formalization.yaml).
+The Lean code was written with AI assistance, using models from Anthropic (Claude) and
+DeepSeek, under the direction of the author. Every proof is checked by the Lean kernel. The
+models, tooling, cost and review status are disclosed in [`formalization.yaml`](formalization.yaml),
+following the [mathlib-initiative](https://github.com/mathlib-initiative/formalization.yaml)
+standard.
 
 ## Authors, citation, acknowledgements
 
 The Lean development is by **Ahmed Bou-Rabee**.  The paper it formalizes is joint work of
-Ahmed Bou-Rabee and Yuval Peres (submitted to arXiv on 2026-09-07, identifier pending).
+Ahmed Bou-Rabee and Yuval Peres ([arXiv:2610.00090](https://arxiv.org/abs/2610.00090)).
 To cite the formalization, use [`CITATION.cff`](CITATION.cff).
 
 This formalization is built on [Lean 4](https://lean-lang.org),
