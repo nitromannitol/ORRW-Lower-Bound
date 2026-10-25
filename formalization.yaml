@@ -122,6 +122,13 @@ status:
 
 automation:
   methods:
+    - method: agent
+      models: ["GPT-6.1 Sol"]
+      tool_setup: >-
+        Submission compatibility maintenance: public module interfaces, pinned build
+        dependencies, existing proof API adaptations, comparator wiring and metadata.
+        The existing mathematical proofs were reused. Selected full Palomar preflight
+        receipts distinguish mechanical verification from review and registration.
     - method: "agent"
       models:
         - "Claude Opus 5.5"
@@ -161,16 +168,14 @@ fidelity:
     whose sharper dependence on beta the interval bound of Theorem 8.2 keeps.
 
 review:
-  status: "author-verified"
-  reviewers:
-    - "Ahmed Bou-Rabee"
-  notes: >-
-    Correctness of every proof is guaranteed by the Lean kernel and Mathlib (no
-    sorry, no custom axiom).  The author ruled on the statement-level
-    decisions.  The statements were additionally audited against the paper,
-    node by node, by claude-opus-5 and glm-5.3 model auditors, and six results
-    by a read-only gpt-6-astra fidelity audit, which found no substantive
-    mismatch.  This is not external peer review.
+  status: unchecked
+  notes: 'This submission compatibility revision has no independent statement audit or author
+    review. Original review reported before the maintenance revision: status author-verified;
+    reviewers Ahmed Bou-Rabee. Prior review notes follow: Correctness of every proof is guaranteed
+    by the Lean kernel and Mathlib (no sorry, no custom axiom).  The author ruled on the statement-level
+    decisions.  The statements were additionally audited against the paper, node by node, by
+    claude-opus-5 and glm-5.3 model auditors, and six results by a read-only gpt-6-astra fidelity
+    audit, which found no substantive mismatch.  This is not external peer review.'
 
 alignment:
   namespace: "ORRW"
