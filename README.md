@@ -206,7 +206,7 @@ difference in formulation.  In summary:
   dependency closure against Mathlib.
 - **Pinned toolchain.**  Lean `v4.35.0-rc2` ([`lean-toolchain`](lean-toolchain)), `mathlib` at
   revision `065356127b1dc0016f66b7283ce0ce2c4055aa55` and `Lattice-Probability` at
-  commit `3fcdb281e9f6ecdfc9fdf3c0988f784f84717bb7`, recorded in
+  commit `fbfba181047c28af3d2df22dcd0de49cecf98be2`, recorded in
   [`lakefile.lean`](lakefile.lean) and [`lake-manifest.json`](lake-manifest.json).
 
 The statement of every registered result is pinned by the SHA-256 of its text in
