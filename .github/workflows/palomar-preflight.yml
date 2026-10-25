@@ -1,0 +1,25 @@
+name: Palomar full preflight
+
+on:
+  workflow_dispatch:
+    inputs:
+      comparator_config_path:
+        description: Repository-relative Comparator configuration
+        required: true
+        default: ORRWAudit/RangeLowerBound/comparator.json
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  palomar-preflight:
+    uses: PalomarRegistry/PalomarSubmission/.github/workflows/submission.yml@c02bbeaed888df45c4e28c4e99dba540ad21552a
+    with:
+      repository: ${{ github.repository }}
+      commit: ${{ github.sha }}
+      pipeline_commit: c02bbeaed888df45c4e28c4e99dba540ad21552a
+      request_id: preflight001
+      mode: full
+      execution_profile: palomar-standard-v1
+      options: ${{ format('{{"comparator_config_path":"{0}","authorization_relationship":"I am a responsible author or maintainer"}}', inputs.comparator_config_path) }}
