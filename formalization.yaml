@@ -39,7 +39,7 @@ related_formalizations:
     relationship: "builds-on"
     note: >-
       Lattice-Probability (LatticeProb), a separate library shared by several
-      formalizations, pinned as a git dependency at commit fbfba181047c28af3d2df22dcd0de49cecf98be2. Its module-system compatibility port preserves the mathematical definitions and updates two existing proof calls to the supported Mathlib API. It
+      formalizations, pinned as a git dependency at commit d6dc1aaae0ad1bdfd353cb7e1817a41406131e18. Its module-system compatibility port preserves the mathematical definitions and updates two existing proof calls to the supported Mathlib API. It
       provides the lattice objects that do not depend on the reinforced walk:
       the Dirichlet Laplacian, exit times, effective resistance, the resistance
       packing bound, the insertion inequality, the lazy walk and its Green
