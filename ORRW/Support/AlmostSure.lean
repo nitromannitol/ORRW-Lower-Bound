@@ -50,7 +50,7 @@ instance isProbabilityMeasure_initMeasure [hd : Fact (0 < d)] {β : ℝ} [hβ : 
 instance isProbabilityMeasure_initTraj [Fact (0 < d)] {β : ℝ} [Fact (1 ≤ β)] :
     IsProbabilityMeasure (initTraj (d := d) β) := by
   rw [initTraj]
-  exact Measure.isProbabilityMeasure_map (by fun_prop)
+  exact (Measure.isProbabilityMeasure_map_iff (by fun_prop)).2 inferInstance
 
 /-- The path measure on infinite walks is a probability measure, so the almost-sure statements built from fixed-time bounds are stated with respect to a genuine measure. -/
 instance isProbabilityMeasure_pathMeasure [Fact (0 < d)] {β : ℝ} [Fact (1 ≤ β)] :
@@ -94,7 +94,7 @@ theorem pathMeasure_ofPath [Fact (0 < d)] {β : ℝ} [Fact (1 ≤ β)] (n : ℕ)
 
 /-- Evaluating the first n steps of an infinite walk is a measurable map, so events on finite prefixes can be transferred to the infinite-path measure. -/
 theorem measurable_ofPath (n : ℕ) : Measurable (ofPath (d := d) n) :=
-  measurable_pi_lambda _ fun _ => measurable_pi_apply _
+  measurable_pi_iff.mpr fun i => measurable_pi_apply (i : ℕ)
 
 open Classical in
 /-- **The transfer.**  Any event of the first `n` steps has the same probability
