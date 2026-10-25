@@ -1,3 +1,5 @@
+module
+
 /-
 Frozen statement of Proposition 3.3 of Bou-Rabee--Peres, *Once-reinforced random
 walk on `ℤ^d` has range exponent at least `d/(d+1)`*, Section 3, Proposition
@@ -33,8 +35,10 @@ Modelling decisions.
 * Ruling F-525 (real exponent).  `|E_m|^{1+1/d}` is a `Real.rpow` power of the
   cardinality cast to `ℝ`.
 -/
-import ORRW.Potential
-import ORRW.Support.ChargeAssembly
+public import ORRW.Potential
+public import ORRW.Support.ChargeAssembly
+
+@[expose] public section
 
 open ORRW Finset
 

@@ -1,3 +1,5 @@
+module
+
 /-
 Theorem 1.3 of `orrw.tex`, frozen.
 
@@ -16,9 +18,11 @@ word freezes the walk past its own length.  The `sup` over `z` is rendered as a
 universal quantifier, which is the same assertion and avoids an `sSup` junk value
 on an unbounded family.
 -/
-import ORRW.Basic
-import ORRW.Support.Occupation
-import ORRW.Frozen.Occupation.Occupation
+public import ORRW.Basic
+public import ORRW.Support.Occupation
+public import ORRW.Frozen.Occupation.Occupation
+
+@[expose] public section
 
 open ORRW Finset
 

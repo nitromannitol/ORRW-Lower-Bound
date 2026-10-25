@@ -1,3 +1,5 @@
+module
+
 /-
 Frozen statement of Theorem 8.2 of Bou-Rabee--Peres, *Once-reinforced random
 walk on `ℤ^d` has range exponent at least `d/(d+1)`*, Section 8, Theorem
@@ -60,9 +62,11 @@ bound therefore forces `C` to be positive.  Non-degenerate instance: `d = 2`,
 `β = 3`, `z = 0`, `m = 0`, `h = 5`, `N = 5`, where the right-hand side is
 `C(log 7 + 2^{2/3} · 5^{1/3}) ≈ 4.66 C` and the left-hand side lies in `[1, 5]`.
 -/
-import ORRW.Basic
-import ORRW.Support.Occupation
-import ORRW.Support.Optimize
+public import ORRW.Basic
+public import ORRW.Support.Occupation
+public import ORRW.Support.Optimize
+
+@[expose] public section
 
 open ORRW Finset
 

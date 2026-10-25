@@ -1,3 +1,5 @@
+module
+
 /-
 Guard: the denominator of the step rule never vanishes.
 
@@ -5,8 +7,10 @@ Guard: the denominator of the step rule never vanishes.
 would be zero and every expectation bound in the development would hold
 vacuously.  The `0 < d` hypothesis is what excludes the empty direction set.
 -/
-import ORRW.Basic
-import ORRW.Support.Guards
+public import ORRW.Basic
+public import ORRW.Support.Guards
+
+@[expose] public section
 
 open ORRW Finset
 

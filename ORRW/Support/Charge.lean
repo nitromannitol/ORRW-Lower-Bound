@@ -1,3 +1,5 @@
+module
+
 /-
 Supporting lemmas for Proposition 3.3 of Bou-Rabee--Peres (`prop:charge`,
 `orrw.tex`): the charge accumulated by the time the walk has crossed `k`
@@ -18,8 +20,10 @@ Nothing here is frozen.  The parts are
 
 * the assembly with `lem:walk-order` and `lem:insertion`.
 -/
-import ORRW.Support.WalkOrder
-import LatticeProb.Walk.InsertionSum
+public import ORRW.Support.WalkOrder
+public import LatticeProb.Walk.InsertionSum
+
+@[expose] public section
 
 open LatticeProb
 

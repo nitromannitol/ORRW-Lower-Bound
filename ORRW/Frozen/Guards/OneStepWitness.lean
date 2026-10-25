@@ -1,3 +1,5 @@
+module
+
 /-
 Numeric witness: an explicit value the normalization can be checked against.
 
@@ -7,8 +9,10 @@ origin together with the site reached.  Hence the expected range after one step
 is exactly `2`, for every `β ≥ 1`.  A model whose constants were wrong by a
 factor would fail here.
 -/
-import ORRW.Basic
-import ORRW.Support.Guards
+public import ORRW.Basic
+public import ORRW.Support.Guards
+
+@[expose] public section
 
 open ORRW Finset
 

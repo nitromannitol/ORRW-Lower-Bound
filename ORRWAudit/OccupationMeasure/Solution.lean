@@ -1,7 +1,11 @@
-import Mathlib
-import ORRW.MainTheorems
-import ORRWAudit.OccupationMeasure.SolutionBasic
-import ORRWAudit.Support.OccupationMeasureBridge
+module
+
+public import Mathlib
+public import ORRW.MainTheorems
+public import ORRWAudit.OccupationMeasure.SolutionBasic
+public import ORRWAudit.Support.OccupationMeasureBridge
+
+@[expose] public section
 
 /-!
 # Solution: OccupationMeasure

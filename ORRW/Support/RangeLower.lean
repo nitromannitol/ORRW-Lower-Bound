@@ -1,3 +1,5 @@
+module
+
 /-
 Theorem 1.1 of Bou-Rabee--Peres (`thm:main`, `orrw.tex`): the expected
 range.  Markov's inequality inverts the optional-stopping bound
@@ -5,7 +7,9 @@ range.  Markov's inequality inverts the optional-stopping bound
 
 Nothing in this file is frozen.
 -/
-import ORRW.Support.OptionalStopping
+public import ORRW.Support.OptionalStopping
+
+@[expose] public section
 
 set_option autoImplicit false
 set_option relaxedAutoImplicit false

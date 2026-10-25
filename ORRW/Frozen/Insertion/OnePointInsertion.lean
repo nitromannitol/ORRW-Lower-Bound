@@ -1,3 +1,5 @@
+module
+
 /-
 Frozen statement of the one-point insertion lemma of Bou-Rabee--Peres,
 *Once-reinforced random walk on `ℤ^d` has range exponent at least `d/(d+1)`*,
@@ -29,9 +31,11 @@ Modelling decisions.
   states them as part of this lemma and uses them at `orrw.tex`, `660` and
   `670`, so they are asserted here rather than left to the reader.
 -/
-import ORRW.Basic
-import LatticeProb.Walk.Dirichlet
-import LatticeProb.Walk.Harmonic
+public import ORRW.Basic
+public import LatticeProb.Walk.Dirichlet
+public import LatticeProb.Walk.Harmonic
+
+@[expose] public section
 
 open LatticeProb
 

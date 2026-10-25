@@ -1,3 +1,5 @@
+module
+
 /-
 Choosing the truncation `R`, `orrw.tex`.
 
@@ -10,7 +12,9 @@ The statement is packaged so that the probabilistic part of Theorem 8.2 supplies
 only the two bounds it proves -- the trivial bound `X ≤ h` and the bound for
 every `R ≥ 1` -- and this file supplies the constant.
 -/
-import Mathlib
+public import Mathlib
+
+@[expose] public section
 
 set_option autoImplicit false
 set_option relaxedAutoImplicit false

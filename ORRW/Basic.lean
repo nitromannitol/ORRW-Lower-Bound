@@ -1,3 +1,5 @@
+module
+
 /-
 Once-reinforced random walk on `ℤ^d`: the model.
 
@@ -20,8 +22,10 @@ two main theorems mention (`|R_n|`, `|E_n|`, `S_n`, `σ_k ∧ n`) is a function 
 the first `n` steps, so no infinite-horizon measure is needed and no
 measurability side condition can be silently dropped.
 -/
-import Mathlib
-import LatticeProb.Walk.Basic
+public import Mathlib
+public import LatticeProb.Walk.Basic
+
+@[expose] public section
 
 namespace ORRW
 

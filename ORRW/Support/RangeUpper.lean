@@ -1,3 +1,5 @@
+module
+
 /-
 Supporting lemmas for `ORRW.Frozen.exponents_optimal` (`prop:beta-sharp`,
 `orrw.tex`).
@@ -15,9 +17,11 @@ untraversed edge is therefore at most `2d/β` (`nu_div_mu_le`), which is the
 paper's `j/(j + β(2d-j)) ≤ (2d-1)/(2d-1+β) ≤ 2d/β`.  Nothing in this file is
 frozen.
 -/
-import ORRW.Potential
-import ORRW.Support.Return
-import ORRW.Support.TimeCharge
+public import ORRW.Potential
+public import ORRW.Support.Return
+public import ORRW.Support.TimeCharge
+
+@[expose] public section
 
 set_option autoImplicit false
 set_option relaxedAutoImplicit false

@@ -1,3 +1,5 @@
+module
+
 /-
 Frozen statement of Lemma 3.2 of Bou-Rabee--Peres, *Once-reinforced random walk
 on `ℤ^d` has range exponent at least `d/(d+1)`*, Section 3, Lemma
@@ -49,8 +51,10 @@ Modelling decisions.
   assumed because it is what makes `ORRW.S` faithful (ruling P-002); it does not
   force the conclusion.
 -/
-import ORRW.Potential
-import ORRW.Support.WalkOrder
+public import ORRW.Potential
+public import ORRW.Support.WalkOrder
+
+@[expose] public section
 
 open ORRW Finset
 

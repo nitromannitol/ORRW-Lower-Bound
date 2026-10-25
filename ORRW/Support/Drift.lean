@@ -1,3 +1,5 @@
+module
+
 /-
 Supporting lemmas for Lemma 3.1 of Bou-Rabee--Peres (`lem:martingale`,
 `orrw.tex`): the one-step drift of `n + Φ_n - Γ_n`.
@@ -16,9 +18,11 @@ Nothing here is frozen.  The file has three parts.
 
 * The drift bound itself, `eq:drift`.
 -/
-import ORRW.Potential
-import LatticeProb.Walk.Harmonic
-import LatticeProb.Walk.ResistancePacking
+public import ORRW.Potential
+public import LatticeProb.Walk.Harmonic
+public import LatticeProb.Walk.ResistancePacking
+
+@[expose] public section
 
 open LatticeProb
 

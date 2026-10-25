@@ -1,3 +1,5 @@
+module
+
 /-
 Supporting lemmas for the four frozen anti-vacuity guards in `ORRW/Frozen/Guards/`.
 
@@ -12,9 +14,11 @@ module `LatticeProb.Walk.Path`.  `E` and `R` have the same defining terms as the
 library's `pathEdges` and `pathRange`, so each lemma below about them is the
 library lemma, restated under the `ORRW` names.
 -/
-import Mathlib
-import LatticeProb.Walk.Path
-import ORRW.Basic
+public import Mathlib
+public import LatticeProb.Walk.Path
+public import ORRW.Basic
+
+@[expose] public section
 
 set_option autoImplicit false
 set_option relaxedAutoImplicit false

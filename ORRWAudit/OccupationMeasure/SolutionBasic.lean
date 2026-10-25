@@ -1,4 +1,8 @@
-import Mathlib
+module
+
+public import Mathlib
+
+@[expose] public section
 
 /-!
 # Mathlib-only statement vocabulary for the `OccupationMeasure` comparator

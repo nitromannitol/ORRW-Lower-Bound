@@ -1,3 +1,5 @@
+module
+
 /-
 Frozen statement of the bridge between the infinite-path measure and the
 finite-word law.
@@ -25,7 +27,9 @@ Proof.  `ORRW.pathMeasure_restr_eq_bind` reduces the cylinder to an
 and `ORRW.bind_partialTraj_eval` evaluates that average by induction on `n`,
 matching `ORRW.prob_succ` step for step.
 -/
-import ORRW.Support.InfinitePath
+public import ORRW.Support.InfinitePath
+
+@[expose] public section
 
 open MeasureTheory ProbabilityTheory Finset Preorder
 open scoped ENNReal

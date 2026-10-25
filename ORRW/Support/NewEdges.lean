@@ -1,3 +1,5 @@
+module
+
 /-
 First crossings use distinct edges.
 
@@ -10,10 +12,12 @@ The file also records that after its first step the walk stands at a site with a
 traversed incident edge (`orrw.tex`), which is what bounds
 `κ_j = 4dβ/μ_j` above by `4d`.
 -/
-import Mathlib
-import LatticeProb.Walk.Lazy
-import ORRW.Potential
-import ORRW.Support.WalkOrder
+public import Mathlib
+public import LatticeProb.Walk.Lazy
+public import ORRW.Potential
+public import ORRW.Support.WalkOrder
+
+@[expose] public section
 
 open LatticeProb
 

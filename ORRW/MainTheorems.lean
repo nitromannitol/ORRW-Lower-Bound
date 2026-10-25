@@ -1,7 +1,11 @@
-import ORRW.Frozen.RangeLowerBound
-import ORRW.Frozen.RangeTail
-import ORRW.Frozen.AlmostSure.RangeAlmostSure
-import ORRW.Frozen.Occupation.OccupationMeasure
+module
+
+public import ORRW.Frozen.RangeLowerBound
+public import ORRW.Frozen.RangeTail
+public import ORRW.Frozen.AlmostSure.RangeAlmostSure
+public import ORRW.Frozen.Occupation.OccupationMeasure
+
+@[expose] public section
 
 /-!
 # Main results

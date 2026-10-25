@@ -1,3 +1,5 @@
+module
+
 /-
 Frozen statement of the paper's almost-sure range bound.
 
@@ -23,8 +25,10 @@ Modelling decisions.
 
 * Ruling A-002 (`Fact` hypotheses), as in `bridge-path-measure`.
 -/
-import ORRW.Support.AlmostSure
-import ORRW.Frozen.RangeTail
+public import ORRW.Support.AlmostSure
+public import ORRW.Frozen.RangeTail
+
+@[expose] public section
 
 open MeasureTheory ProbabilityTheory Finset Preorder Filter Real Asymptotics
 open scoped ENNReal

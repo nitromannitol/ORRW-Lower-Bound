@@ -1,3 +1,5 @@
+module
+
 /-
 Proposition 6.1 of Bou-Rabee--Peres (`prop:displacement`, `orrw.tex`):
 displacement and exit times.
@@ -14,8 +16,10 @@ The displacement bound is the paper's as well: on the event
 
 Nothing in this file is frozen.
 -/
-import ORRW.Support.RangeLower
-import LatticeProb.Walk.RangeBox
+public import ORRW.Support.RangeLower
+public import LatticeProb.Walk.RangeBox
+
+@[expose] public section
 
 open LatticeProb
 

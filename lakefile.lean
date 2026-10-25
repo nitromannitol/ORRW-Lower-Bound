@@ -8,7 +8,7 @@ require «lattice-probability» from git
   "https://github.com/nitromannitol/Lattice-Probability.git" @ "bbe0b90a7cf0517db0578139aaab7f152edbc45e"
 
 require mathlib from git
-  "https://github.com/leanprover-community/mathlib4" @ "81a5d257c8e410db227a6665ed08f64fea08e997"
+  "https://github.com/leanprover-community/mathlib4" @ "065356127b1dc0016f66b7283ce0ce2c4055aa55"
 
 /-- The comparator audit surface (`ORRWAudit/*/Challenge.lean`, `ORRWAudit/*/SolutionBasic.lean`,
 `ORRWAudit/*/Solution.lean` and `ORRWAudit/Support/`).  Not a default target: it builds only on

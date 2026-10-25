@@ -1,3 +1,5 @@
+module
+
 /-
 Assembly of Proposition 3.3 of Bou-Rabee--Peres (`prop:charge`,
 `orrw.tex`).
@@ -16,9 +18,11 @@ and `h`.  What is added here is
 
 * the assembly with `lem:walk-order` and `lem:insertion`.
 -/
-import ORRW.Support.Charge
-import ORRW.Frozen.Potential.InsertionOrder
-import ORRW.Frozen.Insertion.InsertionInequality
+public import ORRW.Support.Charge
+public import ORRW.Frozen.Potential.InsertionOrder
+public import ORRW.Frozen.Insertion.InsertionInequality
+
+@[expose] public section
 
 open LatticeProb
 

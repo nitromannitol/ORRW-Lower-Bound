@@ -1,4 +1,8 @@
-import Mathlib
+module
+
+public import Mathlib
+
+@[expose] public section
 
 /-!
 # Theorem 1.3 (`thm:occupation-intro`): comparator challenge

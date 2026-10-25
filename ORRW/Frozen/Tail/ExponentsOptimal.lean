@@ -1,3 +1,5 @@
+module
+
 /-
 Frozen statement of Proposition 7.1 of Bou-Rabee--Peres, *Once-reinforced random
 walk on `ℤ^d` has range exponent at least `d/(d+1)`*, Section 7, Proposition
@@ -34,8 +36,10 @@ Modelling decisions.
   `ORRW.Frozen.range_lower_bound`, so the three clauses can be composed with it
   without a translation lemma.
 -/
-import LatticeProb.Walk.Dirichlet
-import ORRW.Support.RangeUpper
+public import LatticeProb.Walk.Dirichlet
+public import ORRW.Support.RangeUpper
+
+@[expose] public section
 
 open ORRW Finset
 

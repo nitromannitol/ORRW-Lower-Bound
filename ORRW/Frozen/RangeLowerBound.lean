@@ -1,3 +1,5 @@
+module
+
 /-
 Theorem 1.1 of orrw.tex, frozen.
 
@@ -9,8 +11,10 @@ Paper line encoded, `orrw.tex:112-119` (label `thm:main`, equation `eq:main-rang
 
 That `c` depends only on `d` is expressed by binding it before `β` and `n`.
 -/
-import ORRW.Basic
-import ORRW.Support.RangeLower
+public import ORRW.Basic
+public import ORRW.Support.RangeLower
+
+@[expose] public section
 
 open ORRW
 

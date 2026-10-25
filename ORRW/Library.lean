@@ -1,3 +1,5 @@
+module
+
 /-
 The lazy random walk objects of Bou-Rabee--Peres, Section 8, `orrw.tex`, are
 those of the library module `LatticeProb.Walk.Lazy`: the lazy step operator `Q`,
@@ -6,8 +8,10 @@ The frozen statement `ORRW/Frozen/Occupation/LazyGreen.lean` names them with
 the `ORRW` prefix, so they are re-exported here under the `ORRW` namespace.
 The modelling conventions W-001 to W-003 are recorded in the library module.
 -/
-import LatticeProb.Walk.Lazy
-import ORRW.Basic
+public import LatticeProb.Walk.Lazy
+public import ORRW.Basic
+
+@[expose] public section
 
 namespace ORRW
 

@@ -1,27 +1,31 @@
-import ORRW.Frozen.AlmostSure.DisplacementAlmostSure
-import ORRW.Frozen.AlmostSure.PathMeasureBridge
-import ORRW.Frozen.AlmostSure.RangeAlmostSure
-import ORRW.Frozen.Guards.EdgesLeSites
-import ORRW.Frozen.Guards.OneStepWitness
-import ORRW.Frozen.Guards.ProbIsPMF
-import ORRW.Frozen.Guards.TotalWeightPos
-import ORRW.Frozen.Insertion.ExitTimeBounds
-import ORRW.Frozen.Insertion.InsertionInequality
-import ORRW.Frozen.Insertion.OnePointInsertion
-import ORRW.Frozen.Insertion.ResistancePacking
-import ORRW.Frozen.Occupation.LazyGreen
-import ORRW.Frozen.Occupation.Occupation
-import ORRW.Frozen.Occupation.OccupationCesaro
-import ORRW.Frozen.Occupation.OccupationMeasure
-import ORRW.Frozen.Potential.AccumulatedCharge
-import ORRW.Frozen.Potential.InsertionOrder
-import ORRW.Frozen.Potential.Supermartingale
-import ORRW.Frozen.RangeLowerBound
-import ORRW.Frozen.RangeTail
-import ORRW.Frozen.Tail.Displacement
-import ORRW.Frozen.Tail.ExponentsOptimal
-import ORRW.Frozen.Tail.SigmaTail
-import ORRW.Frozen.Tail.TimeVersusCharge
+module
+
+public import ORRW.Frozen.AlmostSure.DisplacementAlmostSure
+public import ORRW.Frozen.AlmostSure.PathMeasureBridge
+public import ORRW.Frozen.AlmostSure.RangeAlmostSure
+public import ORRW.Frozen.Guards.EdgesLeSites
+public import ORRW.Frozen.Guards.OneStepWitness
+public import ORRW.Frozen.Guards.ProbIsPMF
+public import ORRW.Frozen.Guards.TotalWeightPos
+public import ORRW.Frozen.Insertion.ExitTimeBounds
+public import ORRW.Frozen.Insertion.InsertionInequality
+public import ORRW.Frozen.Insertion.OnePointInsertion
+public import ORRW.Frozen.Insertion.ResistancePacking
+public import ORRW.Frozen.Occupation.LazyGreen
+public import ORRW.Frozen.Occupation.Occupation
+public import ORRW.Frozen.Occupation.OccupationCesaro
+public import ORRW.Frozen.Occupation.OccupationMeasure
+public import ORRW.Frozen.Potential.AccumulatedCharge
+public import ORRW.Frozen.Potential.InsertionOrder
+public import ORRW.Frozen.Potential.Supermartingale
+public import ORRW.Frozen.RangeLowerBound
+public import ORRW.Frozen.RangeTail
+public import ORRW.Frozen.Tail.Displacement
+public import ORRW.Frozen.Tail.ExponentsOptimal
+public import ORRW.Frozen.Tail.SigmaTail
+public import ORRW.Frozen.Tail.TimeVersusCharge
+
+@[expose] public section
 
 /-!
 Reader entry point: all 24 frozen exports and their transitive axiom dependencies.

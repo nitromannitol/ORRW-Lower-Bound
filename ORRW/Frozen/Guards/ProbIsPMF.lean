@@ -1,3 +1,5 @@
+module
+
 /-
 Guard: the law of the first `n` steps has total mass one.
 
@@ -6,8 +8,10 @@ probability mass function on direction words, so that `expect` and `prb` mean
 what their names say and the two frozen theorems are not statements about a
 defective measure.
 -/
-import ORRW.Basic
-import ORRW.Support.Guards
+public import ORRW.Basic
+public import ORRW.Support.Guards
+
+@[expose] public section
 
 open ORRW Finset
 

@@ -1,6 +1,10 @@
-import Mathlib
-import ORRW.MainTheorems
-import ORRWAudit.RangeTail.SolutionBasic
+module
+
+public import Mathlib
+public import ORRW.MainTheorems
+public import ORRWAudit.RangeTail.SolutionBasic
+
+@[expose] public section
 
 /-!
 # Bridge for `RangeTail`: Mathlib-only vocabulary to the repository

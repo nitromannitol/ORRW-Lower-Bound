@@ -1,6 +1,10 @@
-import Mathlib
-import ORRW.MainTheorems
-import ORRWAudit.OccupationMeasure.SolutionBasic
+module
+
+public import Mathlib
+public import ORRW.MainTheorems
+public import ORRWAudit.OccupationMeasure.SolutionBasic
+
+@[expose] public section
 
 /-!
 # Bridge for `OccupationMeasure`: Mathlib-only vocabulary to the repository

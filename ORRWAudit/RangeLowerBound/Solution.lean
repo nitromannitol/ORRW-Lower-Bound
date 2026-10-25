@@ -1,7 +1,11 @@
-import Mathlib
-import ORRW.MainTheorems
-import ORRWAudit.RangeLowerBound.SolutionBasic
-import ORRWAudit.Support.RangeLowerBoundBridge
+module
+
+public import Mathlib
+public import ORRW.MainTheorems
+public import ORRWAudit.RangeLowerBound.SolutionBasic
+public import ORRWAudit.Support.RangeLowerBoundBridge
+
+@[expose] public section
 
 /-!
 # Solution: RangeLowerBound

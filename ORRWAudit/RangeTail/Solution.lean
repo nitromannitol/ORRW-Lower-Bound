@@ -1,7 +1,11 @@
-import Mathlib
-import ORRW.MainTheorems
-import ORRWAudit.RangeTail.SolutionBasic
-import ORRWAudit.Support.RangeTailBridge
+module
+
+public import Mathlib
+public import ORRW.MainTheorems
+public import ORRWAudit.RangeTail.SolutionBasic
+public import ORRWAudit.Support.RangeTailBridge
+
+@[expose] public section
 
 /-!
 # Solution: RangeTail

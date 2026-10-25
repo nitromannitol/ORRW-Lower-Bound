@@ -1,3 +1,5 @@
+module
+
 /-
 Frozen statement of Lemma 3.1 of Bou-Rabee--Peres, *Once-reinforced random walk
 on `ℤ^d` has range exponent at least `d/(d+1)`*, Section 3, Lemma
@@ -42,8 +44,10 @@ Modelling decisions.
   about the potential and the charge, both of which are defined through the
   Dirichlet-Laplacian objects of the library module `LatticeProb.Walk.Dirichlet`.
 -/
-import ORRW.Potential
-import ORRW.Support.Drift
+public import ORRW.Potential
+public import ORRW.Support.Drift
+
+@[expose] public section
 
 open ORRW Finset
 

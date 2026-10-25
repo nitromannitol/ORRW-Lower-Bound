@@ -1,3 +1,5 @@
+module
+
 /-
 Frozen statement of the exit time bounds of Bou-Rabee--Peres, *Once-reinforced
 random walk on `ℤ^d` has range exponent at least `d/(d+1)`*, Section 2,
@@ -25,9 +27,11 @@ Modelling decisions.
 * Ruling F-104 (real exponents).  `|A|^{2/d}` and `|A|^{1+2/d}` are `Real.rpow`
   powers of the cardinality cast to `ℝ`.
 -/
-import ORRW.Basic
-import LatticeProb.Walk.Dirichlet
-import LatticeProb.Walk.ExitTime
+public import ORRW.Basic
+public import LatticeProb.Walk.Dirichlet
+public import LatticeProb.Walk.ExitTime
+
+@[expose] public section
 
 open LatticeProb
 

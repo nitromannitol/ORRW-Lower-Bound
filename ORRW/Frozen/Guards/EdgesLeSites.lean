@@ -1,3 +1,5 @@
+module
+
 /-
 Every subgraph of `ℤ^d` on `m` vertices has at most `d m` edges.
 
@@ -9,8 +11,10 @@ Paper line encoded, `orrw.tex` (equation `eq:edges-sites`):
 This is the step that converts crossed edges into visited sites in both main
 proofs.
 -/
-import ORRW.Basic
-import ORRW.Support.Guards
+public import ORRW.Basic
+public import ORRW.Support.Guards
+
+@[expose] public section
 
 open ORRW Finset
 

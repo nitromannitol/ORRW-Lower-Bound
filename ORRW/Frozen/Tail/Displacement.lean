@@ -1,3 +1,5 @@
+module
+
 /-
 Frozen statement of Proposition 6.1 of Bou-Rabee--Peres, *Once-reinforced random
 walk on `ℤ^d` has range exponent at least `d/(d+1)`*, Section 6, Proposition
@@ -54,8 +56,10 @@ Modelling decisions.
   asserted positive; `β^{-1/(d+1)}` and `n^{1/(d+1)}` are `Real.rpow` powers,
   while `(2r+1)^{d+1}` is a natural power.
 -/
-import LatticeProb.Walk.Dirichlet
-import ORRW.Support.Displacement
+public import LatticeProb.Walk.Dirichlet
+public import ORRW.Support.Displacement
+
+@[expose] public section
 
 open ORRW Finset
 

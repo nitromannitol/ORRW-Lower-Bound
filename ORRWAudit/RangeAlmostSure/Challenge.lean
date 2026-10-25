@@ -1,4 +1,8 @@
-import Mathlib
+module
+
+public import Mathlib
+
+@[expose] public section
 
 /-!
 # The almost-sure bound after Theorem 1.2 (`thm:whp`): comparator challenge

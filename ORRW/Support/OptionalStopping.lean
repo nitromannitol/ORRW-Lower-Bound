@@ -1,3 +1,5 @@
+module
+
 /-
 Optional stopping for the supermartingale of `lem:martingale`, and the resulting
 bound `E_β[σ_k ∧ N] ≤ Kβk^{1+1/d}` of Bou-Rabee--Peres, `orrw.tex`:
@@ -14,8 +16,10 @@ is proved here is the family of finite-horizon bounds, one for every horizon
 `N`, which is what the paper's own optional-stopping step establishes and all
 that Theorem 1.1 and Proposition 6.1 use.  Nothing in this file is frozen.
 -/
-import ORRW.Support.SigmaTail
-import ORRW.Support.RangeUpper
+public import ORRW.Support.SigmaTail
+public import ORRW.Support.RangeUpper
+
+@[expose] public section
 
 open LatticeProb
 

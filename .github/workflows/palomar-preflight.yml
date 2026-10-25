@@ -1,6 +1,8 @@
 name: Palomar full preflight
 
 on:
+  push:
+    branches: [palomar/preflight-orrw-20261025]
   workflow_dispatch:
     inputs:
       comparator_config_path:
@@ -22,4 +24,4 @@ jobs:
       request_id: preflight001
       mode: full
       execution_profile: palomar-standard-v1
-      options: ${{ format('{{"comparator_config_path":"{0}","authorization_relationship":"I am a responsible author or maintainer"}}', inputs.comparator_config_path) }}
+      options: ${{ format('{{"comparator_config_path":"{0}","authorization_relationship":"I am a responsible author or maintainer"}}', inputs.comparator_config_path || 'ORRWAudit/RangeLowerBound/comparator.json') }}

@@ -1,3 +1,5 @@
+module
+
 /-
 Frozen statement of Lemma 8.1 of Bou-Rabee--Peres, *Once-reinforced random walk
 on `ℤ^d` has range exponent at least `d/(d+1)`*, Section 8, Lemma (Truncated
@@ -85,8 +87,10 @@ left-hand side is at least `1` for suitable `x, y` and the bound forces
 right-hand sides are `C/4`, `C log 5` and `4·2^{3/2}·2 ≈ 22.6`, all finite and
 positive.
 -/
-import LatticeProb.Walk.GreenBounds
-import ORRW.Library
+public import LatticeProb.Walk.GreenBounds
+public import ORRW.Library
+
+@[expose] public section
 
 open ORRW Finset
 

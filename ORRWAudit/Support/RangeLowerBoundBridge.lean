@@ -1,6 +1,10 @@
-import Mathlib
-import ORRW.MainTheorems
-import ORRWAudit.RangeLowerBound.SolutionBasic
+module
+
+public import Mathlib
+public import ORRW.MainTheorems
+public import ORRWAudit.RangeLowerBound.SolutionBasic
+
+@[expose] public section
 
 /-!
 # Bridge for `RangeLowerBound`: Mathlib-only vocabulary to the repository

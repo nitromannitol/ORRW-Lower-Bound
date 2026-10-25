@@ -1,3 +1,5 @@
+module
+
 /-
 The potential, the charge and the auxiliary processes of Bou-Rabee--Peres,
 *Once-reinforced random walk on `ℤ^d` has range exponent at least `d/(d+1)`*,
@@ -85,8 +87,10 @@ Modelling decisions.
   `ORRW/Basic.lean`.  That identity is what makes the weighted averages of
   Section 3 and Section 5 genuine averages.
 -/
-import LatticeProb.Walk.Dirichlet
-import ORRW.Support.Guards
+public import LatticeProb.Walk.Dirichlet
+public import ORRW.Support.Guards
+
+@[expose] public section
 
 open LatticeProb
 

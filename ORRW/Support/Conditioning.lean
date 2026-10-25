@@ -1,3 +1,5 @@
+module
+
 /-
 Conditioning on a prefix, in the finite-word model of ruling R-001.
 
@@ -8,9 +10,11 @@ general expectation over the last letter with the step rule (`expect_snoc`).
 Section 8 of `orrw.tex` uses them to evaluate the compensator `eq:compensator`
 at one time, which is a statement about `F_j`-conditional expectations.
 -/
-import Mathlib
-import ORRW.Basic
-import ORRW.Support.Guards
+public import Mathlib
+public import ORRW.Basic
+public import ORRW.Support.Guards
+
+@[expose] public section
 
 set_option autoImplicit false
 set_option relaxedAutoImplicit false

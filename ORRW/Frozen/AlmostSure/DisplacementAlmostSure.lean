@@ -1,3 +1,5 @@
+module
+
 /-
 Frozen statement of the paper's almost-sure displacement bound.
 
@@ -17,8 +19,10 @@ Modelling decisions.
   `(range (n+1)).sup' _ (fun k => ‖pos w k‖)`, the same expression the frozen
   `prop-displacement` uses, evaluated along `ORRW.ofPath n`.
 -/
-import ORRW.Frozen.AlmostSure.RangeAlmostSure
-import LatticeProb.Walk.RangeBox
+public import ORRW.Frozen.AlmostSure.RangeAlmostSure
+public import LatticeProb.Walk.RangeBox
+
+@[expose] public section
 
 open MeasureTheory ProbabilityTheory Finset Preorder Filter Real Asymptotics
 open scoped ENNReal

@@ -1,3 +1,5 @@
+module
+
 /-
 Time-averaged occupation corollary corresponding to the weaker C beta consequence
 of label `eq:cesaro` (orrw.tex:1102-1105).
@@ -10,9 +12,11 @@ See VERIFICATION.md for the distinction.
 The horizon M is at least the averaging window N, and the constant is quantified
 before beta, N, M, and the site z. This expresses uniformity over those parameters.
 -/
-import ORRW.Basic
-import ORRW.Support.Occupation
-import ORRW.Frozen.Occupation.Occupation
+public import ORRW.Basic
+public import ORRW.Support.Occupation
+public import ORRW.Frozen.Occupation.Occupation
+
+@[expose] public section
 
 open ORRW Finset
 

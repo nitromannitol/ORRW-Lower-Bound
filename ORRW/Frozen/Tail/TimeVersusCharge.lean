@@ -1,3 +1,5 @@
+module
+
 /-
 Frozen statement of Lemma 5.1 of Bou-Rabee--Peres, *Once-reinforced random walk
 on `ℤ^d` has range exponent at least `d/(d+1)`*, Section 5, Lemma
@@ -59,8 +61,10 @@ Modelling decisions.
   No positivity is assumed: `p ≥ 0`, `q ≥ 0` and `b ≥ 0` follow from `hPhi`,
   `hδ` and `hGam` at `m = 0`, so `θ > 0`.
 -/
-import ORRW.Potential
-import ORRW.Support.TimeCharge
+public import ORRW.Potential
+public import ORRW.Support.TimeCharge
+
+@[expose] public section
 
 open ORRW Finset
 

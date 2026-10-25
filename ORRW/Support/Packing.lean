@@ -1,3 +1,5 @@
+module
+
 /-
 Supporting lemmas for the increment packing estimate of Bou-Rabee--Peres,
 Section 8, `orrw.tex` (label `lem:gradient-packing`).
@@ -19,9 +21,11 @@ paper's proof.
   vector, the sign of one extremal coordinate of its inner endpoint, and that
   endpoint with the extremal coordinate deleted.
 -/
-import Mathlib
-import ORRW.Basic
-import LatticeProb.Walk.Dirichlet
+public import Mathlib
+public import ORRW.Basic
+public import LatticeProb.Walk.Dirichlet
+
+@[expose] public section
 
 open LatticeProb
 

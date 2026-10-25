@@ -1,3 +1,5 @@
+module
+
 /-
 Frozen statement of Proposition 5.2 of Bou-Rabee--Peres, *Once-reinforced random
 walk on `ℤ^d` has range exponent at least `d/(d+1)`*, Section 5, Proposition
@@ -34,8 +36,10 @@ Modelling decisions.
 * Ruling F-614 (real exponents).  `k^{1+1/d}` and `k^{(d-1)/d}` are `Real.rpow`
   powers; `(d-1)/d` is formed in `ℝ`, not by truncated subtraction in `ℕ`.
 -/
-import ORRW.Potential
-import ORRW.Support.SigmaTail
+public import ORRW.Potential
+public import ORRW.Support.SigmaTail
+
+@[expose] public section
 
 open ORRW Finset
 

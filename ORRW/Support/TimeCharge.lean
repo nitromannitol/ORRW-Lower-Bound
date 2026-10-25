@@ -1,3 +1,5 @@
+module
+
 /-
 Supporting lemmas for `ORRW.Frozen.time_versus_charge` (`lem:exp`,
 `orrw.tex`).
@@ -13,8 +15,10 @@ two `Finset` sums over the word space, and it follows from a single pointwise
 one-step estimate against the step rule of `ORRW/Basic.lean`, which is
 `timeCharge_step_core` below.  Nothing in this file is frozen.
 -/
-import ORRW.Potential
-import ORRW.Support.Return
+public import ORRW.Potential
+public import ORRW.Support.Return
+
+@[expose] public section
 
 set_option autoImplicit false
 set_option relaxedAutoImplicit false

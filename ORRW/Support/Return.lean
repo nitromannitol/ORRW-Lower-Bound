@@ -1,3 +1,5 @@
+module
+
 /-
 Support lemmas for Section 8 of `orrw.tex` (`sec:return`).
 
@@ -7,8 +9,10 @@ the origin and `prob` is a probability mass function.  So the left-hand side is
 always at least `1`, and the theorem genuinely constrains its constant rather
 than being satisfied by a degenerate measure.
 -/
-import ORRW.Basic
-import ORRW.Support.Guards
+public import ORRW.Basic
+public import ORRW.Support.Guards
+
+@[expose] public section
 
 namespace ORRW
 

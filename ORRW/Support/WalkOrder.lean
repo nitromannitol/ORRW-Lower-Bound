@@ -1,3 +1,5 @@
+module
+
 /-
 Supporting lemmas for Lemma 3.2 of Bou-Rabee--Peres (`lem:walk-order`,
 `orrw.tex`): an ordering of the sites the walk has visited for which each
@@ -23,8 +25,10 @@ The file has four parts.
 
 * A generic enumeration lemma: a key injective on a finite set enumerates it.
 -/
-import ORRW.Potential
-import ORRW.Support.Drift
+public import ORRW.Potential
+public import ORRW.Support.Drift
+
+@[expose] public section
 
 namespace ORRW.Support
 

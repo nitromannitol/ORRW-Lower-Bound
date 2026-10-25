@@ -1,3 +1,5 @@
+module
+
 /-
 The infinite-path measure, and the almost-sure statements that need it.
 
@@ -11,9 +13,11 @@ identifies its finite-dimensional marginals with `ORRW.prob`.
 Nothing here is frozen; the files of `ORRW/Frozen/AlmostSure/` state what the paper
 claims.
 -/
-import Mathlib
-import ORRW.Basic
-import ORRW.Support.Guards
+public import Mathlib
+public import ORRW.Basic
+public import ORRW.Support.Guards
+
+@[expose] public section
 
 open MeasureTheory ProbabilityTheory Finset Preorder
 open scoped ENNReal

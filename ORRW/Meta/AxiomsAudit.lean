@@ -1,4 +1,8 @@
-import ORRW.MainTheorems
+module
+
+public import ORRW.MainTheorems
+
+@[expose] public section
 
 /-!
 # Axioms audit

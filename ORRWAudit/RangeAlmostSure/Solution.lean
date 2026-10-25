@@ -1,7 +1,11 @@
-import Mathlib
-import ORRW.MainTheorems
-import ORRWAudit.RangeAlmostSure.SolutionBasic
-import ORRWAudit.Support.RangeAlmostSureBridge
+module
+
+public import Mathlib
+public import ORRW.MainTheorems
+public import ORRWAudit.RangeAlmostSure.SolutionBasic
+public import ORRWAudit.Support.RangeAlmostSureBridge
+
+@[expose] public section
 
 /-!
 # Solution: RangeAlmostSure

@@ -1,3 +1,5 @@
+module
+
 /-
 Frozen statement of the insertion inequality of Bou-Rabee--Peres,
 *Once-reinforced random walk on `ℤ^d` has range exponent at least `d/(d+1)`*,
@@ -23,10 +25,12 @@ Modelling decisions.
 
 * Ruling F-404 (real exponent).  `M^{1+1/d}` is a `Real.rpow` power.
 -/
-import LatticeProb.Walk.Dirichlet
-import LatticeProb.Walk.InsertionSum
-import ORRW.Frozen.Insertion.ExitTimeBounds
-import ORRW.Frozen.Insertion.ResistancePacking
+public import LatticeProb.Walk.Dirichlet
+public import LatticeProb.Walk.InsertionSum
+public import ORRW.Frozen.Insertion.ExitTimeBounds
+public import ORRW.Frozen.Insertion.ResistancePacking
+
+@[expose] public section
 
 open LatticeProb
 

@@ -1,3 +1,5 @@
+module
+
 /-
 Frozen statement of the resistance packing lemma of Bou-Rabee--Peres,
 *Once-reinforced random walk on `ℤ^d` has range exponent at least `d/(d+1)`*,
@@ -25,9 +27,11 @@ Modelling decisions.
 * Ruling F-304 (`M ≥ 1`).  The paper's hypothesis is kept even though the case
   `M = 0` is an empty sum.
 -/
-import LatticeProb.Walk.Dirichlet
-import LatticeProb.Walk.ResistancePacking
-import ORRW.Basic
+public import LatticeProb.Walk.Dirichlet
+public import LatticeProb.Walk.ResistancePacking
+public import ORRW.Basic
+
+@[expose] public section
 
 open LatticeProb
 

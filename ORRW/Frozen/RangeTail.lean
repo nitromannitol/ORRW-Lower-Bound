@@ -1,3 +1,5 @@
+module
+
 /-
 Theorem 1.2 of orrw.tex, frozen.
 
@@ -11,8 +13,10 @@ Paper line encoded, `orrw.tex:128-136` (label `thm:whp`):
 
 The hypothesis `C * β ≤ n` is the paper's `n/β ≥ C` written without division.
 -/
-import ORRW.Basic
-import ORRW.Support.RangeTail
+public import ORRW.Basic
+public import ORRW.Support.RangeTail
+
+@[expose] public section
 
 open ORRW
 

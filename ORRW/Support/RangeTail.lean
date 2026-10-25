@@ -1,3 +1,5 @@
+module
+
 /-
 Theorem 1.2 of Bou-Rabee--Peres (`thm:whp`, `orrw.tex`): the
 stretched-exponential tail of the range.  With `K` the constant of
@@ -8,8 +10,10 @@ into `{|R_n| < k/d}`.
 
 Nothing in this file is frozen.
 -/
-import ORRW.Support.RangeLower
-import ORRW.Frozen.Tail.SigmaTail
+public import ORRW.Support.RangeLower
+public import ORRW.Frozen.Tail.SigmaTail
+
+@[expose] public section
 
 set_option autoImplicit false
 set_option relaxedAutoImplicit false

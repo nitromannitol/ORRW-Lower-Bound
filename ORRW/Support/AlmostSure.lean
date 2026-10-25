@@ -1,3 +1,5 @@
+module
+
 /-
 The almost-sure layer: transferring a fixed-time bound to the infinite-path
 measure, and the Borel-Cantelli step that turns a summable tail into an
@@ -7,9 +9,11 @@ almost-sure statement.
 about `ORRW.prb` at a fixed time becomes a bound about one measure that covers
 all times at once, which is what an almost-sure claim needs.
 -/
-import ORRW.Support.InfinitePath
-import ORRW.Support.Occupation
-import ORRW.Frozen.AlmostSure.PathMeasureBridge
+public import ORRW.Support.InfinitePath
+public import ORRW.Support.Occupation
+public import ORRW.Frozen.AlmostSure.PathMeasureBridge
+
+@[expose] public section
 
 open MeasureTheory ProbabilityTheory Finset Preorder Filter Real Asymptotics
 open scoped ENNReal

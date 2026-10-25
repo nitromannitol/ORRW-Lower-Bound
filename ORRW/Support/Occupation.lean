@@ -1,3 +1,5 @@
+module
+
 /-
 The probabilistic half of Theorem 8.2 of `orrw.tex` (`thm:return`).
 
@@ -9,14 +11,16 @@ and everything else in this file is bookkeeping around it: lifting a one-step
 identity to a fixed horizon, telescoping, and the two bounds on
 `κ_j = 4dβ/μ_j`.
 -/
-import Mathlib
-import ORRW.Potential
-import ORRW.Support.Drift
-import ORRW.Support.Conditioning
-import LatticeProb.Walk.Poisson
-import ORRW.Support.NewEdges
-import LatticeProb.Walk.GreenBounds
-import ORRW.Support.Return
+public import Mathlib
+public import ORRW.Potential
+public import ORRW.Support.Drift
+public import ORRW.Support.Conditioning
+public import LatticeProb.Walk.Poisson
+public import ORRW.Support.NewEdges
+public import LatticeProb.Walk.GreenBounds
+public import ORRW.Support.Return
+
+@[expose] public section
 
 open LatticeProb
 

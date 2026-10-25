@@ -1,3 +1,5 @@
+module
+
 /-
 Supporting lemmas for Proposition 5.2 of Bou-Rabee--Peres (`prop:tail`,
 `orrw.tex`): the tail of `σ_k`.
@@ -14,12 +16,14 @@ Nothing here is frozen.  The parts are
 
 * monotonicity of `ℙ_β` in the event.
 -/
-import ORRW.Support.Charge
-import ORRW.Support.Return
-import ORRW.Frozen.Insertion.ExitTimeBounds
-import ORRW.Frozen.Potential.AccumulatedCharge
-import ORRW.Frozen.Potential.Supermartingale
-import ORRW.Frozen.Tail.TimeVersusCharge
+public import ORRW.Support.Charge
+public import ORRW.Support.Return
+public import ORRW.Frozen.Insertion.ExitTimeBounds
+public import ORRW.Frozen.Potential.AccumulatedCharge
+public import ORRW.Frozen.Potential.Supermartingale
+public import ORRW.Frozen.Tail.TimeVersusCharge
+
+@[expose] public section
 
 open LatticeProb
 
