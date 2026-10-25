@@ -204,9 +204,9 @@ difference in formulation.  In summary:
   [`ORRWAudit/COMPARATOR_RUNS.md`](ORRWAudit/COMPARATOR_RUNS.md) for the pins and the results.
   The comparator itself checks each solution statement against its challenge and the
   dependency closure against Mathlib.
-- **Pinned toolchain.**  Lean `v4.32.0` ([`lean-toolchain`](lean-toolchain)), `mathlib` at
-  revision `81a5d257c8e410db227a6665ed08f64fea08e997` and `Lattice-Probability` at
-  commit `bbe0b90a7cf0517db0578139aaab7f152edbc45e`, recorded in
+- **Pinned toolchain.**  Lean `v4.35.0-rc2` ([`lean-toolchain`](lean-toolchain)), `mathlib` at
+  revision `065356127b1dc0016f66b7283ce0ce2c4055aa55` and `Lattice-Probability` at
+  commit `3fcdb281e9f6ecdfc9fdf3c0988f784f84717bb7`, recorded in
   [`lakefile.lean`](lakefile.lean) and [`lake-manifest.json`](lake-manifest.json).
 
 The statement of every registered result is pinned by the SHA-256 of its text in
@@ -226,7 +226,7 @@ comparator surface in `ORRWAudit/`.
 
 The project uses [`elan`](https://github.com/leanprover/elan) (the Lean toolchain manager)
 and Lake.  The toolchain is pinned in [`lean-toolchain`](lean-toolchain)
-(`leanprover/lean4:v4.32.0`), so `elan` installs the right Lean version automatically, and
+(`leanprover/lean4:v4.35.0-rc2`), so `elan` installs the right Lean version automatically, and
 the dependencies are pinned to commits in `lakefile.lean` and
 [`lake-manifest.json`](lake-manifest.json); `lake` fetches them, and there is nothing to
 clone by hand.
@@ -350,3 +350,8 @@ Comparator configuration to check. It records the dispatched commit and runs wit
 minimum, source-module, Challenge-closure, licensing and metadata requirements before
 dispatch. A passing preflight is advisory; it is separate from submission, editorial
 review and a public registry record.
+
+The module-system compatibility port preserves every frozen theorem statement and
+mathematical definition. The pinned Lattice-Probability compatibility revision adds
+public module interfaces to the existing library and updates two walk-proof calls
+to the current Mathlib API; it introduces no new mathematical assumptions.
