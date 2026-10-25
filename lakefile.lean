@@ -5,7 +5,7 @@ open Lake DSL
 package «orrw_formalization» where
 
 require «lattice-probability» from git
-  "https://github.com/nitromannitol/Lattice-Probability.git" @ "d6dc1aaae0ad1bdfd353cb7e1817a41406131e18"
+  "https://github.com/nitromannitol/Lattice-Probability.git" @ "a40ffead0cc9abcfc25ab00544a772d4339edf8d"
 
 require mathlib from git
   "https://github.com/leanprover-community/mathlib4" @ "065356127b1dc0016f66b7283ce0ce2c4055aa55"
