@@ -185,7 +185,7 @@ The following supporting statements establish properties of the formal model and
 |---|---|
 | **registered statement**, also called a **node** | one Lean declaration transcribing one statement of the paper. Each has an entry in `ledger/manifest.yaml`. |
 | **frozen statement** | the declaration's text between the lines `-- FROZEN-STATEMENT-BEGIN` and `-- FROZEN-STATEMENT-END`, pinned by the SHA-256 of those bytes. It cannot change without the change being recorded in the manifest. The proof after the end marker may be rewritten freely. |
-| **`PROVED`** | the node is **proved** here: a complete proof, whose axiom closure contains only `propext`, `Classical.choice` and `Quot.sound`. Every node in this repository is `PROVED`; the manifest also allows the state `SEALED` for a proved node whose axiom closure has been checked, and no node has it. |
+| **`PROVED`** | the node is **proved** here: a complete proof, whose axiom closure contains only `propext`, `Classical.choice` and `Quot.sound`. Every node in this repository is `PROVED`; the manifest also allows the state `SEALED`, and no node has it. |
 | **`FROZEN`** | the state for a result assumed rather than proved, carried as an explicit hypothesis. **No node here is `FROZEN`**: nothing in this development is assumed, as [`ASSUMPTIONS.md`](ASSUMPTIONS.md) records. |
 | **axiom closure** | the axioms a proof ultimately rests on, as reported by Lean's `#print axioms`. |
 | **`sorryAx`** | the axiom Lean inserts for an unproved `sorry`; its presence in an axiom closure means the result is not proved. |
