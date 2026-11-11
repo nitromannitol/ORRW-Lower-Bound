@@ -21,9 +21,11 @@ and notes on differences in formulation.
   stop just before the END marker, drop one leading newline if it is there, and
   take the SHA-256 of the UTF-8 encoding of what remains.  Neither marker line
   is included.  `python3 tools/check_manifest.py` is the authority.
-- `state` is `SEALED` once the statement is frozen, a proof exists, and the
-  proof's axiom closure has been checked to contain no `sorryAx`.  Every node
-  in this development is `SEALED`; `tools/check_axioms.py` verifies it.
+- `state` is `SEALED` once the statement is frozen, a proof exists and one check of it has
+  been made, and `PROVED` once the proof has also been audited independently (the head of
+  `ledger/manifest.yaml` defines the states).  Every node in this development is `PROVED`;
+  none is `SEALED`.  `tools/check_axioms.py` fails if the export of any node depends on
+  `sorryAx` or on any axiom other than `propext`, `Classical.choice` and `Quot.sound`.
 
 ## Modelling rulings
 
