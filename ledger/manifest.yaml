@@ -229,7 +229,6 @@ nodes:
     version: 2
     kind: theorem
     source: orrw.tex:1102-1105 (label eq:cesaro; weaker bound with coefficient C beta, see VERIFICATION.md)
-    note: ruling R-005 is retired; it governed the uniform index of the superseded v1 argument
     file: ORRW/Frozen/Occupation/OccupationCesaro.lean
     export: ORRW.Frozen.occupation_cesaro
     state: PROVED
