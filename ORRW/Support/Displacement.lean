@@ -30,7 +30,6 @@ variable {d : ℕ}
 
 /-! ### The exit time -/
 
-set_option maxHeartbeats 1000000 in
 /-- `E_β[τ_{B_r} ∧ N] ≤ Cβ(2r+1)^{d+1}`, uniformly in the horizon `N`. -/
 theorem exit_time_bound (hd : 2 ≤ d) :
     ∃ C : ℝ, 0 < C ∧ ∀ β : ℝ, 1 ≤ β → ∀ r N : ℕ,
@@ -127,7 +126,6 @@ theorem one_le_norm_dirVec (a : Dir d) : (1 : ℝ) ≤ ‖dirVec a‖ := by
     cases a.2 <;> simp
   linarith [hco, hval.le, hval.ge]
 
-set_option maxHeartbeats 1000000 in
 /-- `E_β Λ_n ≥ cβ^{-1/(d+1)}n^{1/(d+1)}`, the paper's displacement bound. -/
 theorem displacement_bound (hd : 2 ≤ d) :
     ∃ c : ℝ, 0 < c ∧ ∀ β : ℝ, 1 ≤ β → ∀ n : ℕ,
@@ -193,7 +191,7 @@ theorem displacement_bound (hd : 2 ≤ d) :
   · -- The main case.
     have h2K : 2 * K * β ≤ (n : ℝ) := by
       have hle : 2 * K ≤ M := by rw [hM]; exact le_max_left _ _
-      nlinarith [hβpos]
+      exact (mul_le_mul_of_nonneg_right hle hβpos.le).trans hcase
     have hgood := hhalf β hβ n h2K
     obtain ⟨a, ha⟩ : ∃ x : ℝ, x = ((n : ℝ) / (2 * K * β)) ^ ((d : ℝ) / ((d : ℝ) + 1)) := ⟨_, rfl⟩
     rw [← ha] at hgood
@@ -227,7 +225,7 @@ theorem displacement_bound (hd : 2 ≤ d) :
       have hMn : (6 * G) ^ (d + 1) ≤ M := by rw [hM]; exact le_max_right _ _
       have hnb : (6 * G) ^ (d + 1) ≤ (n : ℝ) / β := by
         rw [le_div_iff₀ hβpos]
-        nlinarith [hcase, hβpos]
+        exact (mul_le_mul_of_nonneg_right hMn hβpos.le).trans hcase
       have h1 : ((6 * G) ^ (d + 1) : ℝ) ^ p ≤ ((n : ℝ) / β) ^ p :=
         Real.rpow_le_rpow (by positivity) hnb hppos.le
       have h2 : (((6 * G : ℝ)) ^ (d + 1)) ^ p = 6 * G := by
@@ -248,7 +246,7 @@ theorem displacement_bound (hd : 2 ≤ d) :
       rw [htG, h3] at h2
       rw [div_le_iff₀ hGpos] at h2
       rw [div_le_iff₀ (by positivity : (0 : ℝ) < 4 * G)]
-      nlinarith [h2, hy6, hGpos]
+      linarith only [h2, hy6]
     have hprb : (1 : ℝ) / 2 ≤ prb (d := d) n β (fun w => y / (4 * G) ≤ L w) :=
       le_trans hgood (prb_mono hd1 hβ _ _ hev)
     have hmk := mul_prb_le_expect (N := n) hd1 hβ L hL0 (y / (4 * G))
