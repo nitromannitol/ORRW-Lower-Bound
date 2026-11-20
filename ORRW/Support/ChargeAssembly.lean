@@ -132,7 +132,6 @@ lemma departure_fiber_card_le (w : Fin n → Dir d) {k : ℕ}
 each index `i` being used at most `2d` times, and the arrival terms with
 `u_{A_i}(x_i)`, each index being used at most once. -/
 
-set_option maxHeartbeats 1000000 in
 /-- Upper-bounds the total charge accumulated by the walk by a resistance-weighted sum over the visited sites, using the fibre-multiplicity bound to control how often each site contributes. -/
 lemma charge_sum_le (hd : 0 < d) {β : ℝ} (hβ : 1 ≤ β) (w : Fin n → Dir d) {k : ℕ}
     (hfin : k ≤ (E w n).card)
@@ -295,7 +294,6 @@ lemma charge_sum_le (hd : 0 < d) {β : ℝ} (hβ : 1 ≤ β) (w : Fin n → Dir 
 
 /-! ### Proposition 3.3 -/
 
-set_option maxHeartbeats 1000000 in
 /-- `orrw.tex` (`prop:charge`): `Γ_m ≤ Kβ|E_m|^{1+1/d}`. -/
 theorem accumulated_charge_of {d : ℕ} (hd : 2 ≤ d) :
     ∃ K : ℝ, 0 < K ∧ ∀ β : ℝ, 1 ≤ β → ∀ N : ℕ, ∀ w : Fin N → Dir d, ∀ m : ℕ,
@@ -330,25 +328,30 @@ theorem accumulated_charge_of {d : ℕ} (hd : 2 ≤ d) :
       have h : (R w (sigma w (E w m).card)).card ≤ 2 * (E w m).card := by omega
       exact_mod_cast h
     have hQ : (0 : ℝ) ≤ ((E w m).card : ℝ) ^ (1 + (1 : ℝ) / (d : ℝ)) :=
-      Real.rpow_nonneg (by positivity) _
+      Real.rpow_nonneg (Nat.cast_nonneg _) _
     have hPQ : ((R w (sigma w (E w m).card)).card : ℝ) ^ (1 + (1 : ℝ) / (d : ℝ))
         ≤ 4 * ((E w m).card : ℝ) ^ (1 + (1 : ℝ) / (d : ℝ)) := by
       have h1 : ((R w (sigma w (E w m).card)).card : ℝ) ^ (1 + (1 : ℝ) / (d : ℝ))
           ≤ (2 * ((E w m).card : ℝ)) ^ (1 + (1 : ℝ) / (d : ℝ)) :=
-        Real.rpow_le_rpow (by positivity) hMk hexp
+        Real.rpow_le_rpow (Nat.cast_nonneg _) hMk hexp
       have h2 : (2 * ((E w m).card : ℝ)) ^ (1 + (1 : ℝ) / (d : ℝ))
           = (2 : ℝ) ^ (1 + (1 : ℝ) / (d : ℝ))
               * ((E w m).card : ℝ) ^ (1 + (1 : ℝ) / (d : ℝ)) :=
-        Real.mul_rpow (by norm_num) (by positivity)
+        Real.mul_rpow (by norm_num) (Nat.cast_nonneg _)
       have h3 : (2 : ℝ) ^ (1 + (1 : ℝ) / (d : ℝ)) ≤ 4 := by
         have hle : (1 : ℝ) + 1 / (d : ℝ) ≤ 2 := by
           have h1d : (1 : ℝ) / (d : ℝ) ≤ 1 := by
-            rw [div_le_one (by linarith)]; linarith
-          linarith
+            rw [div_le_one (by linarith only [hdR])]; linarith only [hdR]
+          linarith only [h1d]
         have h2' := Real.rpow_le_rpow_of_exponent_le (by norm_num : (1 : ℝ) ≤ 2) hle
         have h4 : (2 : ℝ) ^ (2 : ℝ) = 4 := by norm_num
-        linarith
-      nlinarith [h1, h2, h3, hQ]
+        linarith only [h2', h4]
+      calc ((R w (sigma w (E w m).card)).card : ℝ) ^ (1 + (1 : ℝ) / (d : ℝ))
+          ≤ (2 * ((E w m).card : ℝ)) ^ (1 + (1 : ℝ) / (d : ℝ)) := h1
+        _ = (2 : ℝ) ^ (1 + (1 : ℝ) / (d : ℝ))
+              * ((E w m).card : ℝ) ^ (1 + (1 : ℝ) / (d : ℝ)) := h2
+        _ ≤ 4 * ((E w m).card : ℝ) ^ (1 + (1 : ℝ) / (d : ℝ)) :=
+          mul_le_mul_of_nonneg_right h3 hQ
     have hcoef : (0 : ℝ) ≤ 4 * (d : ℝ) ^ 2 * β := by positivity
     have hstep1 := mul_le_mul_of_nonneg_left hins hcoef
     have hstep2 : C * ((R w (sigma w (E w m).card)).card : ℝ) ^ (1 + (1 : ℝ) / (d : ℝ))
