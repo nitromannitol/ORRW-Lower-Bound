@@ -117,7 +117,6 @@ noncomputable def pathMeasure [Fact (0 < d)] (β : ℝ) [Fact (1 ≤ β)] :
     Measure (Π _k : ℕ, Dir d) :=
   (Kernel.traj (X := fun _ => Dir d) (kappa β) 0) ∘ₘ (initTraj β)
 
-set_option maxHeartbeats 1000000 in
 /-- Step 1 of the bridge: the infinite-path measure of a cylinder is the
 `initTraj`-average of `partialTraj`.  This is the only place Ionescu-Tulcea is
 used; what remains is a finite computation. -/
@@ -142,7 +141,6 @@ theorem pathMeasure_restr_eq_bind [Fact (0 < d)] {β : ℝ} [Fact (1 ≤ β)] (n
     (measurableSet_singleton x), hmap]
 
 
-set_option maxHeartbeats 1000000 in
 /-- One step of `partialTraj`, evaluated at a single word.  `IicProdIoc` is a
 measurable equivalence when `a ≤ b`, so the preimage of a singleton is a
 singleton, and the product measure factors. -/
@@ -198,7 +196,6 @@ def trunc (n : ℕ) (x : Π _i : Iic (n+1), Dir d) : Π _i : Iic n, Dir d :=
 def lastOf (n : ℕ) (x : Π _i : Iic (n+1), Dir d) : Dir d :=
   x ⟨n + 1, mem_Iic.2 le_rfl⟩
 
-set_option maxHeartbeats 1000000 in
 /-- One step of `partialTraj`, in closed form: it advances a word by one letter,
 weighting by the one-step mass function, and kills every word that does not
 extend the given prefix. -/
@@ -253,7 +250,6 @@ theorem initTraj_singleton (β : ℝ) (x : Π _i : Iic (0 : ℕ), Dir d) :
       subst this; rfl
   rw [this, initMeasure_singleton]
 
-set_option maxHeartbeats 2000000 in
 /-- **The induction.**  The `initTraj`-average of `partialTraj` at a single word
 is that word's `prob`.  The step is `partialTraj_step_eval`, which turns the
 inner integral into a point evaluation, and `prob_succ`, which is the matching

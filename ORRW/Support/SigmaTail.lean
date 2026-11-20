@@ -241,7 +241,6 @@ lemma gamma_le_bound (hd : 2 ≤ d) {C : ℝ} (hCpos : 0 < C)
 `Φ_{n∧σ_k}`, `Γ_{n∧σ_k}` with `p := C₁k^{2/d}`, `q := 2C₁βk^{2/d}` and
 `b := Kβk^{1+1/d}`, then take `s := 4b`. -/
 
-set_option maxHeartbeats 2000000 in
 /-- Establishes the exponential tail bound on σ_k needed for Proposition 5.2, showing the probability that the accumulated charge exceeds k decays like e^{-cN} once N dominates Kβk^{1+1/d}. -/
 theorem sigma_tail_of {d : ℕ} (hd : 2 ≤ d) :
     ∃ c K : ℝ, 0 < c ∧ 0 < K ∧ ∀ β : ℝ, 1 ≤ β → ∀ k : ℕ, 1 ≤ k → ∀ N : ℕ,

@@ -129,7 +129,6 @@ theorem pathMeasure_event [hd : Fact (0 < d)] {β : ℝ} [hβ : Fact (1 ≤ β)]
   · intro w _
     exact measurableSet_eq_fun (measurable_ofPath n) measurable_const
 
-set_option maxHeartbeats 1000000 in
 /-- A stretched-exponential tail is summable: this is what turns the paper's
 Theorem (stretched-exponential tail) into an almost-sure statement. -/
 theorem summable_exp_neg_rpow {c α : ℝ} (hc : 0 < c) (hα : 0 < α) :
