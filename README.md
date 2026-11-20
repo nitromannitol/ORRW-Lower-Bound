@@ -249,7 +249,7 @@ are review aids; none proves equivalence between LaTeX and Lean.
 
 ## Size
 
-The library contains 51 Lean files with 7,573 physical lines, on top of mathlib and
+The library contains 51 Lean files with 7,572 physical lines, on top of mathlib and
 Lattice-Probability. The count covers `ORRW.lean` and `ORRW/`. The comparator sources
 (16 files, 1,657 lines) are counted separately.
 
