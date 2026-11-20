@@ -20,7 +20,6 @@ open Finset ORRW
 
 variable {d : ℕ}
 
-set_option maxHeartbeats 1000000 in
 /-- `P_β{|R_n| < cβ^{-d/(d+1)}n^{d/(d+1)}} ≤ exp(-c(n/β)^{(d-1)/(d+1)})`. -/
 theorem range_tail_of (hd : 2 ≤ d) :
     ∃ c C : ℝ, 0 < c ∧ 0 < C ∧ ∀ β : ℝ, 1 ≤ β → ∀ n : ℕ, C * β ≤ (n : ℝ) →
@@ -78,8 +77,8 @@ theorem range_tail_of (hd : 2 ≤ d) :
   -- `8Kβk^{1+1/d} ≤ n`.
   have hexpo : e * (1 + (1 : ℝ) / (d : ℝ)) = 1 := by
     rw [he]
-    have hd0 : (d : ℝ) ≠ 0 := by linarith
-    have hd1' : (d : ℝ) + 1 ≠ 0 := by linarith
+    have hd0 : (d : ℝ) ≠ 0 := hdRpos.ne'
+    have hd1' : (d : ℝ) + 1 ≠ 0 := by positivity
     field_simp
   have hapow : a ^ (1 + (1 : ℝ) / (d : ℝ)) = (n : ℝ) / (8 * K * β) := by
     rw [ha, ← Real.rpow_mul (by positivity), hexpo, Real.rpow_one]
@@ -89,7 +88,7 @@ theorem range_tail_of (hd : 2 ≤ d) :
       exact Real.rpow_le_rpow hkR hkle (by positivity)
     have hmul := mul_le_mul_of_nonneg_left hkpow hAB.le
     have heq : 8 * K * β * ((n : ℝ) / (8 * K * β)) = (n : ℝ) := by field_simp
-    linarith [hmul, heq.le, heq.ge]
+    exact hmul.trans_eq heq
   -- `β^{-e}n^e = (n/β)^e = B·a`.
   have hnb0 : (0 : ℝ) ≤ (n : ℝ) / β := by positivity
   have hratio : β ^ (-e) * (n : ℝ) ^ e = B * a := by
@@ -112,8 +111,10 @@ theorem range_tail_of (hd : 2 ≤ d) :
     have hstep : c * (B * a) ≤ B⁻¹ / (2 * (d : ℝ)) * (B * a) :=
       mul_le_mul_of_nonneg_right hc1 (by positivity)
     have hfin : a / (2 * (d : ℝ)) ≤ (k : ℝ) / (d : ℝ) := by
-      rw [div_le_div_iff₀ (by linarith) hdRpos]
-      nlinarith [hkge, hdRpos]
+      rw [div_le_div_iff₀ (by linarith only [hdRpos]) hdRpos]
+      have h2 : a ≤ 2 * (k : ℝ) := by linarith only [hkge]
+      calc a * (d : ℝ) ≤ 2 * (k : ℝ) * (d : ℝ) := mul_le_mul_of_nonneg_right h2 hdRpos.le
+        _ = (k : ℝ) * (2 * (d : ℝ)) := by ring
     have hcbound : c * β ^ (-e) * (n : ℝ) ^ e ≤ (k : ℝ) / (d : ℝ) := by
       calc c * β ^ (-e) * (n : ℝ) ^ e = c * (B * a) := by rw [← hratio]; ring
         _ ≤ B⁻¹ / (2 * (d : ℝ)) * (B * a) := hstep
@@ -122,7 +123,7 @@ theorem range_tail_of (hd : 2 ≤ d) :
     have hlt : ((R w n).card : ℝ) < (k : ℝ) / (d : ℝ) := lt_of_lt_of_le hw hcbound
     have hlt2 : (d : ℝ) * ((R w n).card : ℝ) < (k : ℝ) := by
       rw [lt_div_iff₀ hdRpos] at hlt
-      linarith
+      linarith only [hlt]
     have hltN : d * (R w n).card < k := by exact_mod_cast hlt2
     have hEle : (E w n).card < k := lt_of_le_of_lt (LatticeProb.card_edges_le_card_range w n) hltN
     have hnot : ¬ (sigma w k ≤ n) := by
@@ -131,16 +132,19 @@ theorem range_tail_of (hd : 2 ≤ d) :
     have hgt : (n : ℝ) < (sigma w k : ℝ) := by
       have : n < sigma w k := by omega
       exact_mod_cast this
-    linarith [hthr, hgt]
+    linarith only [hthr, hgt]
   -- The exponent.
   have hexpbd : c * ((n : ℝ) / β) ^ g ≤ c₀ * (k : ℝ) ^ f := by
     have hX : ((n : ℝ) / β) ^ e / (2 * B) ≤ (k : ℝ) := by
-      rw [hxa, div_le_iff₀ (by linarith)]
-      nlinarith [hkge, hBpos]
+      rw [hxa, div_le_iff₀ (by linarith only [hBpos])]
+      calc B * a ≤ B * (2 * (k : ℝ)) :=
+            mul_le_mul_of_nonneg_left (by linarith only [hkge]) hBpos.le
+        _ = (k : ℝ) * (2 * B) := by ring
     have hXpow : (((n : ℝ) / β) ^ e / (2 * B)) ^ f ≤ (k : ℝ) ^ f :=
       Real.rpow_le_rpow (by positivity) hX hfpos.le
     have hXeq : (((n : ℝ) / β) ^ e / (2 * B)) ^ f = ((n : ℝ) / β) ^ g / (2 * B) ^ f := by
-      rw [Real.div_rpow (Real.rpow_nonneg hnb0 e) (by linarith), ← Real.rpow_mul hnb0, hef]
+      rw [Real.div_rpow (Real.rpow_nonneg hnb0 e) (by linarith only [hBpos]),
+        ← Real.rpow_mul hnb0, hef]
     rw [hXeq] at hXpow
     have hng : (0 : ℝ) ≤ ((n : ℝ) / β) ^ g := Real.rpow_nonneg hnb0 g
     calc c * ((n : ℝ) / β) ^ g ≤ (c₀ / (2 * B) ^ f) * ((n : ℝ) / β) ^ g :=
@@ -148,6 +152,6 @@ theorem range_tail_of (hd : 2 ≤ d) :
       _ = c₀ * (((n : ℝ) / β) ^ g / (2 * B) ^ f) := by ring
       _ ≤ c₀ * (k : ℝ) ^ f := mul_le_mul_of_nonneg_left hXpow hc₀pos.le
   refine le_trans hincl (le_trans (hST β hβ k hk1 n hthr) ?_)
-  exact Real.exp_le_exp.mpr (by linarith)
+  exact Real.exp_le_exp.mpr (by linarith only [hexpbd])
 
 end ORRW.Support
