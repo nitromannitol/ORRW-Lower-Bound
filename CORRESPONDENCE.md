@@ -136,8 +136,8 @@ result as a hypothesis.
 | `thm-occupation-cesaro` | [ORRW.Frozen.occupation_cesaro](ORRW/Frozen/Occupation/OccupationCesaro.lean#L20) | [eq:cesaro](paper/orrw.tex#L1102) | PROVED |
 | `thm-occupation-measure` | [ORRW.Frozen.occupation_measure](ORRW/Frozen/Occupation/OccupationMeasure.lean#L26) | [thm:occupation-intro](paper/orrw.tex#L145) | PROVED |
 | `bridge-path-measure` | [ORRW.Frozen.pathMeasure_restr](ORRW/Frozen/AlmostSure/PathMeasureBridge.lean#L34) | not a paper statement; required for the almost-sure corollaries (see CORRESPONDENCE.md, R-001 scope) | PROVED |
-| `ae-range` | [ORRW.Frozen.range_ae](ORRW/Frozen/AlmostSure/RangeAlmostSure.lean#L35) | [paper passage](paper/orrw.tex#L138), the Borel-Cantelli corollary stated in prose after thm:whp (ruling A-003) | PROVED |
-| `ae-displacement` | [ORRW.Frozen.displacement_ae](ORRW/Frozen/AlmostSure/DisplacementAlmostSure.lean#L29) | [prop:displacement](paper/orrw.tex#L863), almost-sure clause | PROVED |
+| `ae-range` | [ORRW.Frozen.range_ae](ORRW/Frozen/AlmostSure/RangeAlmostSure.lean#L34) | [paper passage](paper/orrw.tex#L138), the Borel-Cantelli corollary stated in prose after thm:whp (ruling A-003) | PROVED |
+| `ae-displacement` | [ORRW.Frozen.displacement_ae](ORRW/Frozen/AlmostSure/DisplacementAlmostSure.lean#L28) | [prop:displacement](paper/orrw.tex#L863), almost-sure clause | PROVED |
 
 <!-- FROZEN-SURFACE-END -->
 

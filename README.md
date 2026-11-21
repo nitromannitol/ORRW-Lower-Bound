@@ -149,7 +149,7 @@ mathematical correspondence between the two sources.
 |---|---|---|
 | [Theorem 1.1](paper/orrw.tex#L112): Range lower bound<br>`thm:main` | [ORRW.Frozen.range_lower_bound](ORRW/Frozen/RangeLowerBound.lean#L18) |  |
 | [Theorem 1.2](paper/orrw.tex#L128): Stretched-exponential tail<br>`thm:whp` | [ORRW.Frozen.range_tail](ORRW/Frozen/RangeTail.lean#L20) |  |
-| [After Theorem 1.2](paper/orrw.tex#L138): Almost-sure range lower bound<br>`thm:whp` | [ORRW.Frozen.range_ae](ORRW/Frozen/AlmostSure/RangeAlmostSure.lean#L35) | Lean proves an eventual lower bound, which implies the printed liminf bound. |
+| [After Theorem 1.2](paper/orrw.tex#L138): Almost-sure range lower bound<br>`thm:whp` | [ORRW.Frozen.range_ae](ORRW/Frozen/AlmostSure/RangeAlmostSure.lean#L34) | Lean proves an eventual lower bound, which implies the printed liminf bound. |
 | [Theorem 1.3](paper/orrw.tex#L145): Occupation measure<br>`thm:occupation-intro` | [ORRW.Frozen.occupation_measure](ORRW/Frozen/Occupation/OccupationMeasure.lean#L26) | Uniformity in the site is expressed by a universal quantifier inside the constant's scope. |
 | [Lemma 2.1](paper/orrw.tex#L423): Exit time bounds<br>`lem:max-exit` | [ORRW.Frozen.max_exit](ORRW/Frozen/Insertion/ExitTimeBounds.lean#L37) |  |
 | [Lemma 2.2](paper/orrw.tex#L447): Adding one vertex<br>`lem:schur` | [ORRW.Frozen.one_point_insertion](ORRW/Frozen/Insertion/OnePointInsertion.lean#L41) | Effective resistance is defined by the inverse diagonal; the electrical interpretation is not separately proved. |
@@ -162,7 +162,7 @@ mathematical correspondence between the two sources.
 | [Lemma 5.1](paper/orrw.tex#L739): An exponential-moment bound<br>`lem:exp` | [ORRW.Frozen.time_versus_charge](ORRW/Frozen/Tail/TimeVersusCharge.lean#L73) | Both formulations give bounds at every finite horizon under the ORRW law. Lean also allows predictable 0/1 increments beyond those arising from a stopped clock. |
 | [Proposition 5.2](paper/orrw.tex#L792): Tail of $\sigma_k$<br>`prop:tail` | [ORRW.Frozen.sigma_tail](ORRW/Frozen/Tail/SigmaTail.lean#L43) |  |
 | [Proposition 6.1](paper/orrw.tex#L863): Displacement and exit times<br>`prop:displacement` | [ORRW.Frozen.displacement](ORRW/Frozen/Tail/Displacement.lean#L63) | Expected displacement and exit-time bounds; the almost-sure clause has its own entry. |
-| [Proposition 6.1](paper/orrw.tex#L863): Displacement and exit times<br>`prop:displacement` | [ORRW.Frozen.displacement_ae](ORRW/Frozen/AlmostSure/DisplacementAlmostSure.lean#L29) | The almost-sure clause. Lean proves an eventual lower bound, which implies the printed liminf bound. |
+| [Proposition 6.1](paper/orrw.tex#L863): Displacement and exit times<br>`prop:displacement` | [ORRW.Frozen.displacement_ae](ORRW/Frozen/AlmostSure/DisplacementAlmostSure.lean#L28) | The almost-sure clause. Lean proves an eventual lower bound, which implies the printed liminf bound. |
 | [Proposition 7.1](paper/orrw.tex#L912): The exponents are optimal<br>`prop:beta-sharp` | [ORRW.Frozen.exponents_optimal](ORRW/Frozen/Tail/ExponentsOptimal.lean#L43) |  |
 | [Lemma 8.1](paper/orrw.tex#L991): Truncated Green function<br>`lem:green` | [ORRW.Frozen.lazy_green_bounds](ORRW/Frozen/Occupation/LazyGreen.lean#L94) |  |
 | [Theorem 8.2](paper/orrw.tex#L1039): Occupation of a site<br>`thm:return` | [ORRW.Frozen.occupation](ORRW/Frozen/Occupation/Occupation.lean#L70) | Occupation bounds for a time interval, including the dimension-specific estimates. |
@@ -249,7 +249,7 @@ are review aids; none proves equivalence between LaTeX and Lean.
 
 ## Size
 
-The library contains 51 Lean files with 7,572 physical lines, on top of mathlib and
+The library contains 51 Lean files with 7,570 physical lines, on top of mathlib and
 Lattice-Probability. The count covers `ORRW.lean` and `ORRW/`. The comparator sources
 (16 files, 1,657 lines) are counted separately.
 

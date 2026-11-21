@@ -19,10 +19,10 @@ see [VERIFICATION.md](VERIFICATION.md) for the correspondence and its limits.
 | Lean toolchain | `leanprover/lean4:v4.32.0` |
 | Mathlib revision | `81a5d257c8e410db227a6665ed08f64fea08e997` |
 | Paper (`paper/orrw.tex`) SHA-256 | `cd913b195b6a2e4992eae367952beaba3a065ff2b0e7aaa9b794ab69e7b5781a` |
-| Lean sources and build configuration SHA-256 | `be4e08530b3a821634e37e19a2a76c8bb14625b1d39b8e4a7fc08321954dd1ec` |
+| Lean sources and build configuration SHA-256 | `54ed941a6c0ad9a1b7416cc03ba869a8e44b0da90083ab1dd4d4753321ccf90b` |
 | Build | succeeded |
 | Build warnings | 0 |
-| Generated | 2026-11-20 |
+| Generated | 2026-11-21 |
 
 ## Reproducing it
 
