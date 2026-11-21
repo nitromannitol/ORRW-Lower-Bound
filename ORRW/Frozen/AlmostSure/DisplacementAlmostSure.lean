@@ -24,7 +24,6 @@ open MeasureTheory ProbabilityTheory Finset Preorder Filter Real Asymptotics
 open scoped ENNReal
 
 open ORRW in
-set_option maxHeartbeats 2000000 in
 -- FROZEN-STATEMENT-BEGIN
 theorem ORRW.Frozen.displacement_ae {d : ℕ} [hd0 : Fact (0 < d)] (hd : 2 ≤ d) :
     ∃ c : ℝ, 0 < c ∧ ∀ (β : ℝ) (hβ : 1 ≤ β),
