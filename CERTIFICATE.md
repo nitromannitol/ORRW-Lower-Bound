@@ -19,10 +19,10 @@ see [VERIFICATION.md](VERIFICATION.md) for the correspondence and its limits.
 | Lean toolchain | `leanprover/lean4:v4.32.0` |
 | Mathlib revision | `81a5d257c8e410db227a6665ed08f64fea08e997` |
 | Paper (`paper/orrw.tex`) SHA-256 | `cd913b195b6a2e4992eae367952beaba3a065ff2b0e7aaa9b794ab69e7b5781a` |
-| Lean sources and build configuration SHA-256 | `54ed941a6c0ad9a1b7416cc03ba869a8e44b0da90083ab1dd4d4753321ccf90b` |
+| Lean sources and build configuration SHA-256 | `fc36d0acdbd80edc2b4b8a68a79e793c414e9418495fa5b4571d147608bc21f0` |
 | Build | succeeded |
 | Build warnings | 0 |
-| Generated | 2026-11-21 |
+| Generated | 2026-11-24 |
 
 ## Reproducing it
 
@@ -112,8 +112,6 @@ verifies these; the recipe is in `CORRESPONDENCE.md`.
 
 - The paper's open questions (Section 9) are questions; nothing there is
   formalized, and nothing here bears on them.
-- `LatticeProb.Reff` is *defined* by the Schur identity, so the electrical-network
-  reading of `eq:schur` is a definition here, not a theorem (ruling L-002).
 - The figures, the numerical simulations and the survey in Section 1.3 are
   outside the formalization.
 

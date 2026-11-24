@@ -55,8 +55,9 @@ status:
     infinite-path law with the finite-horizon law.  SCOPE BOUNDARY: nothing is
     assumed; no cited result is taken as a hypothesis (ASSUMPTIONS.md).  Not
     formalized: the survey of related work, the simulations, the figures, the
-    open questions, and the electrical interpretation of effective resistance,
-    which is defined by the inverse diagonal of the Dirichlet Laplacian.  The
+    open questions.  The effective resistance of the electrical network is
+    proved equal to the inverse diagonal of the Dirichlet Laplacian, which
+    defines LatticeProb.Reff (ORRW/Support/Electrical.lean).  The
     main theorems are stated in full in ORRW/MainTheorems.lean; all four are
     additionally restated over a Mathlib-only vocabulary for the Lean
     comparator (ORRWAudit/).
@@ -150,13 +151,13 @@ fidelity:
     almost-sure conclusions are proved as eventual lower bounds, which imply
     the printed bounds on the lower limit; some statements carry separate
     constants c and C where the paper writes one C >= 1; effective resistance
-    is defined by the inverse diagonal of the Dirichlet Laplacian, so the
-    electrical interpretation in Lemma 2.2 is a definition; Lemma 3.1 is
+    is defined by the inverse diagonal of the Dirichlet Laplacian, and the
+    electrical effective resistance is proved equal to it; Lemma 3.1 is
     stated as the equivalent one-step drift inequality, and Lemma 5.1 for
     finite-history processes with a predictable clock; a supremum over sites
     is a universal quantifier inside the constant's scope; and the frozen
     time-averaged occupation bound is weaker than the display eq:cesaro,
-    whose sharper dependence on beta the interval bound of Theorem 8.2 keeps.
+    which is proved separately as ORRW.occupation_cesaro_sharp.
 
 review:
   status: "author-verified"

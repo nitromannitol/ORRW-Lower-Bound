@@ -127,8 +127,9 @@ def paper_statements() -> dict[str, dict]:
 
 
 NOTES = {
-    "lem-schur": "Effective resistance is defined by the inverse diagonal; "
-                 "the electrical interpretation is not separately proved.",
+    "lem-schur": "`LatticeProb.Reff` is the inverse diagonal; the effective "
+                 "resistance of the electrical network is proved equal to it "
+                 "in `ORRW.Electrical.one_point_insertion_electrical`.",
     "lem-martingale": "The supermartingale property is expressed as its "
                       "equivalent one-step conditional drift inequality.",
     "prop-charge": "Proved for every finite direction history, which implies "
@@ -145,7 +146,8 @@ NOTES = {
     "thm-occupation": "Occupation bounds for a time interval, including "
                       "the dimension-specific estimates.",
     "thm-occupation-cesaro": "The time-averaged probability bound in the "
-                             "display labelled `eq:cesaro`.",
+                             "display labelled `eq:cesaro`; the display itself is "
+                             "`ORRW.occupation_cesaro_sharp`.",
     "thm-occupation-measure": "Uniformity in the site is expressed by a "
                               "universal quantifier inside the constant's scope.",
 }

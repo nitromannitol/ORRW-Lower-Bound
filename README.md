@@ -110,12 +110,15 @@ conventions, the modelling rulings and every difference in formulation.
    - The paper's constant `C ≥ 1` appears as separate constants `c > 0` and `C > 0` in some
      statements; taking the paper's constant large enough gives the same claims.
    - A supremum over sites is rendered as a universal quantifier inside the constant's scope.
-5. **Explicit versus implicit.** Effective resistance is defined by the inverse diagonal of the
-   Dirichlet Laplacian, so the electrical interpretation in Lemma 2.2 is a definition, not a
-   theorem. Lemma 3.1 is stated as the equivalent one-step drift inequality, and Lemma 5.1 for
-   finite-history processes with a predictable clock. The `occupation_cesaro` statement is a
-   weaker consequence of the display `eq:cesaro` than the display itself; `occupation` keeps
-   the sharper dependence on `β`.
+5. **Explicit versus implicit.** `LatticeProb.Reff` is defined by the inverse diagonal of the
+   Dirichlet Laplacian. The effective resistance of the electrical network `ℤ^d` with unit
+   conductances, `ORRW.Electrical.effResistance` (the voltage drop of the unit voltage divided
+   by its current), is proved equal to it, together with the Dirichlet principle, in
+   `ORRW.Electrical.one_point_insertion_electrical` (`ORRW/Support/Electrical.lean`). Lemma 3.1
+   is stated as the equivalent one-step drift inequality, and Lemma 5.1 for finite-history
+   processes with a predictable clock. The frozen `occupation_cesaro` statement is a weaker
+   consequence of the display `eq:cesaro`; the display itself, with the factor
+   `1 + (β−1)^{d/(d+1)}`, is `ORRW.occupation_cesaro_sharp` (`ORRW/Support/CesaroSharp.lean`).
 6. **Statements without a formal counterpart.** Every theorem, lemma and proposition of the
    paper has a registered Lean declaration. The correspondence table in
    [`CORRESPONDENCE.md`](CORRESPONDENCE.md) and the table below map the 24 registered
@@ -152,7 +155,7 @@ mathematical correspondence between the two sources.
 | [After Theorem 1.2](paper/orrw.tex#L138): Almost-sure range lower bound<br>`thm:whp` | [ORRW.Frozen.range_ae](ORRW/Frozen/AlmostSure/RangeAlmostSure.lean#L34) | Lean proves an eventual lower bound, which implies the printed liminf bound. |
 | [Theorem 1.3](paper/orrw.tex#L145): Occupation measure<br>`thm:occupation-intro` | [ORRW.Frozen.occupation_measure](ORRW/Frozen/Occupation/OccupationMeasure.lean#L26) | Uniformity in the site is expressed by a universal quantifier inside the constant's scope. |
 | [Lemma 2.1](paper/orrw.tex#L423): Exit time bounds<br>`lem:max-exit` | [ORRW.Frozen.max_exit](ORRW/Frozen/Insertion/ExitTimeBounds.lean#L37) |  |
-| [Lemma 2.2](paper/orrw.tex#L447): Adding one vertex<br>`lem:schur` | [ORRW.Frozen.one_point_insertion](ORRW/Frozen/Insertion/OnePointInsertion.lean#L41) | Effective resistance is defined by the inverse diagonal; the electrical interpretation is not separately proved. |
+| [Lemma 2.2](paper/orrw.tex#L447): Adding one vertex<br>`lem:schur` | [ORRW.Frozen.one_point_insertion](ORRW/Frozen/Insertion/OnePointInsertion.lean#L41) | `LatticeProb.Reff` is the inverse diagonal; the effective resistance of the electrical network is proved equal to it in `ORRW.Electrical.one_point_insertion_electrical`. |
 | [Lemma 2.3](paper/orrw.tex#L485): Sum of effective resistances<br>`lem:packing` | [ORRW.Frozen.resistance_packing](ORRW/Frozen/Insertion/ResistancePacking.lean#L37) |  |
 | [Lemma 2.4](paper/orrw.tex#L515): Sum over successive vertex additions<br>`lem:insertion` | [ORRW.Frozen.insertion_inequality](ORRW/Frozen/Insertion/InsertionInequality.lean#L36) |  |
 | [Lemma 3.1](paper/orrw.tex#L596): A supermartingale<br>`lem:martingale` | [ORRW.Frozen.supermartingale_drift](ORRW/Frozen/Potential/Supermartingale.lean#L51) | The supermartingale property is expressed as its equivalent one-step conditional drift inequality. |
@@ -166,7 +169,7 @@ mathematical correspondence between the two sources.
 | [Proposition 7.1](paper/orrw.tex#L912): The exponents are optimal<br>`prop:beta-sharp` | [ORRW.Frozen.exponents_optimal](ORRW/Frozen/Tail/ExponentsOptimal.lean#L43) |  |
 | [Lemma 8.1](paper/orrw.tex#L991): Truncated Green function<br>`lem:green` | [ORRW.Frozen.lazy_green_bounds](ORRW/Frozen/Occupation/LazyGreen.lean#L94) |  |
 | [Theorem 8.2](paper/orrw.tex#L1039): Occupation of a site<br>`thm:return` | [ORRW.Frozen.occupation](ORRW/Frozen/Occupation/Occupation.lean#L70) | Occupation bounds for a time interval, including the dimension-specific estimates. |
-| [Equation 25](paper/orrw.tex#L1102): <br>`eq:cesaro` | [ORRW.Frozen.occupation_cesaro](ORRW/Frozen/Occupation/OccupationCesaro.lean#L20) | The time-averaged probability bound in the display labelled `eq:cesaro`. |
+| [Equation 25](paper/orrw.tex#L1102): <br>`eq:cesaro` | [ORRW.Frozen.occupation_cesaro](ORRW/Frozen/Occupation/OccupationCesaro.lean#L20) | The time-averaged probability bound in the display labelled `eq:cesaro`; the display itself is `ORRW.occupation_cesaro_sharp`. |
 
 The following supporting statements establish properties of the formal model and have no separately stated paper result.
 
@@ -249,7 +252,7 @@ are review aids; none proves equivalence between LaTeX and Lean.
 
 ## Size
 
-The library contains 51 Lean files with 7,570 physical lines, on top of mathlib and
+The library contains 53 Lean files with 7,941 physical lines, on top of mathlib and
 Lattice-Probability. The count covers `ORRW.lean` and `ORRW/`. The comparator sources
 (16 files, 1,657 lines) are counted separately.
 

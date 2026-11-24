@@ -17,7 +17,7 @@ Modelling decisions.
   *defined* in the library module `LatticeProb.Walk.Dirichlet` (ruling L-002) to be `-Δ_{A⁺}^{-1}(x,x)`,
   which is the first equality of `eq:schur`.  That equality is therefore true
   by definition here and is not restated; the electrical-network content of
-  `eq:schur` is not formalized.  What remains of the lemma, and is frozen
+  `eq:schur` is proved in `ORRW/Support/Electrical.lean`.  What remains of the lemma, and is frozen
   below, is the identity `u_{A⁺}(x) = Reff · h_A(x)`, the identity `eq:deltaT`
   for `T(A⁺) - T(A)`, the lower bound `Reff ≥ 1/(2d)`, and both consequences
   collected in `eq:hbound`.

@@ -44,9 +44,16 @@ Lean indexes each such edge once by a site and a positive coordinate direction.
   definition is the same in both readings; the probabilistic interpretation is not
   a separate frozen theorem.
 - **Effective resistance.** `LatticeProb.Reff` is defined by the inverse diagonal of
-  the Dirichlet Laplacian. The electrical-network interpretation of this
-  quantity is not separately formalized. The algebraic identities and bounds
-  of Lemma 2.2 are proved for that definition.
+  the Dirichlet Laplacian, and the algebraic identities and bounds of Lemma 2.2
+  are proved for that definition. The electrical reading is proved in
+  `ORRW/Support/Electrical.lean`: `ORRW.Electrical.effResistance A x` is the
+  voltage drop of the unit voltage (harmonic on `A`, equal to `1` at `x` and to
+  `0` off `A⁺`) divided by the current it sends out of `x`, the unit voltage
+  exists and is unique, `effResistance_eq_Reff` identifies it with
+  `-Δ_{A⁺}^{-1}(x,x)`, and the Dirichlet principle
+  `one_div_reff_le_edgeEnergy` shows that `1 / Reff` is the least energy of a
+  voltage equal to `1` at `x` and `0` off `A⁺`.
+  `one_point_insertion_electrical` restates Lemma 2.2 with this resistance.
 - **Supermartingales.** Lemma 3.1 is expressed as the one-step conditional drift
   inequality on each finite history. Lemma 5.1 uses finite-history processes
   and a clock with predictable increments in `{0,1}`. Stopped adapted processes
@@ -60,8 +67,8 @@ Lean indexes each such edge once by a site and a positive coordinate direction.
   `C β n^(−d/(d+1))`. It is a weaker consequence, not the literal
   display. The dimension-specific interval estimate in `occupation` retains
   the sharper `(β−1)` dependence and implies the display by the
-  elementary simplification given in the paper. That sharper corollary has
-  not been added as a separate Lean declaration.
+  elementary simplification given in the paper; that corollary is
+  `ORRW.occupation_cesaro_sharp` in `ORRW/Support/CesaroSharp.lean`.
 
 ## Reproducing the checks
 
@@ -75,4 +82,4 @@ The manifest's `SEALED` status records a successful check; it does not assert
 an independent mathematical audit. The clause, exponent, and constant scans
 are review aids, and their recorded exceptions must be read with the statements.
 The formalization does not cover the literature survey, simulations, figures,
-open questions, or the electrical interpretation noted above.
+or open questions.

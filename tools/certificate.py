@@ -189,8 +189,6 @@ def build() -> str:
     A("")
     A("- The paper's open questions (Section 9) are questions; nothing there is")
     A("  formalized, and nothing here bears on them.")
-    A("- `LatticeProb.Reff` is *defined* by the Schur identity, so the electrical-network")
-    A("  reading of `eq:schur` is a definition here, not a theorem (ruling L-002).")
     A("- The figures, the numerical simulations and the survey in Section 1.3 are")
     A("  outside the formalization.")
     A("")

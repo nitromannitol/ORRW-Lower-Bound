@@ -44,7 +44,7 @@ each difference in formulation.
 | paper | how the Lean statement differs | why |
 |---|---|---|
 | `lem:exp` | both statements use the ORRW filtration and give bounds at every finite horizon; Lean represents `Φ_{n∧ζ}`, `Γ_{n∧ζ}` and `n∧ζ` as functions of finite histories and assumes the stopped one-step drift | the author's ruling specializes the paper's formulation to finite histories.  Every printed stopping time satisfies the increment identities required in Lean; see F-601 through F-605 |
-| `lem:schur` | the identification `Reff(x ↔ (A⁺)^c) = -Δ_{A⁺}^{-1}(x,x)` is a definition, not a proved statement | ruling L-002.  The other five assertions of the lemma, including both identities of `eq:hbound`, are proved |
+| `lem:schur` | `LatticeProb.Reff` is the inverse diagonal `-Δ_{A⁺}^{-1}(x,x)`; the effective resistance of the electrical network is a separate definition, `ORRW.Electrical.effResistance`, proved equal to it in `ORRW.Electrical.effResistance_eq_Reff` | ruling L-002 for the library definition; `ORRW.Electrical.one_point_insertion_electrical` states the whole lemma with the electrical resistance.  The other five assertions of the lemma, including both identities of `eq:hbound`, are proved |
 | `lem:martingale` | the paper says `(n + Φ_n - Γ_n)` is a supermartingale; the Lean statement is the equivalent one-step drift `1 ≤ E[ΔΓ - ΔΦ]` | that drift is the paper's own `eq:drift`, and it is what the proof of `prop:tail` consumes |
 
 The occupation estimates have separate declarations for the interval bound,
@@ -85,7 +85,7 @@ that a cross-reference such as "see ruling L-002" can actually be followed.
 | ruling | subject | written in |
 |---|---|---|
 | `L-001` | `u` is the linear-algebra formula, not a probabilistic expectation | `LatticeProb/Walk/Dirichlet.lean` (library) |
-| `L-002` | `Reff` is *defined* by the Schur identity, so the electrical content of `eq:schur` is not formalized | `LatticeProb/Walk/Dirichlet.lean` (library) |
+| `L-002` | `Reff` is *defined* by the Schur identity; the electrical content of `eq:schur` is proved in `ORRW/Support/Electrical.lean` | `LatticeProb/Walk/Dirichlet.lean` (library) |
 | `L-003` | functions on `A` are extended by zero via `extendZero` | `LatticeProb/Walk/Dirichlet.lean` (library) |
 | `L-004` | `Matrix.inv` is junk on a singular matrix; `dirichletLaplacian_isUnit` rules that out | `LatticeProb/Walk/Dirichlet.lean` (library) |
 | `R-006` | a `sup` over sites is rendered as a `∀` inside the constant's scope | `ORRW/Frozen/Occupation/OccupationMeasure.lean` |
