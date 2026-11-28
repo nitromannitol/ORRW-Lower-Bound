@@ -14,7 +14,6 @@ from __future__ import annotations
 
 import re
 import sys
-from collections import Counter
 from pathlib import Path
 
 try:
@@ -47,6 +46,12 @@ def lean_link(node: dict) -> str:
     return f"[{node['export']}]({node['file']}#L{line})"
 
 
+def lean_code_link(node: dict) -> str:
+    """The same link, with the declaration name set as code."""
+    name, target = lean_link(node)[1:-1].split("](")
+    return f"[`{name}`]({target})"
+
+
 def paper_cell(source: str) -> str:
     """Link a paper label or passage; retain supporting statements' roles."""
     rng = RANGE_RE.search(source)
@@ -73,26 +78,25 @@ def surface_table(nodes: list[dict]) -> str:
 
 
 def status_block(nodes: list[dict]) -> str:
-    counts = Counter(n["state"] for n in nodes)
-    parts = ", ".join(f"{counts[s]} `{s}`" for s in sorted(counts))
     draft = [n["id"] for n in nodes if n["state"] == "DRAFT_SORRY"]
     # State what is actually true.  Claiming a clean axiom closure while a
     # `DRAFT_SORRY` node exists is exactly the drift these blocks exist to stop.
     if draft:
         which = ", ".join(f"`{i}`" for i in draft)
         body = (
-            f"The {len(nodes) - len(draft)} sealed nodes are machine-checked and no\n"
-            f"sealed node's axiom closure contains `sorryAx`.  Still open: {which},\n"
-            f"whose statement is frozen and whose proof is a registered `sorry`.")
+            f"Of the {len(nodes)} statements in the tables of the numbered results,\n"
+            f"{len(nodes) - len(draft)} are proved, using only Lean's standard axioms\n"
+            f"`propext`, `Classical.choice` and `Quot.sound`.  The proofs of {which}\n"
+            f"are still `sorry`.")
     else:
         body = (
-            "Every node's proof is machine-checked, and every axiom closure is\n"
-            "exactly Lean's three standard axioms `propext`, `Classical.choice`\n"
-            "and `Quot.sound`: no `sorry`, and no axiom added by this development.")
+            f"**All {len(nodes)} statements in the tables of the numbered results are proved**,\n"
+            f"using only Lean's standard axioms `propext`, `Classical.choice` and `Quot.sound`:\n"
+            f"there is no `sorry` and no added axiom.")
     return (
-        f"Status: **{len(nodes)} registered statements: {parts}.**  {body}  Run\n"
-        f"`python3 tools/check_axioms.py` to confirm.  These counts are generated\n"
-        f"from `ledger/manifest.yaml` by `python3 tools/sync_docs.py`.")
+        f"{body}\n`python3 tools/check_axioms.py` checks the axioms, and "
+        f"`python3 tools/sync_docs.py`\ngenerates this paragraph and the tables from "
+        f"[`ledger/manifest.yaml`](ledger/manifest.yaml).")
 
 
 def paper_statements() -> dict[str, dict]:
@@ -127,43 +131,41 @@ def paper_statements() -> dict[str, dict]:
 
 
 NOTES = {
-    "lem-schur": "`LatticeProb.Reff` is the inverse diagonal; the effective "
-                 "resistance of the electrical network is proved equal to it "
-                 "in `ORRW.Electrical.one_point_insertion_electrical`.",
-    "lem-martingale": "The supermartingale property is expressed as its "
-                      "equivalent one-step conditional drift inequality.",
-    "prop-charge": "Proved for every finite direction history, which implies "
-                   "the paper's almost-sure assertion.",
-    "lem-exp": "Both formulations give bounds at every finite horizon under "
-               "the ORRW law. Lean also allows predictable 0/1 increments "
-               "beyond those arising from a stopped clock.",
-    "prop-displacement": "Expected displacement and exit-time bounds; "
-                         "the almost-sure clause has its own entry.",
-    "ae-range": "Lean proves an eventual lower bound, which implies the "
-                "printed liminf bound.",
-    "ae-displacement": "The almost-sure clause. Lean proves an eventual lower "
-                       "bound, which implies the printed liminf bound.",
-    "thm-occupation": "Occupation bounds for a time interval, including "
-                      "the dimension-specific estimates.",
-    "thm-occupation-cesaro": "The time-averaged probability bound in the "
-                             "display labelled `eq:cesaro`; the display itself is "
-                             "`ORRW.occupation_cesaro_sharp`.",
-    "thm-occupation-measure": "Uniformity in the site is expressed by a "
-                              "universal quantifier inside the constant's scope.",
+    "lem-schur": "Stated with the inverse diagonal of the Dirichlet Laplacian; "
+                 "see [Scope](#scope).",
+    "lem-martingale": "Stated as the equivalent one-step drift inequality.",
+    "prop-charge": "Proved for every finite history of steps, which implies "
+                   "the almost-sure statement.",
+    "lem-exp": "Stated for every clock with predictable increments in "
+               "`{0, 1}`, which includes the stopped clock of the paper.",
+    "prop-displacement": "The bounds in expectation; the next row is the "
+                         "almost-sure clause.",
+    "ae-range": "Proved as an eventual lower bound, which implies the bound "
+                "on the lower limit.",
+    "ae-displacement": "The almost-sure clause, proved as an eventual lower "
+                       "bound, which implies the bound on the lower limit.",
+    "thm-occupation-cesaro": "A weaker consequence of the display; the display "
+                             "itself is `ORRW.occupation_cesaro_sharp`.",
+    "thm-occupation-measure": "The constant does not depend on the site.",
+}
+
+TITLES = {
+    "guard-edges-le-sites": "Traversed edges bounded by visited sites",
+    "thm-occupation-cesaro": "Time-averaged occupation bound",
 }
 
 SUPPORT_ROLES = {
-    "guard-total-weight-pos": "The sum of incident edge weights is positive.",
-    "guard-prob-pmf": "The probabilities of all finite direction histories sum to one.",
-    "guard-one-step-witness": "After one step in dimension two, the expected range is two.",
-    "bridge-path-measure": "The infinite-path law has the prescribed finite-history marginals.",
+    "guard-total-weight-pos": "The sum of the weights of the edges at a site is positive.",
+    "guard-prob-pmf": "The probabilities of the histories of `n` steps sum to one.",
+    "guard-one-step-witness": "In dimension two, the expected range after one step is two.",
+    "bridge-path-measure": "The law on infinite histories has the given laws of the first `n` steps.",
 }
 
 
 def paper_map(nodes: list[dict]) -> str:
     """Link every paper result to its Lean declarations, in paper order."""
     statements = paper_statements()
-    rows = ["| Paper result and label | Lean statement | Correspondence note |",
+    rows = ["| Paper | Lean declaration | Content |",
             "|---|---|---|"]
     entries, extra, covered = [], [], set()
     for n in nodes:
@@ -177,7 +179,10 @@ def paper_map(nodes: list[dict]) -> str:
         s = statements[label]
         covered.add(label)
         line, title = s["line"], s["title"]
-        name = f"{s['kind'].capitalize()} {s['number']}"
+        if s["kind"] == "equation":
+            name = f"Display ({s['number']})"
+        else:
+            name = f"{s['kind'].capitalize()} {s['number']}"
         if n["id"] == "ae-range":
             paper_lines = (ROOT / "paper/orrw.tex").read_text().splitlines()
             end = next(i for i in range(line, len(paper_lines))
@@ -186,12 +191,13 @@ def paper_map(nodes: list[dict]) -> str:
                         if paper_lines[i].strip())
             name = "After " + name
             title = "Almost-sure range lower bound"
-        elif n["id"] == "guard-edges-le-sites":
-            title = "Traversed edges bounded by visited sites"
-        cell = (f"[{name}](paper/orrw.tex#L{line}): {title}"
-                f"<br>`{label}`")
+        title = TITLES.get(n["id"], title)
+        content = f"{title}." if title else ""
         note = NOTES.get(n["id"], "")
-        entries.append((line, f"| {cell} | {lean_link(n)} | {note} |"))
+        if note:
+            content = f"{content} {note}".strip()
+        entries.append((line, f"| [{name}](paper/orrw.tex#L{line}) "
+                              f"| {lean_code_link(n)} | {content} |"))
     missing = {label for label, s in statements.items()
                if s["kind"] != "equation"} - covered
     if missing:
@@ -199,13 +205,17 @@ def paper_map(nodes: list[dict]) -> str:
     rows.extend(row for _, row in sorted(entries, key=lambda entry: entry[0]))
     if extra:
         rows.append("")
-        rows.append("The following supporting statements establish properties of "
-                    "the formal model and have no separately stated paper result.")
+        count = {1: "One further statement checks", 2: "Two further statements check",
+                 3: "Three further statements check", 4: "Four further statements check",
+                 5: "Five further statements check"}.get(
+                     len(extra), f"{len(extra)} further statements check")
+        rows.append(f"{count} basic facts about the Lean model; "
+                    "the paper does not state them.")
         rows.append("")
-        rows.append("| Role | Lean statement |")
+        rows.append("| Fact about the model | Lean declaration |")
         rows.append("|---|---|")
         for n in extra:
-            rows.append(f"| {SUPPORT_ROLES[n['id']]} | {lean_link(n)} |")
+            rows.append(f"| {SUPPORT_ROLES[n['id']]} | {lean_code_link(n)} |")
     return "\n".join(rows)
 
 

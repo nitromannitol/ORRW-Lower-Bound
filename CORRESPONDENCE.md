@@ -4,8 +4,8 @@ Maps every frozen declaration to *Once-reinforced random walk on `ℤ^d` has
 range exponent at least `d/(d+1)`* (Ahmed Bou-Rabee and Yuval Peres).
 
 The [paper result map](README.md#which-lean-theorem-proves-which-result) gives
-printed result numbers, descriptions, stable labels, links to both statements,
-and notes on differences in formulation.
+printed result numbers, descriptions, links to both statements, and notes on
+differences in formulation; the table below gives the stable labels.
 
 ## Conventions
 
