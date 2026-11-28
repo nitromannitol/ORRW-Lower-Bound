@@ -1,150 +1,76 @@
 # Once-reinforced random walk on ℤ<sup>d</sup> has range exponent at least d/(d+1)
 
-A machine-checked **Lean 4** formalization of the paper
-
-> Ahmed Bou-Rabee and Yuval Peres,
-> *Once-reinforced random walk on `ℤ^d` has range exponent at least `d/(d+1)`*,
-> [arXiv:2610.00090](https://arxiv.org/abs/2610.00090).
-
-The paper's source, bibliography and figures are included under [`paper/`](paper/). The 4 main
-results of the paper are proved, in the form in which its introduction states them,
-**for every dimension `d ≥ 2` and every reinforcement parameter `β ≥ 1`**, with no cited result
-taken as a hypothesis. Every theorem, lemma and proposition behind them is formalized as well.
-
-The development is built on [mathlib](https://github.com/leanprover-community/mathlib4) and on
-the shared library [Lattice-Probability](https://github.com/nitromannitol/Lattice-Probability)
-(`LatticeProb`), a library of lattice probability and potential theory.
-
 [![CI](https://github.com/nitromannitol/ORRW-Lower-Bound/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/nitromannitol/ORRW-Lower-Bound/actions/workflows/build.yml)
 [![Comparator audit](https://github.com/nitromannitol/ORRW-Lower-Bound/actions/workflows/comparator.yml/badge.svg?branch=main)](https://github.com/nitromannitol/ORRW-Lower-Bound/actions/workflows/comparator.yml)
 
-## What is proved
+A Lean 4 formalization of the paper
 
-Once-reinforced random walk on `ℤ^d` with parameter `β ≥ 1` starts at the origin and, at each
-step, moves to a neighbour with probability proportional to `β` if the edge to it has been
-crossed before and to `1` otherwise. Its range `R_n = {X_0, …, X_n}` is the set of sites
-visited by time `n`. The main theorem of the paper (Theorem 1.1) says that for every `d ≥ 2`
-there is a constant `c > 0`, depending only on `d`, with
+> Ahmed Bou-Rabee and Yuval Peres,
+> [*Once-reinforced random walk on `ℤ^d` has range exponent at least `d/(d+1)`*](https://arxiv.org/abs/2610.00090),
+> arXiv:2610.00090 (2026).
 
-    E_β |R_n|  ≥  c β^{-d/(d+1)} n^{d/(d+1)}      for every β ≥ 1 and every n.
+Every theorem, lemma and proposition of the paper is stated and proved in Lean, for every dimension
+`d ≥ 2` and every reinforcement parameter `β ≥ 1`. There is no `sorry`, and only the standard axioms
+are used. Nothing is assumed: the facts that the paper quotes from other works are proved here or
+come from mathlib or Lattice-Probability.
 
-The paper also proves a stretched-exponential bound on the lower tail of `|R_n|`
-(Theorem 1.2), the almost-sure bound `liminf |R_n| n^{-d/(d+1)} ≥ c β^{-d/(d+1)}` that follows
-from it, and the bound `sup_z E_β L_n(z) ≤ C β n^{1/(d+1)}` on the expected local time at a
-site (Theorem 1.3). Behind them are exit times of increasing sets and the insertion inequality
-for effective resistances (Section 2), a potential and a supermartingale (Section 3), which
-give the expected range (Section 4) and the tail (Section 5), displacement and exit times
-(Section 6), the optimality of the exponents (Section 7), and return probabilities through the
-truncated Green function of the lazy walk (Section 8). The model is stated precisely in
-[Standing assumptions and scope](#standing-assumptions-and-scope).
+## The paper
 
-The 4 main results, formalized as stated in the introduction of the paper, are collected in
-[`ORRW/MainTheorems.lean`](ORRW/MainTheorems.lean). Each is proved by `exact` of its certified
-counterpart in `ORRW/Frozen/`, so the statements displayed there are the certified ones. None
-takes a hypothesis beyond `d ≥ 2` and `β ≥ 1`.
+*Once-reinforced random walk* on `ℤᵈ` starts at the origin. Every edge has weight `1` until the walk
+first crosses it, and weight `β ≥ 1` from then on. At each step the walk moves to one of the `2d`
+neighbours, with probability proportional to the weight of the edge it crosses. For `β = 1` it is
+simple random walk; for `β > 1` it prefers edges it has already crossed.
 
-| Paper | Lean declaration | Content |
-| --- | --- | --- |
-| Theorem 1.1 (label `thm:main`) | `ORRW.range_lower_bound` | lower bound on the expected range |
-| Theorem 1.2 (label `thm:whp`) | `ORRW.range_tail` | stretched-exponential bound on the lower tail of the range |
-| almost-sure bound after Theorem 1.2 (label `thm:whp`) | `ORRW.range_ae` | almost-sure lower bound on the range for all large `n` |
-| Theorem 1.3 (label `thm:occupation-intro`) | `ORRW.occupation_measure` | bound on the expected local time at a site |
+The *range* `R_n = {X_0, …, X_n}` is the set of sites visited by time `n`. For large `β`, it was
+predicted that `|R_n|` has order `n^{d/(d+1)}`. The paper proves the lower bound in every dimension
+and for every `β`, with the sharp dependence on `β`.
 
-**Theorem 1.1 (range lower bound, `thm:main`).** For every `d ≥ 2` there is `c > 0` such that
-`c β^{-d/(d+1)} n^{d/(d+1)} ≤ E_β |R_n|` for every `β ≥ 1` and every `n`.
+**Theorem 1.1 (range lower bound).** For every `d ≥ 2` there is `c > 0` such that
+`E_β |R_n| ≥ c β^{-d/(d+1)} n^{d/(d+1)}` for every `β ≥ 1` and every `n`.
 
-**Theorem 1.2 (stretched-exponential tail, `thm:whp`).** For every `d ≥ 2` there are
-`c, C > 0` such that
-`P_β(|R_n| < c β^{-d/(d+1)} n^{d/(d+1)}) ≤ exp(-c (n/β)^{(d-1)/(d+1)})` for every `β ≥ 1` and
-every `n ≥ C β`.
+**Theorem 1.2 (stretched-exponential tail).** For every `d ≥ 2` there are `c, C > 0` such that
+`P_β(|R_n| < c β^{-d/(d+1)} n^{d/(d+1)}) ≤ exp(-c (n/β)^{(d-1)/(d+1)})` for every `β ≥ 1` and every
+`n ≥ C β`. By the Borel–Cantelli lemma, almost surely `liminf |R_n| n^{-d/(d+1)} ≥ c β^{-d/(d+1)}`.
 
-**Almost-sure bound (after Theorem 1.2, `thm:whp`).** For every `d ≥ 2` there is `c > 0` such
-that for every `β ≥ 1`, almost surely, `|R_n| ≥ c β^{-d/(d+1)} n^{d/(d+1)}` for all large `n`,
-which implies the printed bound on the lower limit.
+**Theorem 1.3 (occupation measure).** Let `L_n(z)` be the number of times `j < n` with `X_j = z`.
+For every `d ≥ 2` there is `C` such that `sup_z E_β L_n(z) ≤ C β n^{1/(d+1)}` for every `β ≥ 1` and
+every `n ≥ 1`.
 
-**Theorem 1.3 (occupation measure, `thm:occupation-intro`).** For every `d ≥ 2` there is `C`
-with `∑_{j<n} P_β(X_j = z) ≤ C β n^{1/(d+1)}` for every `β ≥ 1`, every `n ≥ 1` and every
-site `z`.
+The proof bounds the expected time `σ_k` at which the walk has crossed `k` distinct edges:
+`E_β σ_k ≤ C β k^{1+1/d}`. The tools are exit times of growing sets and an inequality for effective
+resistances when a vertex is added (Section 2), and a potential that gives a supermartingale
+(Section 3). The paper also bounds the displacement and the exit times of boxes (Proposition 6.1),
+shows that the exponents in Theorem 1.1 are optimal (Proposition 7.1), and bounds the time spent at
+a site during any time interval (Theorem 8.2).
 
-In Lean, a direction word `w : Fin n → Dir d` lists the first `n` steps of the walk,
-`ORRW.prob β w` is its probability, `ORRW.expect` and `ORRW.prb` are expectation and
-probability under that law, `ORRW.R w n` is the range and `ORRW.pos w j` the position `X_j`.
-The almost-sure statement is about the law `ORRW.pathMeasure β` of the walk on infinite
-direction words, and is proved as an eventual lower bound. The occupation bound is stated for
-every horizon `N ≥ n`, with the sum over `j < n` of the probabilities in the law of words of
-length `N`.
+## The main theorems in Lean
 
-This repository formalizes every theorem, lemma and proposition of the paper
-(`tools/check_coverage.py`). Not formalized: the survey of related work, the simulations, the
-figures and the open questions. [`CORRESPONDENCE.md`](CORRESPONDENCE.md) and
-[`VERIFICATION.md`](VERIFICATION.md) give the paper-to-Lean correspondence, with the
-conventions, the modelling rulings and every difference in formulation.
+The main theorems are in [`ORRW/MainTheorems.lean`](ORRW/MainTheorems.lean). Their only hypotheses
+are `2 ≤ d` and `1 ≤ β`; the almost-sure bound also takes the instance `Fact (0 < d)`, which follows
+from `2 ≤ d`.
 
-## Standing assumptions and scope
+| Paper | Lean declaration |
+| --- | --- |
+| Theorem 1.1 | `ORRW.range_lower_bound` |
+| Theorem 1.2 | `ORRW.range_tail` |
+| Almost-sure bound after Theorem 1.2 | `ORRW.range_ae` |
+| Theorem 1.3 | `ORRW.occupation_measure` |
 
-1. **Every theorem is about every dimension and every reinforcement.** The four main results
-   hold for every `d : ℕ` with `2 ≤ d` and every real `β ≥ 1`; the constants `c` and `C` depend
-   on `d` only and are bound before `β` and `n`. The model is once-reinforced random walk on
-   `ℤ^d` as defined in `ORRW/Basic.lean`. Three registered guard statements concern the formal model:
-   `ORRW.Frozen.totalWeight_pos` (the sum of incident edge weights is positive),
-   `ORRW.Frozen.sum_prob_eq_one` (the probabilities of all finite direction histories sum to
-   one) and `ORRW.Frozen.expect_card_range_one_step` (after one step in dimension two, the
-   expected range is two).
-2. **Axioms and incomplete proofs.** The library contains no `sorry`, no `admit`, no
-   `native_decide` and no new `axiom`. The axiom report of each main theorem consists of
-   exactly `propext`, `Classical.choice` and `Quot.sound`. The main theorems rely on no
-   unproved result: everything they use, including the facts the paper cites from the
-   literature, is available in mathlib or Lattice-Probability or is proved in this repository;
-   [`ASSUMPTIONS.md`](ASSUMPTIONS.md) records that nothing is assumed.
-3. **What is not formalized.** The survey of related work, the simulations, the figures and the
-   open questions of the paper.
-4. **Model-specific conventions.**
-   - The law of the first `n` steps is a probability mass function on the finite set of
-     direction words `Fin n → Dir d` (ruling R-001), so every fixed-time expectation and
-     probability is a finite sum and no measurability side condition arises.
-   - The two almost-sure conclusions use the law of the walk on infinite direction words, built
-     from the one-step kernels by the Ionescu-Tulcea theorem in `ORRW/Support/InfinitePath.lean`;
-     `ORRW.Frozen.pathMeasure_restr` proves that its finite-dimensional marginals are the
-     finite-horizon law. Both conclusions are proved as eventual lower bounds, which imply the
-     paper's bounds on the lower limit.
-   - The paper's constant `C ≥ 1` appears as separate constants `c > 0` and `C > 0` in some
-     statements; taking the paper's constant large enough gives the same claims.
-   - A supremum over sites is rendered as a universal quantifier inside the constant's scope.
-5. **Explicit versus implicit.** `LatticeProb.Reff` is defined by the inverse diagonal of the
-   Dirichlet Laplacian. The effective resistance of the electrical network `ℤ^d` with unit
-   conductances, `ORRW.Electrical.effResistance` (the voltage drop of the unit voltage divided
-   by its current), is proved equal to it, together with the Dirichlet principle, in
-   `ORRW.Electrical.one_point_insertion_electrical` (`ORRW/Support/Electrical.lean`). Lemma 3.1
-   is stated as the equivalent one-step drift inequality, and Lemma 5.1 for finite-history
-   processes with a predictable clock. The frozen `occupation_cesaro` statement is a weaker
-   consequence of the display `eq:cesaro`; the display itself, with the factor
-   `1 + (β−1)^{d/(d+1)}`, is `ORRW.occupation_cesaro_sharp` (`ORRW/Support/CesaroSharp.lean`).
-6. **Statements without a formal counterpart.** Every theorem, lemma and proposition of the
-   paper has a registered Lean declaration. The correspondence table in
-   [`CORRESPONDENCE.md`](CORRESPONDENCE.md) and the table below map the 24 registered
-   statements to Lean declarations: the 16 numbered results, two displayed equations, two
-   almost-sure conclusions with declarations of their own, three guards on the model, and the
-   identification of the infinite-path law with the finite-horizon law.
+How to read the statements: the model is defined in [`ORRW/Basic.lean`](ORRW/Basic.lean). A
+direction word `w : Fin n → Dir d` lists the first `n` steps of the walk, and `ORRW.prob β w` is its
+probability. `ORRW.expect` and `ORRW.prb` are expectation and probability under this law. `ORRW.R w n`
+is the range `R_n`, and `ORRW.pos w j` is the position `X_j`. The almost-sure bound uses
+`ORRW.pathMeasure β`, the law of the walk on infinite direction words.
 
-## Registered statements
+<a id="which-lean-theorem-proves-which-result"></a>
 
-The generated summary below comes from [`ledger/manifest.yaml`](ledger/manifest.yaml).
+## All numbered results
 
-<!-- STATUS-BEGIN (generated by tools/sync_docs.py) -->
-
-Status: **24 registered statements: 24 `PROVED`.**  Every node's proof is machine-checked, and every axiom closure is
-exactly Lean's three standard axioms `propext`, `Classical.choice`
-and `Quot.sound`: no `sorry`, and no axiom added by this development.  Run
-`python3 tools/check_axioms.py` to confirm.  These counts are generated
-from `ledger/manifest.yaml` by `python3 tools/sync_docs.py`.
-
-<!-- STATUS-END -->
-
-### Which Lean theorem proves which result
-
-The table links the paper's statements to the frozen Lean declarations. Labels remain stable
-when numbering changes. The table is generated from the manifest; it does not prove
-mathematical correspondence between the two sources.
+The first table lists the 16 numbered results of the paper, two displayed equations and the two
+almost-sure bounds, each with the Lean declaration that proves it. The second lists four facts about
+the model. Each row is a *registered statement*: a Lean declaration whose text is pinned by its
+SHA-256 in [`ledger/manifest.yaml`](ledger/manifest.yaml). The tables are generated from that file
+by `python3 tools/sync_docs.py`.
 
 <!-- PAPER-MAP-BEGIN (generated by tools/sync_docs.py) -->
 
@@ -182,135 +108,93 @@ The following supporting statements establish properties of the formal model and
 
 <!-- PAPER-MAP-END -->
 
-### Terms
+## Scope
 
-| term | meaning |
-|---|---|
-| **registered statement**, also called a **node** | one Lean declaration transcribing one statement of the paper. Each has an entry in `ledger/manifest.yaml`. |
-| **frozen statement** | the declaration's text between the lines `-- FROZEN-STATEMENT-BEGIN` and `-- FROZEN-STATEMENT-END`, pinned by the SHA-256 of those bytes. It cannot change without the change being recorded in the manifest. The proof after the end marker may be rewritten freely. |
-| **`PROVED`** | the node is **proved** here: a complete proof, whose axiom closure contains only `propext`, `Classical.choice` and `Quot.sound`. Every node in this repository is `PROVED`; the manifest also allows the state `SEALED`, and no node has it. |
-| **`FROZEN`** | the state for a result assumed rather than proved, carried as an explicit hypothesis. **No node here is `FROZEN`**: nothing in this development is assumed, as [`ASSUMPTIONS.md`](ASSUMPTIONS.md) records. |
-| **axiom closure** | the axioms a proof ultimately rests on, as reported by Lean's `#print axioms`. |
-| **`sorryAx`** | the axiom Lean inserts for an unproved `sorry`; its presence in an axiom closure means the result is not proved. |
+- **Finite and infinite paths.** The law of the first `n` steps is a probability on the finite set
+  of direction words, so fixed-time expectations are finite sums. The two almost-sure statements
+  use the law on infinite words, built by the Ionescu-Tulcea theorem in
+  [`ORRW/Support/InfinitePath.lean`](ORRW/Support/InfinitePath.lean). They are proved as eventual
+  lower bounds, which imply the paper's bounds on the lower limit.
+- **Constants.** The paper writes one constant `C ≥ 1` and its inverse. Some Lean statements use
+  separate constants `c > 0` and `C > 0`; taking the paper's constant large enough gives the same
+  claims. A supremum over sites is a universal quantifier inside the scope of the constant.
+- **Lemmas 3.1 and 5.1.** Lemma 3.1 is stated as the equivalent one-step drift inequality.
+  Lemma 5.1 is stated for processes on finite histories with a clock whose increments are
+  predictable and in `{0, 1}`.
+- **Lemma 2.2.** `LatticeProb.Reff` is defined as the inverse diagonal of the Dirichlet Laplacian.
+  The effective resistance of the electrical network is proved equal to it, and
+  `ORRW.Electrical.one_point_insertion_electrical` states the lemma with the electrical resistance.
+- **The display `eq:cesaro`.** The registered statement `ORRW.Frozen.occupation_cesaro` is a weaker
+  consequence of the display. The display itself, with the factor `1 + (β − 1)^{d/(d+1)}`, is
+  `ORRW.occupation_cesaro_sharp`.
+- **Not formalized.** The survey of related work, the simulations, the figures and the open
+  questions.
 
-The word *frozen* carries two senses, so it is worth separating them: every registered
-statement is frozen in the sense of being **pinned by hash**, while the state `FROZEN` would
-mark a statement that is **assumed rather than proved**, and no statement here is.
+[`CORRESPONDENCE.md`](CORRESPONDENCE.md) and [`VERIFICATION.md`](VERIFICATION.md) record every
+difference in formulation between the paper and the Lean statements.
 
-Four checkers compare the Lean statements with the paper's rather than with their hashes.
-`tools/check_coverage.py` confirms that every labelled theorem, lemma and proposition of
-`paper/orrw.tex` is claimed by a node. `tools/check_clauses.py` counts the assertions of a
-paper statement and the top-level conjuncts of its Lean conclusion, and requires a written
-reading of every node. `tools/check_exponents.py` extracts the exponents from both sides and
-matches them. In each frozen statement whose conclusion has an existential constant,
-`tools/check_constants.py` checks that it is bound before `β`, `n`, `k`, `m` and `h`. These
-are review aids; none proves equivalence between LaTeX and Lean.
+## Checking the proofs
 
-## Guarantees
+<!-- STATUS-BEGIN (generated by tools/sync_docs.py) -->
 
-- **No `sorry`.** The library has none, and `tools/check_manifest.py` fails on any `sorry`,
-  `admit`, `axiom` or `sorryAx` under `ORRW/`. The 4 comparator challenges under
-  [`ORRWAudit/`](ORRWAudit/) each contain one intentional statement-level `sorry`, which the
-  corresponding solution proves.
-- **Standard axioms only.** The axiom report of each of the 4 main theorems lists exactly
-  `propext`, `Classical.choice` and `Quot.sound`, and so does that of all 24 registered
-  statements.
-  [`ORRW/Meta/AxiomsAudit.lean`](ORRW/Meta/AxiomsAudit.lean) prints the reports of the main
-  theorems, [`ORRW/Certificate.lean`](ORRW/Certificate.lean) those of the registered
-  statements, and `tools/check_axioms.py`, which the CI workflow runs through
-  `tools/verify.py`, fails on `sorryAx` or on any other axiom.
-  [`CERTIFICATE.md`](CERTIFICATE.md) records the result, with the SHA-256 of each frozen
-  statement.
-- **Builds from a clean checkout.** In continuous integration, `lake build` of a fresh
-  checkout completes 8,726 jobs without error, and the build fails on any warning or `sorry`
-  warning. `tools/check_warnings.py` registers no `sorry` warning.
-- **Independent check of the statements.** The 4 main results are restated in
-  [`ORRWAudit/`](ORRWAudit/) using mathlib alone, one challenge file per result
-  ([`RangeLowerBound`](ORRWAudit/RangeLowerBound/Challenge.lean),
-  [`RangeTail`](ORRWAudit/RangeTail/Challenge.lean),
-  [`RangeAlmostSure`](ORRWAudit/RangeAlmostSure/Challenge.lean) and
-  [`OccupationMeasure`](ORRWAudit/OccupationMeasure/Challenge.lean)). Each challenge rebuilds
-  the model from mathlib primitives (the lattice, direction words, the step rule and the law of
-  once-reinforced random walk on words of length `n`, and its law on infinite words through
-  mathlib's Ionescu-Tulcea construction). The solution file proves each restatement from the
-  library, and [leanprover/comparator](https://github.com/leanprover/comparator) checks that
-  the statement is proved, with only the three standard axioms, through independent
-  implementations of the Lean kernel. See [`ORRWAudit/README.md`](ORRWAudit/README.md) and
-  [`ORRWAudit/COMPARATOR_RUNS.md`](ORRWAudit/COMPARATOR_RUNS.md).
-- **Pinned toolchain and dependencies.** Lean `v4.32.0`; mathlib at revision
-  `81a5d257c8e410db227a6665ed08f64fea08e997` and Lattice-Probability at commit
-  `bbe0b90a7cf0517db0578139aaab7f152edbc45e`, recorded in [`lakefile.lean`](lakefile.lean) and
-  [`lake-manifest.json`](lake-manifest.json) (see [Building](#building)).
-- **Pinned statements.** The statement of every registered result is pinned by the SHA-256 of
-  its text in [`ledger/manifest.yaml`](ledger/manifest.yaml). Where a Lean docstring cites the
-  paper, it does so by label and by line range `orrw.tex:<a>-<b>` in the pinned
-  [`paper/orrw.tex`](paper/orrw.tex); `tools/paper_citations.py` and `tools/paper_anchors.py`
-  check those ranges.
-- **The paper is part of the repository.** The statement map refers to the version in
-  [`paper/`](paper/), pinned to the SHA-256
-  `cd913b195b6a2e4992eae367952beaba3a065ff2b0e7aaa9b794ab69e7b5781a` of `paper/orrw.tex`.
+Status: **24 registered statements: 24 `PROVED`.**  Every node's proof is machine-checked, and every axiom closure is
+exactly Lean's three standard axioms `propext`, `Classical.choice`
+and `Quot.sound`: no `sorry`, and no axiom added by this development.  Run
+`python3 tools/check_axioms.py` to confirm.  These counts are generated
+from `ledger/manifest.yaml` by `python3 tools/sync_docs.py`.
 
-## Size
+<!-- STATUS-END -->
 
-The library contains 53 Lean files with 7,941 physical lines, on top of mathlib and
-Lattice-Probability. The count covers `ORRW.lean` and `ORRW/`. The comparator sources
-(16 files, 1,657 lines) are counted separately.
+- **No `sorry`.** The library has none, and `tools/check_manifest.py` fails on any `sorry`, `admit`
+  or `axiom` under `ORRW/`. Each of the four comparator challenges under [`ORRWAudit/`](ORRWAudit/)
+  contains one intentional `sorry` at the statement, which the matching solution proves.
+- **Standard axioms only.** [`ORRW/Meta/AxiomsAudit.lean`](ORRW/Meta/AxiomsAudit.lean) prints the
+  axioms of the main theorems, and [`ORRW/Certificate.lean`](ORRW/Certificate.lean) those of all 24
+  registered statements. `tools/check_axioms.py` fails on any axiom other than `propext`,
+  `Classical.choice` and `Quot.sound`. [`CERTIFICATE.md`](CERTIFICATE.md) records the result.
+- **Pinned statements.** Each registered statement is pinned by the SHA-256 of its text in
+  [`ledger/manifest.yaml`](ledger/manifest.yaml), and the paper source by the SHA-256 of
+  `paper/orrw.tex`.
+- **Independent check of the statements.** Each main theorem has a comparator pair in
+  [`ORRWAudit/`](ORRWAudit/). The `Challenge.lean` rebuilds the model from mathlib alone and states
+  the theorem; the `Solution.lean` proves it from the library.
+  [leanprover/comparator](https://github.com/leanprover/comparator) checks that the two statements
+  agree, that only the standard axioms are used, and replays the proof through an independent
+  implementation of the Lean kernel. See [`ORRWAudit/README.md`](ORRWAudit/README.md).
+- **Continuous integration.** The **CI** workflow builds the library with no warning, builds the
+  axiom audit and runs `tools/verify.py`. The **Comparator audit** workflow runs the comparator on
+  the four pairs.
+
+`ORRW.lean` and `ORRW/` contain 53 Lean files with 7,941 lines, built on mathlib and
+Lattice-Probability.
 
 ## Building
 
-Install [elan](https://github.com/leanprover/elan). The toolchain is pinned in
+Install [elan](https://github.com/leanprover/elan). The toolchain (Lean `v4.32.0`) is pinned in
 [`lean-toolchain`](lean-toolchain), and Lake fetches the dependencies.
 
 ```bash
-lake exe cache get   # prebuilt mathlib
-lake build
-```
-
-Lattice-Probability has no prebuilt cache, so the first build compiles it as well as the
-library. `import ORRW` loads the whole development, and `import ORRW.MainTheorems` loads the
-main theorems and what they use.
-
-The dependencies are public repositories, pinned to exact commits in
-[`lake-manifest.json`](lake-manifest.json):
-
-- mathlib: `https://github.com/leanprover-community/mathlib4` at
-  `81a5d257c8e410db227a6665ed08f64fea08e997`.
-- Lattice-Probability: `https://github.com/nitromannitol/Lattice-Probability` at
-  `bbe0b90a7cf0517db0578139aaab7f152edbc45e`.
-
-To reproduce the axiom reports and build the comparator libraries:
-
-```bash
+lake exe cache get                    # prebuilt mathlib
+lake build                            # the library
 lake build ORRW.Meta.AxiomsAudit      # print the axioms of the four main theorems
 lake env lean ORRW/Certificate.lean   # print the axioms of all 24 registered statements
 lake build ORRWAudit                  # the comparator challenges and solutions
 ```
 
+Lattice-Probability has no prebuilt cache, so the first build compiles it as well as the library.
+`import ORRW.MainTheorems` loads the main theorems and what they use. The dependencies are public
+repositories, pinned in [`lake-manifest.json`](lake-manifest.json):
+
+- mathlib: `https://github.com/leanprover-community/mathlib4` at
+  `81a5d257c8e410db227a6665ed08f64fea08e997`;
+- Lattice-Probability: `https://github.com/nitromannitol/Lattice-Probability` at
+  `bbe0b90a7cf0517db0578139aaab7f152edbc45e`.
+
 The checkers in `tools/` need Python 3.10 or newer and PyYAML
-(`python3 -m pip install -r tools/requirements.txt`). `python3 tools/verify.py` runs the
-regression tests of the checkers and every check below, and fails on the first failure; the CI
-workflow runs it on relevant changes to `main` or by manual dispatch. `check_axioms.py` and
-`check_warnings.py` run Lean; the others read the manifest, the paper and the Lean sources.
+(`python3 -m pip install -r tools/requirements.txt`). `python3 tools/verify.py` runs all of them and
+stops at the first failure.
 
-| command | what it guarantees |
-|---|---|
-| `python3 tools/check_manifest.py` | every node's file holds exactly one frozen block whose SHA-256 equals `frozen_sha256` and which declares exactly the node's `export`; every file in `ORRW/Frozen/` belongs to one node; `ORRW/` contains no `axiom`, `admit` or `sorryAx`, and no `sorry` |
-| `python3 tools/check_axioms.py` | runs `#print axioms` on every manifest export, and fails on any axiom other than `propext`, `Classical.choice` and `Quot.sound` |
-| `python3 tools/check_warnings.py` | `lake build ORRW` emits no Lean warning |
-| `python3 tools/check_constants.py` | in a frozen statement whose conclusion has an existential constant, the constant is bound before `β`, `n`, `k`, `m` and `h` |
-| `python3 tools/check_coverage.py` | every labelled theorem, lemma and proposition of `paper/orrw.tex` is named in the `source` of some manifest node |
-| `python3 tools/check_clauses.py` | compares the assertion count of each paper statement with the conjunct count of its Lean statement, and requires a recorded reading of every node |
-| `python3 tools/check_exponents.py` | compares the exponents written in a paper statement with those in its Lean statement |
-
-Also in `tools/`: `paper_anchors.py` and `paper_citations.py` check the `orrw.tex:<lines>`
-ranges in the manifest and in the Lean docstrings against the paper's labels; `sync_docs.py`
-checks (`--write` regenerates) the status block and the paper map of this file and the
-frozen-surface table of `CORRESPONDENCE.md`; `assumptions.py` regenerates `ASSUMPTIONS.md`
-(`--check` verifies it is current); `certificate.py` regenerates `CERTIFICATE.md`, and is
-written only after its checks succeed.
-
-The paper snapshot includes its bibliography and both figures. With pdfLaTeX and BibTeX, run in
-[`paper/`](paper/):
+To rebuild the PDF of the paper (15 pages) with pdfLaTeX and BibTeX:
 
 ```sh
 cd paper
@@ -320,71 +204,44 @@ pdflatex -interaction=nonstopmode -halt-on-error orrw.tex
 pdflatex -interaction=nonstopmode -halt-on-error orrw.tex
 ```
 
-The [paper snapshot](paper/README.md) is the source supplied for the arXiv submission; it
-compiles to 15 pages. See [`CONTRIBUTING.md`](CONTRIBUTING.md) for further building notes.
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for further building notes.
 
 ## Running the comparators
 
-Each comparator pair has a configuration `ORRWAudit/<Pair>/comparator.json`, for `<Pair>` one
-of `RangeLowerBound`, `RangeTail`, `RangeAlmostSure` and `OccupationMeasure`, that permits
-exactly `propext`, `Classical.choice` and `Quot.sound` and enables the independent nanoda
-kernel. The comparator checks that the solution proves the challenge statement, compares their
-dependency closures, and replays the proof with the Lean and NanoDa kernels.
-
-To run one pair locally, build `leanprover/comparator`, `lean4export`, `landrun` and
-`nanoda_lib` at the revisions pinned in
-[`.github/workflows/comparator.yml`](.github/workflows/comparator.yml) (also recorded in
-[`ORRWAudit/COMPARATOR_RUNS.md`](ORRWAudit/COMPARATOR_RUNS.md)), and from the repository root
-run:
+Each pair has a configuration `ORRWAudit/<Pair>/comparator.json`, for `<Pair>` one of
+`RangeLowerBound`, `RangeTail`, `RangeAlmostSure` and `OccupationMeasure`. It permits exactly
+`propext`, `Classical.choice` and `Quot.sound` and enables the nanoda kernel. Build
+`leanprover/comparator`, `lean4export`, `landrun` and `nanoda_lib` at the revisions pinned in
+[`.github/workflows/comparator.yml`](.github/workflows/comparator.yml), then run from the repository
+root
 
 ```bash
 COMPARATOR_LANDRUN=<landrun> COMPARATOR_LEAN4EXPORT=<lean4export> COMPARATOR_NANODA=<nanoda_bin> \
   lake env <comparator>/.lake/build/bin/comparator ORRWAudit/<Pair>/comparator.json
 ```
 
-A pair passes when the comparator prints `Your solution is okay!`. The comparator workflow
-runs the four pairs one after the other in a single job on GitHub-hosted runners.
-
-There are two continuous-integration workflows: **CI** builds the library, builds the axiom
-audit and runs `tools/verify.py`; **Comparator audit** checks all 4 challenge/solution pairs.
-Both run on pushes to `main` that change Lean files, `tools/`, `paper/`, `ledger/`,
-`formalization.yaml` or the build configuration, and can be started manually from the
-[Actions page](https://github.com/nitromannitol/ORRW-Lower-Bound/actions). See
-[`CONTRIBUTING.md`](CONTRIBUTING.md) for build conventions.
+A pair passes when the comparator prints `Your solution is okay!`.
+[`ORRWAudit/COMPARATOR_RUNS.md`](ORRWAudit/COMPARATOR_RUNS.md) records the pins and the results.
 
 ## Repository layout
 
 ```text
-ORRW.lean                 the root module, importing the whole library
+ORRW.lean               the root module
 ORRW/
-  MainTheorems.lean       the four main theorems, stated in full
-  Frozen/                 the certified statement surface, one frozen statement per file
-  Support/                the lemmas the frozen statements are proved from
-  Meta/AxiomsAudit.lean   the axiom report, compiled by `lake build`, not imported by the root
-  Basic.lean              the model: the step rule, the law of the first n steps, E_k and R_k
-  Library.lean            the lazy-walk objects re-exported from Lattice-Probability
-  Potential.lean          the potential and the charge of Section 3
-  Certificate.lean        prints the axioms of all 24 registered statements
-ORRWAudit/                the mathlib-only restatements and their solutions
-  README.md               what each comparator pair checks
-  DESIGN.md               how the pairs are built: vocabulary, bridges
-  COMPARATOR_RUNS.md      the comparator pins and results
-  <Pair>/                 Challenge.lean, SolutionBasic.lean, Solution.lean, comparator.json
-  Support/                one bridge per pair, identifying the vocabulary with the library
-ASSUMPTIONS.md            the cited results assumed (none; generated)
-CORRESPONDENCE.md         paper to Lean: conventions, rulings, main results, node table
-VERIFICATION.md           constants and differences in formulation
-CERTIFICATE.md            generated record of the toolchain, the build, each node's axiom
-                          closure and the SHA-256 of each frozen statement
-ledger/manifest.yaml      one row per registered statement: hash, paper source, state
-paper/                    the paper: source (orrw.tex, pinned by the SHA-256 in
-                          ledger/manifest.yaml), bibliography, figures
-tools/                    the checkers and generators listed under Building
-.github/workflows/        the CI and comparator workflows
-formalization.yaml        models, tooling, cost, review and fidelity disclosure
-CITATION.cff              citation metadata
-CONTRIBUTING.md           building notes and the elaboration policy for new files
-lakefile.lean, lake-manifest.json, lean-toolchain   the pinned build
+  MainTheorems.lean     the four main theorems
+  Basic.lean            the model: the step rule and the law of the first n steps
+  Frozen/               the registered statements, one per file
+  Support/              the lemmas they are proved from
+  Meta/AxiomsAudit.lean the axiom report of the main theorems
+  Certificate.lean      the axiom report of all 24 registered statements
+ORRWAudit/              the four comparator pairs
+ledger/manifest.yaml    one row per registered statement: hash, paper source, state
+paper/                  the paper source, bibliography and figures
+tools/                  the checkers
+ASSUMPTIONS.md          the cited results assumed (none)
+CORRESPONDENCE.md       the conventions and the differences in formulation
+VERIFICATION.md         the constants and the differences in formulation
+CERTIFICATE.md          the toolchain, the axioms and the hash of each registered statement
 ```
 
 ## How this was built
